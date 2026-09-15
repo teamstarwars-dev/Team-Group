@@ -13,79 +13,59 @@ module.exports = async (req, res) => {
         return res.status(400).json({ error: 'Adresse email invalide.' });
     }
 
-    const kvUrl = process.env.KV_REST_API_URL;
-    const kvToken = process.env.KV_REST_API_TOKEN;
-
-    if (!kvUrl || !kvToken) {
+    const apiUrl = process.env.POSTGRES_REST_API_URL;
+    const apiToken = process.env.POSTGRES_REST_API_TOKEN;
+    if (!apiUrl || !apiToken) {
         return res.status(503).json({ error: 'Base de données non configurée.' });
     }
 
     try {
-        const key = `newsletter:${email.toLowerCase()}`;
-        const existing = await kvGet(key, kvUrl, kvToken);
+        const normalizedEmail = email.toLowerCase().trim();
 
-        if (existing) {
+        const check = await pgQuery(
+            `SELECT id FROM subscribers WHERE email = '${normalizedEmail}'`,
+            apiUrl, apiToken
+        );
+        if (check.rows && check.rows.length > 0) {
             return res.status(200).json({ success: true, message: 'Déjà inscrit !' });
         }
 
-        const subscriber = {
-            email: email.toLowerCase(),
-            source: source || 'Team Group',
-            date: new Date().toISOString(),
-            id: Date.now().toString(36) + Math.random().toString(36).substr(2, 5)
-        };
+        await pgQuery(
+            `INSERT INTO subscribers (email, source) VALUES ('${normalizedEmail}', '${(source || 'Team Group').replace(/'/g, "''")}')`,
+            apiUrl, apiToken
+        );
 
-        await kvSet(key, JSON.stringify(subscriber), kvUrl, kvToken);
-
-        const listKey = 'newsletter:list';
-        const listRaw = await kvGet(listKey, kvUrl, kvToken);
-        const list = listRaw ? JSON.parse(listRaw) : [];
-        list.push(email.toLowerCase());
-        await kvSet(listKey, JSON.stringify(list), kvUrl, kvToken);
-
-        return res.status(200).json({ success: true, message: 'Inscription confirmée ! Vous recevrez nos prochaines alertes.' });
+        return res.status(200).json({
+            success: true,
+            message: 'Inscription confirmée ! Vous recevrez nos prochaines alertes.'
+        });
     } catch (err) {
         console.error('Newsletter error:', err.message);
         return res.status(500).json({ error: 'Erreur serveur. Réessayez plus tard.' });
     }
 };
 
-function kvGet(key, url, token) {
+function pgQuery(query, apiUrl, apiToken) {
     return new Promise((resolve, reject) => {
-        const encodedKey = encodeURIComponent(key);
-        https.get(`${url}/get/${encodedKey}`, {
-            headers: { 'Authorization': `Bearer ${token}` }
-        }, (res) => {
-            let data = '';
-            res.on('data', c => data += c);
-            res.on('end', () => {
-                try {
-                    const parsed = JSON.parse(data);
-                    resolve(parsed.result || null);
-                } catch { resolve(null); }
-            });
-        }).on('error', reject);
-    });
-}
-
-function kvSet(key, value, url, token) {
-    return new Promise((resolve, reject) => {
-        const encodedKey = encodeURIComponent(key);
-        const payload = JSON.stringify({ value });
+        const payload = JSON.stringify({ query });
+        const url = new URL(apiUrl);
         const options = {
-            hostname: new URL(url).hostname,
-            path: `/set/${encodedKey}`,
+            hostname: url.hostname,
+            path: url.pathname,
             method: 'POST',
             headers: {
-                'Authorization': `Bearer ${token}`,
+                'Authorization': `Bearer ${apiToken}`,
                 'Content-Type': 'application/json',
                 'Content-Length': Buffer.byteLength(payload)
             }
         };
-        const request = https.request(options, (res) => {
+        const request = https.request(options, (response) => {
             let data = '';
-            res.on('data', c => data += c);
-            res.on('end', () => resolve(data));
+            response.on('data', c => data += c);
+            response.on('end', () => {
+                try { resolve(JSON.parse(data)); }
+                catch { resolve({ rows: [] }); }
+            });
         });
         request.on('error', reject);
         request.write(payload);
