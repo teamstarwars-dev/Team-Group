@@ -1,8 +1,9 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://teamlauncher.vercel.app/sitemap.xml
+Sitemap: https://team-group.vercel.app/sitemap.xml
 
 # Paths
 Disallow: /api/
 Disallow: /data/
+Disallow: /admin.html

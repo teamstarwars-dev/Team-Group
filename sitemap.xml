@@ -1,187 +1,283 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://teamlauncher.vercel.app/index.html</loc>
+    <loc>https://team-group.vercel.app/index.html</loc>
     <lastmod>2026-09-15</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://teamlauncher.vercel.app/projets.html</loc>
+    <loc>https://team-group.vercel.app/projets.html</loc>
     <lastmod>2026-09-15</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://teamlauncher.vercel.app/equipe.html</loc>
+    <loc>https://team-group.vercel.app/equipe.html</loc>
     <lastmod>2026-09-15</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://teamlauncher.vercel.app/partenaires.html</loc>
+    <loc>https://team-group.vercel.app/partenaires.html</loc>
     <lastmod>2026-09-15</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://teamlauncher.vercel.app/contact.html</loc>
+    <loc>https://team-group.vercel.app/contact.html</loc>
     <lastmod>2026-09-15</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://teamlauncher.vercel.app/fuites-donnees.html</loc>
+    <loc>https://team-group.vercel.app/fuites-donnees.html</loc>
     <lastmod>2026-09-15</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://teamlauncher.vercel.app/veille-cybersecurite.html</loc>
+    <loc>https://team-group.vercel.app/veille-cybersecurite.html</loc>
     <lastmod>2026-09-15</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://teamlauncher.vercel.app/team-shield.html</loc>
+    <loc>https://team-group.vercel.app/team-shield.html</loc>
     <lastmod>2026-09-15</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://teamlauncher.vercel.app/team-launcher.html</loc>
+    <loc>https://team-group.vercel.app/team-launcher.html</loc>
     <lastmod>2026-09-15</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://teamlauncher.vercel.app/aqua-launcher.html</loc>
+    <loc>https://team-group.vercel.app/aqua-launcher.html</loc>
     <lastmod>2026-09-15</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://teamlauncher.vercel.app/documentation.html</loc>
+    <loc>https://team-group.vercel.app/documentation.html</loc>
     <lastmod>2026-09-15</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://teamlauncher.vercel.app/mentions-legales.html</loc>
+    <loc>https://team-group.vercel.app/mentions-legales.html</loc>
     <lastmod>2026-09-15</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>
   <url>
-    <loc>https://teamlauncher.vercel.app/confidentialite.html</loc>
+    <loc>https://team-group.vercel.app/confidentialite.html</loc>
     <lastmod>2026-09-15</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>
   <url>
-    <loc>https://teamlauncher.vercel.app/conditions-utilisation.html</loc>
+    <loc>https://team-group.vercel.app/conditions-utilisation.html</loc>
     <lastmod>2026-09-15</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>
   <url>
-    <loc>https://teamlauncher.vercel.app/cve/CVE-2026-21887.html</loc>
+    <loc>https://team-group.vercel.app/cve/CVE-2026-75650.html</loc>
     <lastmod>2026-09-15</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://teamlauncher.vercel.app/cve/CVE-2026-0217.html</loc>
+    <loc>https://team-group.vercel.app/cve/CVE-2026-59310.html</loc>
     <lastmod>2026-09-15</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://teamlauncher.vercel.app/cve/CVE-2026-23878.html</loc>
+    <loc>https://team-group.vercel.app/cve/CVE-2026-82329.html</loc>
     <lastmod>2026-09-15</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://teamlauncher.vercel.app/cve/CVE-2026-19074.html</loc>
+    <loc>https://team-group.vercel.app/cve/CVE-2026-34477.html</loc>
     <lastmod>2026-09-15</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://teamlauncher.vercel.app/cve/CVE-2026-25244.html</loc>
+    <loc>https://team-group.vercel.app/cve/CVE-2026-69586.html</loc>
     <lastmod>2026-09-15</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://teamlauncher.vercel.app/cve/CVE-2026-30291.html</loc>
+    <loc>https://team-group.vercel.app/cve/CVE-2026-63978.html</loc>
     <lastmod>2026-09-15</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://teamlauncher.vercel.app/cve/CVE-2026-28912.html</loc>
+    <loc>https://team-group.vercel.app/cve/CVE-2026-19593.html</loc>
     <lastmod>2026-09-15</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://teamlauncher.vercel.app/fuite/adobe.html</loc>
+    <loc>https://team-group.vercel.app/cve/CVE-2026-76461.html</loc>
+    <lastmod>2026-09-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://team-group.vercel.app/cve/CVE-2026-0217.html</loc>
+    <lastmod>2026-09-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://team-group.vercel.app/cve/CVE-2026-21887.html</loc>
+    <lastmod>2026-09-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://team-group.vercel.app/cve/CVE-2026-23878.html</loc>
+    <lastmod>2026-09-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://team-group.vercel.app/cve/CVE-2026-19074.html</loc>
+    <lastmod>2026-09-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://team-group.vercel.app/cve/CVE-2026-25244.html</loc>
+    <lastmod>2026-09-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://team-group.vercel.app/cve/CVE-2026-28912.html</loc>
+    <lastmod>2026-09-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://team-group.vercel.app/cve/CVE-2026-30291.html</loc>
+    <lastmod>2026-09-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://team-group.vercel.app/fuite/instructure.html</loc>
     <lastmod>2026-09-15</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://teamlauncher.vercel.app/fuite/linkedin.html</loc>
+    <loc>https://team-group.vercel.app/fuite/mckesson.html</loc>
     <lastmod>2026-09-15</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://teamlauncher.vercel.app/fuite/dropbox.html</loc>
+    <loc>https://team-group.vercel.app/fuite/dentaquest.html</loc>
     <lastmod>2026-09-15</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://teamlauncher.vercel.app/fuite/canva.html</loc>
+    <loc>https://team-group.vercel.app/fuite/idscan.html</loc>
     <lastmod>2026-09-15</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://teamlauncher.vercel.app/fuite/dailymotion.html</loc>
+    <loc>https://team-group.vercel.app/fuite/revolut.html</loc>
     <lastmod>2026-09-15</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://teamlauncher.vercel.app/fuite/collection-1-5.html</loc>
+    <loc>https://team-group.vercel.app/fuite/manchester-airports.html</loc>
     <lastmod>2026-09-15</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://teamlauncher.vercel.app/fuite/zoom.html</loc>
+    <loc>https://team-group.vercel.app/fuite/nike.html</loc>
     <lastmod>2026-09-15</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://teamlauncher.vercel.app/fuite/twitch.html</loc>
+    <loc>https://team-group.vercel.app/fuite/match-group.html</loc>
     <lastmod>2026-09-15</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://teamlauncher.vercel.app/fuite/facebook.html</loc>
+    <loc>https://team-group.vercel.app/fuite/adobe.html</loc>
     <lastmod>2026-09-15</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://teamlauncher.vercel.app/fuite/twitter.html</loc>
+    <loc>https://team-group.vercel.app/fuite/linkedin.html</loc>
+    <lastmod>2026-09-15</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://team-group.vercel.app/fuite/dropbox.html</loc>
+    <lastmod>2026-09-15</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://team-group.vercel.app/fuite/canva.html</loc>
+    <lastmod>2026-09-15</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://team-group.vercel.app/fuite/dailymotion.html</loc>
+    <lastmod>2026-09-15</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://team-group.vercel.app/fuite/collection-1-5.html</loc>
+    <lastmod>2026-09-15</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://team-group.vercel.app/fuite/zoom.html</loc>
+    <lastmod>2026-09-15</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://team-group.vercel.app/fuite/twitch.html</loc>
+    <lastmod>2026-09-15</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://team-group.vercel.app/fuite/facebook.html</loc>
+    <lastmod>2026-09-15</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://team-group.vercel.app/fuite/twitter.html</loc>
     <lastmod>2026-09-15</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.7</priority>
