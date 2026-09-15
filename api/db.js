@@ -2,18 +2,21 @@ const https = require('https');
 
 function neonQuery(sql, params) {
     return new Promise((resolve, reject) => {
-        const apiKey = process.env.NEON_API_KEY;
-        if (!apiKey) return reject(new Error('NEON_API_KEY not set'));
+        const connStr = process.env.DATABASE_URL;
+        if (!connStr) return reject(new Error('DATABASE_URL not set'));
+
+        const url = new URL(connStr);
+        const host = url.hostname;
 
         const body = JSON.stringify({ query: sql, params: params || [] });
 
         const options = {
-            hostname: 'console.neon.tech',
-            path: '/api/v2/sql',
+            hostname: host,
+            path: '/sql/v1/query',
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
-                'Authorization': `Bearer ${apiKey}`,
+                'Neon-Connection-String': connStr,
                 'Content-Length': Buffer.byteLength(body)
             }
         };
@@ -24,10 +27,10 @@ function neonQuery(sql, params) {
             res.on('end', () => {
                 try {
                     const parsed = JSON.parse(data);
-                    if (parsed.error) return reject(new Error(parsed.error));
+                    if (parsed.message) return reject(new Error(parsed.message));
                     resolve(parsed);
                 } catch (e) {
-                    reject(new Error('Invalid response: ' + data.substring(0, 200)));
+                    reject(new Error('Invalid response'));
                 }
             });
         });
