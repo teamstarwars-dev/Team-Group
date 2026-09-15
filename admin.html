@@ -15,16 +15,35 @@
         .admin-login h2 { text-align: center; margin-bottom: 24px; }
         .admin-login input { width: 100%; padding: 12px 16px; background: var(--bg); border: 1px solid var(--border); border-radius: 10px; color: var(--text); font: inherit; margin-bottom: 12px; box-sizing: border-box; }
         .admin-panel { display: none; }
-        .admin-stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 16px; margin-bottom: 32px; }
-        .admin-stat { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 24px; text-align: center; }
-        .admin-stat .num { font-size: 2rem; font-weight: 800; color: var(--accent); }
-        .admin-stat .label { color: var(--text-dim); font-size: .85rem; margin-top: 4px; }
-        .subscriber-list { list-style: none; padding: 0; }
-        .subscriber-item { display: flex; justify-content: space-between; align-items: center; padding: 12px 16px; background: var(--surface); border: 1px solid var(--border); border-radius: 10px; margin-bottom: 8px; }
-        .subscriber-item .email { font-weight: 600; }
-        .subscriber-item .meta { color: var(--text-dim); font-size: .82rem; }
-        .subscriber-item .del-btn { background: none; border: none; color: var(--red); cursor: pointer; font-size: .85rem; padding: 4px 8px; }
-        .subscriber-item .del-btn:hover { text-decoration: underline; }
+        .admin-stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 12px; margin-bottom: 32px; }
+        .admin-stat { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 20px; text-align: center; }
+        .admin-stat .num { font-size: 1.8rem; font-weight: 800; color: var(--accent); }
+        .admin-stat .label { color: var(--text-dim); font-size: .8rem; margin-top: 4px; }
+        .sub-card { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 16px 20px; margin-bottom: 10px; cursor: pointer; transition: border-color .2s; }
+        .sub-card:hover { border-color: var(--accent); }
+        .sub-header { display: flex; justify-content: space-between; align-items: center; }
+        .sub-email { font-weight: 700; font-size: 1rem; }
+        .sub-date { color: var(--text-dim); font-size: .82rem; }
+        .sub-details { display: none; margin-top: 14px; padding-top: 14px; border-top: 1px solid var(--border); }
+        .sub-details.open { display: block; }
+        .sub-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 8px 16px; }
+        .sub-field { font-size: .85rem; }
+        .sub-field .k { color: var(--text-dim); }
+        .sub-field .v { color: var(--text); font-weight: 500; word-break: break-all; }
+        .sub-actions { margin-top: 12px; display: flex; gap: 8px; }
+        .sub-actions button { font-size: .82rem; padding: 6px 12px; border-radius: 8px; cursor: pointer; border: 1px solid var(--border); background: var(--bg); color: var(--text); }
+        .sub-actions .del { border-color: var(--red); color: var(--red); }
+        .sub-actions .del:hover { background: var(--red); color: #fff; }
+        .events-list { margin-top: 12px; }
+        .event-item { font-size: .8rem; padding: 6px 0; border-bottom: 1px solid var(--border); color: var(--text-dim); }
+        .event-item:last-child { border-bottom: none; }
+        .event-type { font-weight: 600; color: var(--text); text-transform: uppercase; font-size: .72rem; letter-spacing: .5px; }
+        .badge { display: inline-block; padding: 2px 8px; border-radius: 6px; font-size: .72rem; font-weight: 600; }
+        .badge-active { background: rgba(34,197,94,.15); color: #22c55e; }
+        .badge-inactive { background: rgba(239,68,68,.15); color: #ef4444; }
+        .filter-bar { display: flex; gap: 8px; margin-bottom: 16px; flex-wrap: wrap; }
+        .filter-bar input, .filter-bar select { padding: 8px 12px; background: var(--bg); border: 1px solid var(--border); border-radius: 8px; color: var(--text); font: inherit; font-size: .85rem; }
+        .filter-bar input { flex: 1; min-width: 200px; }
     </style>
 </head>
 <body>
@@ -47,7 +66,7 @@
     <section class="section" style="padding-top:48px;">
         <div class="section-header">
             <div class="label">Administration</div>
-            <h2>Newsletter</h2>
+            <h2>Newsletter — Postgres</h2>
         </div>
 
         <div id="login-form" class="admin-login">
@@ -60,45 +79,66 @@
         <div id="admin-panel" class="admin-panel">
             <div class="admin-stats">
                 <div class="admin-stat">
-                    <div class="num" id="total-subscribers">0</div>
-                    <div class="label">Abonnés</div>
+                    <div class="num" id="stat-active">0</div>
+                    <div class="label">Abonnés actifs</div>
                 </div>
                 <div class="admin-stat">
-                    <div class="num" id="last-sub-date">-</div>
-                    <div class="label">Dernière inscription</div>
+                    <div class="num" id="stat-total">0</div>
+                    <div class="label">Total (total ever)</div>
                 </div>
+                <div class="admin-stat">
+                    <div class="num" id="stat-today">0</div>
+                    <div class="label">Aujourd'hui</div>
+                </div>
+                <div class="admin-stat">
+                    <div class="num" id="stat-week">0</div>
+                    <div class="label">Cette semaine</div>
+                </div>
+            </div>
+
+            <div class="filter-bar">
+                <input type="text" id="search" placeholder="Rechercher un email..." oninput="filterList()">
+                <select id="filter-status" onchange="filterList()">
+                    <option value="all">Tous</option>
+                    <option value="active">Actifs</option>
+                    <option value="inactive">Désabonnés</option>
+                </select>
             </div>
 
             <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:16px;">
-                <h3>Liste des abonnés</h3>
-                <button class="btn btn-ghost" onclick="loadSubscribers()">Rafraîchir</button>
+                <h3 id="list-title">Liste des abonnés</h3>
+                <button class="btn btn-ghost" onclick="loadAll()">Rafraîchir</button>
             </div>
 
-            <ul id="subscriber-list" class="subscriber-list"></ul>
+            <div id="subscriber-list"></div>
         </div>
     </section>
 </main>
 
 <script>
 let ADMIN_KEY = '';
+let ALL_SUBS = [];
 
 function login() {
     ADMIN_KEY = document.getElementById('admin-key').value.trim();
     if (!ADMIN_KEY) return;
-    loadSubscribers();
+    loadAll();
 }
 
-async function loadSubscribers() {
+async function loadAll() {
     const errEl = document.getElementById('login-error');
     errEl.style.display = 'none';
 
     try {
-        const res = await fetch('/api/subscribers', {
-            headers: { 'Authorization': 'Bearer ' + ADMIN_KEY }
-        });
-        const data = await res.json();
+        const [subsRes, statsRes] = await Promise.all([
+            fetch('/api/subscribers', { headers: { 'Authorization': 'Bearer ' + ADMIN_KEY } }),
+            fetch('/api/subscribers?action=stats', { headers: { 'Authorization': 'Bearer ' + ADMIN_KEY } })
+        ]);
 
-        if (res.status === 401) {
+        const subsData = await subsRes.json();
+        const statsData = await statsRes.json();
+
+        if (subsRes.status === 401) {
             errEl.textContent = 'Clé invalide.';
             errEl.style.display = 'block';
             return;
@@ -106,36 +146,117 @@ async function loadSubscribers() {
 
         document.getElementById('login-form').style.display = 'none';
         document.getElementById('admin-panel').style.display = 'block';
-        document.getElementById('total-subscribers').textContent = data.count;
 
-        if (data.subscribers.length > 0) {
-            const last = data.subscribers[0];
-            const d = new Date(last.date);
-            document.getElementById('last-sub-date').textContent = d.toLocaleDateString('fr-FR');
-        }
+        document.getElementById('stat-active').textContent = statsData.active || subsData.count || 0;
+        document.getElementById('stat-total').textContent = statsData.total || 0;
+        document.getElementById('stat-today').textContent = statsData.today || 0;
+        document.getElementById('stat-week').textContent = statsData.thisWeek || 0;
 
-        const list = document.getElementById('subscriber-list');
-        list.innerHTML = '';
-        data.subscribers.forEach(function(sub) {
-            const d = new Date(sub.date);
-            const li = document.createElement('li');
-            li.className = 'subscriber-item';
-            li.innerHTML = '<div><div class="email">' + sub.email + '</div><div class="meta">' + sub.source + ' · ' + d.toLocaleDateString('fr-FR') + ' ' + d.toLocaleTimeString('fr-FR') + '</div></div><button class="del-btn" onclick="deleteSubscriber(\'' + sub.email + '\')">Supprimer</button>';
-            list.appendChild(li);
-        });
+        ALL_SUBS = subsData.subscribers || [];
+        renderList(ALL_SUBS);
     } catch (e) {
         errEl.textContent = 'Erreur réseau.';
         errEl.style.display = 'block';
     }
 }
 
-async function deleteSubscriber(email) {
+function filterList() {
+    const q = document.getElementById('search').value.toLowerCase();
+    const status = document.getElementById('filter-status').value;
+    let filtered = ALL_SUBS;
+    if (q) filtered = filtered.filter(s => s.email.includes(q));
+    if (status === 'active') filtered = filtered.filter(s => s.active);
+    if (status === 'inactive') filtered = filtered.filter(s => !s.active);
+    renderList(filtered);
+}
+
+function renderList(subs) {
+    document.getElementById('list-title').textContent = 'Abonnés (' + subs.length + ')';
+    const list = document.getElementById('subscriber-list');
+    list.innerHTML = '';
+
+    subs.forEach(function(sub) {
+        const d = new Date(sub.subscribed_at);
+        const card = document.createElement('div');
+        card.className = 'sub-card';
+        card.innerHTML =
+            '<div class="sub-header">' +
+                '<div><span class="sub-email">' + escH(sub.email) + '</span> ' +
+                (sub.active ? '<span class="badge badge-active">Actif</span>' : '<span class="badge badge-inactive">Désabonné</span>') +
+                '</div>' +
+                '<span class="sub-date">' + d.toLocaleDateString('fr-FR') + ' ' + d.toLocaleTimeString('fr-FR') + '</span>' +
+            '</div>' +
+            '<div class="sub-details" id="det-' + sub.id + '">' +
+                '<div class="sub-grid">' +
+                    field('Email', sub.email) +
+                    field('Source', sub.source) +
+                    field('IP', sub.ip_address) +
+                    field('Pays / Ville', (sub.country || '?') + ' / ' + (sub.city || '?')) +
+                    field('Navigateur', sub.browser) +
+                    field('OS', sub.os) +
+                    field('Appareil', sub.device) +
+                    field('Page visitée', sub.page_visited) +
+                    field('Référent', sub.referer) +
+                    field('User-Agent', sub.user_agent) +
+                    field('Inscrit le', d.toLocaleString('fr-FR')) +
+                    field('Désabonné', sub.unsubscribed_at ? new Date(sub.unsubscribed_at).toLocaleString('fr-FR') : '-') +
+                    field('Raison désabonnement', sub.unsubscription_reason || '-') +
+                '</div>' +
+                '<div class="sub-actions">' +
+                    '<button onclick="toggleEvents(' + sub.id + ')">Événements</button>' +
+                    '<button class="del" onclick="deleteSub(\'' + escH(sub.email) + '\')">Supprimer</button>' +
+                '</div>' +
+                '<div class="events-list" id="events-' + sub.id + '"></div>' +
+            '</div>';
+
+        card.querySelector('.sub-header').addEventListener('click', function() {
+            document.getElementById('det-' + sub.id).classList.toggle('open');
+        });
+
+        list.appendChild(card);
+    });
+}
+
+function field(label, value) {
+    return '<div class="sub-field"><span class="k">' + label + ' : </span><span class="v">' + escH(value || '-') + '</span></div>';
+}
+
+function escH(s) {
+    const d = document.createElement('div');
+    d.textContent = s || '';
+    return d.innerHTML;
+}
+
+async function toggleEvents(subId) {
+    const el = document.getElementById('events-' + subId);
+    if (el.innerHTML) { el.innerHTML = ''; return; }
+    try {
+        const res = await fetch('/api/subscribers?action=events&subscriber_id=' + subId, {
+            headers: { 'Authorization': 'Bearer ' + ADMIN_KEY }
+        });
+        const data = await res.json();
+        if (!data.events || data.events.length === 0) {
+            el.innerHTML = '<div class="event-item">Aucun événement</div>';
+            return;
+        }
+        el.innerHTML = data.events.map(function(ev) {
+            const d = new Date(ev.created_at);
+            return '<div class="event-item"><span class="event-type">' + ev.event_type + '</span> — ' +
+                d.toLocaleString('fr-FR') + ' · IP: ' + (ev.ip_address || '?') +
+                (ev.metadata ? ' · ' + JSON.stringify(ev.metadata) : '') + '</div>';
+        }).join('');
+    } catch (e) {
+        el.innerHTML = '<div class="event-item">Erreur de chargement</div>';
+    }
+}
+
+async function deleteSub(email) {
     if (!confirm('Supprimer ' + email + ' ?')) return;
     await fetch('/api/subscribers?email=' + encodeURIComponent(email), {
         method: 'DELETE',
         headers: { 'Authorization': 'Bearer ' + ADMIN_KEY }
     });
-    loadSubscribers();
+    loadAll();
 }
 
 document.getElementById('admin-key').addEventListener('keyup', function(e) {

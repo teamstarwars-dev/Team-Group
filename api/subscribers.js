@@ -22,21 +22,69 @@ module.exports = async (req, res) => {
 
     try {
         if (req.method === 'GET') {
-            const result = await pgQuery(
-                'SELECT * FROM subscribers WHERE active = TRUE ORDER BY subscribed_at DESC',
+            const { action, email, subscriber_id } = req.query || {};
+
+            if (action === 'events' && subscriber_id) {
+                const events = await pgQuery(
+                    `SELECT * FROM subscriber_events WHERE subscriber_id = ${subscriber_id} ORDER BY created_at DESC LIMIT 100`,
+                    apiUrl, apiToken
+                );
+                return res.status(200).json({ events: events.rows || [] });
+            }
+
+            if (action === 'stats') {
+                const total = await pgQuery('SELECT COUNT(*) as total FROM subscribers', apiUrl, apiToken);
+                const active = await pgQuery('SELECT COUNT(*) as active FROM subscribers WHERE active = TRUE', apiUrl, apiToken);
+                const today = await pgQuery(
+                    "SELECT COUNT(*) as today FROM subscribers WHERE subscribed_at >= CURRENT_DATE",
+                    apiUrl, apiToken
+                );
+                const thisWeek = await pgQuery(
+                    "SELECT COUNT(*) as week FROM subscribers WHERE subscribed_at >= CURRENT_DATE - INTERVAL '7 days'",
+                    apiUrl, apiToken
+                );
+                return res.status(200).json({
+                    total: total.rows[0]?.total || 0,
+                    active: active.rows[0]?.active || 0,
+                    today: today.rows[0]?.today || 0,
+                    thisWeek: thisWeek.rows[0]?.week || 0
+                });
+            }
+
+            const rows = await pgQuery(
+                "SELECT * FROM subscribers WHERE active = TRUE ORDER BY subscribed_at DESC",
                 apiUrl, apiToken
             );
-            return res.status(200).json({ count: result.rows.length, subscribers: result.rows });
+            return res.status(200).json({ count: rows.rows.length, subscribers: rows.rows || [] });
         }
 
         if (req.method === 'DELETE') {
-            const { email } = req.query || {};
+            const { email, reason } = req.query || {};
             if (!email) return res.status(400).json({ error: 'Email requis.' });
 
-            await pgQuery(
-                `UPDATE subscribers SET active = FALSE WHERE email = '${email.toLowerCase().replace(/'/g, "''")}'`,
+            const sub = await pgQuery(
+                `SELECT id FROM subscribers WHERE email = '${esc(email.toLowerCase())}'`,
                 apiUrl, apiToken
             );
+
+            const now = new Date().toISOString();
+            await pgQuery(
+                `UPDATE subscribers SET active = FALSE, unsubscribed_at = '${now}',
+                 unsubscription_reason = '${esc(reason || 'admin')}' WHERE email = '${esc(email.toLowerCase())}'`,
+                apiUrl, apiToken
+            );
+
+            if (sub.rows && sub.rows[0]) {
+                const ip = req.headers['x-forwarded-for'] || 'admin';
+                const ua = req.headers['user-agent'] || 'admin';
+                await pgQuery(
+                    `INSERT INTO subscriber_events (subscriber_id, event_type, ip_address, user_agent, metadata)
+                     VALUES (${sub.rows[0].id}, 'unsubscribe', '${esc(ip)}', '${esc(ua)}',
+                     '{"reason": "${esc(reason || 'admin')}"}'::jsonb)`,
+                    apiUrl, apiToken
+                );
+            }
+
             return res.status(200).json({ success: true, message: 'Abonné supprimé.' });
         }
     } catch (err) {
@@ -44,6 +92,11 @@ module.exports = async (req, res) => {
         return res.status(500).json({ error: 'Erreur serveur.' });
     }
 };
+
+function esc(str) {
+    if (!str) return '';
+    return String(str).replace(/'/g, "''");
+}
 
 function pgQuery(query, apiUrl, apiToken) {
     return new Promise((resolve, reject) => {
