@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Veille cybersécurité — Team Group</title>
+    <link rel="icon" href="img/logo.png">
+    <link rel="stylesheet" href="css/style.css">
+    <meta name="description" content="Veille cybersécurité : alertes CVE, vulnerabilities critiques, et actualités sécurité. Par Team Group.">
+    <meta property="og:title" content="Veille cybersécurité — Team Group">
+    <meta property="og:description" content="Alertes CVE et veille sécurité en temps réel.">
+    <meta property="og:image" content="img/logo.png">
+    <meta property="og:type" content="website">
+    <meta name="twitter:card" content="summary">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+<a class="skip-to-content" href="#main-content">Aller au contenu principal</a>
+
+<header>
+    <div class="navbar">
+        <a class="brand" href="index.html">
+            <img src="img/logo.png" alt="Team Group">
+            <div class="brand-dot"></div>
+            Team Group
+        </a>
+        <div class="hamburger" aria-label="Menu" role="button" tabindex="0">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+        <nav>
+            <a href="index.html">Accueil</a>
+            <a href="projets.html">Solutions</a>
+            <a href="equipe.html">Équipe</a>
+            <a href="partenaires.html">Partenaires</a>
+            <a href="contact.html">Contact</a>
+        </nav>
+    </div>
+</header>
+
+<main id="main-content">
+    <section class="cyber-hero">
+        <div class="hero-eyebrow">Team Shield — Veille sécurité</div>
+        <h1>Cyber-veille</h1>
+        <p>
+            Suivez les dernières vulnérabilités et alertes CVE. Restez informé
+            des menaces qui impactent vos systèmes.
+        </p>
+        <div class="search-box">
+            <input type="text" id="cve-search" placeholder="Rechercher une CVE (ex: CVE-2026-...)" aria-label="Rechercher une CVE">
+            <button class="btn btn-primary" id="search-cve-btn">Rechercher</button>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="section-header">
+            <div class="label">Statistiques</div>
+            <h2>Vue d'ensemble</h2>
+        </div>
+        <div class="stats animate-on-scroll">
+            <div class="stat">
+                <div class="stat-number red" id="critical-count">0</div>
+                <div class="stat-label">Critiques</div>
+            </div>
+            <div class="stat">
+                <div class="stat-number amber" id="high-count">0</div>
+                <div class="stat-label">Élevées</div>
+            </div>
+            <div class="stat">
+                <div class="stat-number teal" id="medium-count">0</div>
+                <div class="stat-label">Moyennes</div>
+            </div>
+            <div class="stat">
+                <div class="stat-number green" id="total-cve">0</div>
+                <div class="stat-label">Total CVE</div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="section-header">
+            <div class="label">Alertes</div>
+            <h2>CVE récentes</h2>
+            <p>Les vulnérabilités les plus critiques des dernières semaines.</p>
+        </div>
+
+        <div class="filter-bar">
+            <button class="filter-btn active" data-filter="all">Toutes</button>
+            <button class="filter-btn" data-filter="critical">Critique (9.0-10.0)</button>
+            <button class="filter-btn" data-filter="high">Élevée (7.0-8.9)</button>
+            <button class="filter-btn" data-filter="medium">Moyenne (4.0-6.9)</button>
+        </div>
+
+        <div id="cve-list">
+            <div class="cve-card animate-on-scroll" data-severity="critical">
+                <div class="cve-score critical">10.0</div>
+                <div>
+                    <div class="cve-id">CVE-2026-21887</div>
+                    <h3>FortiGate — Injection de commandes</h3>
+                    <p>Vulnérabilité critique dans FortiOS permettant l'exécution de commandes arbitraires via des requêtes HTTP craftées. Affecte les appliances FortiGate en mode management.</p>
+                    <div class="cve-tags">
+                        <span class="project-tags"><span>Critique</span></span>
+                        <span class="project-tags"><span>Fortinet</span></span>
+                        <span class="project-tags"><span>FortiOS</span></span>
+                    </div>
+                    <a href="cve/CVE-2026-21887.html" class="btn btn-sm" style="margin-top:12px;">Voir la fiche complète →</a>
+                </div>
+            </div>
+
+            <div class="cve-card animate-on-scroll" data-severity="critical">
+                <div class="cve-score critical">9.8</div>
+                <div>
+                    <div class="cve-id">CVE-2026-0217</div>
+                    <h3>Windows Kerberos — Élévation de privilèges</h3>
+                    <p>Vulnérabilité dans le protocole Kerberos sur Windows Server permettant à un attaquant authentifié d'obtenir des privilèges administrateur sur le contrôleur de domaine.</p>
+                    <div class="cve-tags">
+                        <span class="project-tags"><span>Critique</span></span>
+                        <span class="project-tags"><span>Microsoft</span></span>
+                        <span class="project-tags"><span>Windows Server</span></span>
+                    </div>
+                    <a href="cve/CVE-2026-0217.html" class="btn btn-sm" style="margin-top:12px;">Voir la fiche complète →</a>
+                </div>
+            </div>
+
+            <div class="cve-card animate-on-scroll" data-severity="critical">
+                <div class="cve-score critical">9.8</div>
+                <div>
+                    <div class="cve-id">CVE-2026-23878</div>
+                    <h3>Apache Struts — Remote Code Execution</h3>
+                    <p>Exécution de code à distance dans Apache Struts via une désérialisation unsafe. Affecte les applications web utilisant le framework pour le traitement des formulaires.</p>
+                    <div class="cve-tags">
+                        <span class="project-tags"><span>Critique</span></span>
+                        <span class="project-tags"><span>Apache</span></span>
+                        <span class="project-tags"><span>Struts</span></span>
+                    </div>
+                    <a href="cve/CVE-2026-23878.html" class="btn btn-sm" style="margin-top:12px;">Voir la fiche complète →</a>
+                </div>
+            </div>
+
+            <div class="cve-card animate-on-scroll" data-severity="high">
+                <div class="cve-score high">8.8</div>
+                <div>
+                    <div class="cve-id">CVE-2026-19074</div>
+                    <h3>VMware vCenter — SSRF</h3>
+                    <p>Falsification de requête côté serveur dans VMware vCenter Server. Un attaquant pourrait accéder à des ressources internes ou exécuter du code sur le serveur.</p>
+                    <div class="cve-tags">
+                        <span class="project-tags"><span>Élevée</span></span>
+                        <span class="project-tags"><span>VMware</span></span>
+                        <span class="project-tags"><span>vCenter</span></span>
+                    </div>
+                    <a href="cve/CVE-2026-19074.html" class="btn btn-sm" style="margin-top:12px;">Voir la fiche complète →</a>
+                </div>
+            </div>
+
+            <div class="cve-card animate-on-scroll" data-severity="high">
+                <div class="cve-score high">8.1</div>
+                <div>
+                    <div class="cve-id">CVE-2026-25244</div>
+                    <h3>Microsoft Exchange — Bypass d'authentification</h3>
+                    <p>Bypass d'authentification dans Microsoft Exchange Server permettant à un attaquant non authentifié d'accéder à des boîtes mail et exécuter des commandes PowerShell.</p>
+                    <div class="cve-tags">
+                        <span class="project-tags"><span>Élevée</span></span>
+                        <span class="project-tags"><span>Microsoft</span></span>
+                        <span class="project-tags"><span>Exchange</span></span>
+                    </div>
+                    <a href="cve/CVE-2026-25244.html" class="btn btn-sm" style="margin-top:12px;">Voir la fiche complète →</a>
+                </div>
+            </div>
+
+            <div class="cve-card animate-on-scroll" data-severity="medium">
+                <div class="cve-score medium">6.5</div>
+                <div>
+                    <div class="cve-id">CVE-2026-30291</div>
+                    <h3>WordPress Plugin — SQL Injection</h3>
+                    <p>Injection SQL dans le plugin WordPress Contact Form 7. Les versions antérieures à 6.4.1 sont vulnérables. Mise à jour recommandée.</p>
+                    <div class="cve-tags">
+                        <span class="project-tags"><span>Moyenne</span></span>
+                        <span class="project-tags"><span>WordPress</span></span>
+                        <span class="project-tags"><span>Plugin</span></span>
+                    </div>
+                    <a href="cve/CVE-2026-30291.html" class="btn btn-sm" style="margin-top:12px;">Voir la fiche complète →</a>
+                </div>
+            </div>
+
+            <div class="cve-card animate-on-scroll" data-severity="high">
+                <div class="cve-score high">7.5</div>
+                <div>
+                    <div class="cve-id">CVE-2026-28912</div>
+                    <h3>OpenSSL — Memory Disclosure</h3>
+                    <p>Fuite de mémoire dans OpenSSL affecting les serveurs TLS. Un attaquant pourrait lire jusqu'à 2 Ko de mémoire du serveur par connexion.</p>
+                    <div class="cve-tags">
+                        <span class="project-tags"><span>Élevée</span></span>
+                        <span class="project-tags"><span>OpenSSL</span></span>
+                        <span class="project-tags"><span>TLS</span></span>
+                    </div>
+                    <a href="cve/CVE-2026-28912.html" class="btn btn-sm" style="margin-top:12px;">Voir la fiche complète →</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="section-header">
+            <div class="label">Protection</div>
+            <h2>Bonnes pratiques</h2>
+        </div>
+
+        <div class="values">
+            <div class="value animate-on-scroll">
+                <div class="value-symbol"><svg class="icon" viewBox="0 0 16 16"><path d="M8 1a4 4 0 0 0-4 4v2H3a1 1 0 0 0-1 1v6a1 1 0 0 0 1 1h10a1 1 0 0 0 1-1V8a1 1 0 0 0-1-1h-1V5a4 4 0 0 0-4-4zm2 6H6V5a2 2 0 1 1 4 0v2z"/></svg></div>
+                <h4>Mises à jour</h4>
+                <p>Appliquez les correctifs de sécurité dès qu'ils sont disponibles. La majorité des exploitations cible des vulnérabilités corrigées depuis des mois.</p>
+            </div>
+            <div class="value animate-on-scroll">
+                <div class="value-symbol"><svg class="icon" viewBox="0 0 16 16"><path d="M4 0h8v4H4V0zm0 5h4v11H4V5z"/></svg></div>
+                <h4>Pare-feu</h4>
+                <p>Configurez un pare-feu strict. Ne gardez ouvert que les ports strictement nécessaires. Team Shield offre un firewall avancé.</p>
+            </div>
+            <div class="value animate-on-scroll">
+                <div class="value-symbol"><svg class="icon" viewBox="0 0 16 16"><path d="M2 2h12v3H2V2zm0 4h12v8H2V6z"/></svg></div>
+                <h4>Monitoring</h4>
+                <p>Surveillez vos logs et vos trafics réseau. Détection précoce = réponse rapide. En temps réel avec Team Shield.</p>
+            </div>
+            <div class="value animate-on-scroll">
+                <div class="value-symbol"><svg class="icon" viewBox="0 0 16 16"><path d="M6.5 1A5.5 5.5 0 0 0 1 6.5c0 1.5.6 2.9 1.6 3.9L1 14h4l1.6-3.6A5.5 5.5 0 1 0 6.5 1zm0 10a4.5 4.5 0 1 1 0-9 4.5 4.5 0 0 1 0 9z"/></svg></div>
+                <h4>Veille continue</h4>
+                <p>Suivez les alertes CVE et les bulletins de sécurité. Cette page se met à jour automatiquement.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="newsletter-box">
+        <h3>Restez informé</h3>
+        <p>Recevez les alertes CVE critiques directement dans votre boîte mail. Zéro spam, uniquement l'essentiel.</p>
+        <div class="form-inline">
+            <input type="email" id="newsletter-email" placeholder="votre@email.com" aria-label="Email pour newsletter" style="flex:1; padding:12px 16px; background:var(--bg); border:1px solid var(--border); border-radius:10px; color:var(--text); font:inherit;">
+            <button class="btn btn-primary" id="newsletter-btn">S'abonner</button>
+        </div>
+        <div id="newsletter-message" style="margin-top:12px; display:none; font-size:.88rem;"></div>
+    </section>
+</main>
+
+<footer>
+    <div class="footer-inner">
+        <div class="footer-links">
+            <span>&copy; 2026 Team Group</span>
+            <a href="documentation.html">
+                <svg class="icon icon-sm" viewBox="0 0 16 16"><path d="M3 0h10a1 1 0 0 1 1 1v14a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V1a1 1 0 0 1 1-1zm1 2v12h8V2H4zm2 2h4v1H6V4zm0 3h4v1H6V7zm0 3h2v1H6v-1z"/></svg>
+                Documentation
+            </a>
+            <a href="mentions-legales.html">
+                <svg class="icon icon-sm" viewBox="0 0 16 16"><path d="M3 0h10a1 1 0 0 1 1 1v14a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V1a1 1 0 0 1 1-1zm1 2v12h8V2H4zm2 2h4v1H6V4zm0 3h4v1H6V7zm0 3h2v1H6v-1z"/></svg>
+                Mentions légales
+            </a>
+            <a href="confidentialite.html">
+                <svg class="icon icon-sm" viewBox="0 0 16 16"><path d="M8 1a4 4 0 0 0-4 4v2H3a1 1 0 0 0-1 1v6a1 1 0 0 0 1 1h10a1 1 0 0 0 1-1V8a1 1 0 0 0-1-1h-1V5a4 4 0 0 0-4-4zm2 6H6V5a2 2 0 1 1 4 0v2z"/></svg>
+                Confidentialité
+            </a>
+            <a href="conditions-utilisation.html">
+                <svg class="icon icon-sm" viewBox="0 0 16 16"><path d="M7.5 1A5.5 5.5 0 0 0 2 6.5c0 1.3.5 2.5 1.4 3.4L2 14l4.1-1.4c.9.3 1.9.4 2.9.4A5.5 5.5 0 0 0 7.5 1zm0 10a4.5 4.5 0 0 1-4.5-4.5A4.5 4.5 0 0 1 7.5 2 4.5 4.5 0 0 1 12 6.5 4.5 4.5 0 0 1 7.5 11z"/></svg>
+                CGU
+            </a>
+        </div>
+        <div class="footer-social">
+            <a href="https://github.com/teamstarwars-dev/Team-Luncher-" target="_blank" rel="noopener noreferrer" title="GitHub">
+                <svg class="icon" viewBox="0 0 16 16"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg>
+            </a>
+            <a href="mailto:teamluncher@gmail.com" title="Email">
+                <svg class="icon" viewBox="0 0 16 16"><path d="M2 2A2 2 0 0 0 0 4v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H2zm0 1h12a1 1 0 0 1 1 1v.2l-7 4.2-7-4.2V4a1 1 0 0 1 1-1zm13 2.5L8.1 9.7a.5.5 0 0 1-.5 0L1 5.5V4a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v1.5z"/></svg>
+            </a>
+            <a href="https://teamlauncher.vercel.app" target="_blank" rel="noopener noreferrer" title="Team Launcher">
+                <svg class="icon" viewBox="0 0 16 16"><path d="M8.6 2.5A5.5 5.5 0 0 0 2.5 8H1a7 7 0 0 0 7 7v-1.5a5.5 5.5 0 0 1-.4-11zM9 1a8 8 0 1 0 0 16A8 8 0 0 0 9 1z"/><path d="M10.5 4.5L7 8l3.5 3.5-1 1L5 8l4.5-4.5z"/></svg>
+            </a>
+        </div>
+    </div>
+</footer>
+
+<button class="back-to-top" aria-label="Retour en haut">
+    <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M10 16V4M10 4L4 10M10 4L16 10" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+</button>
+
+<script>
+document.getElementById('search-cve-btn').addEventListener('click', function() {
+    var query = document.getElementById('cve-search').value.trim().toUpperCase();
+    var cards = document.querySelectorAll('#cve-list .cve-card');
+
+    if (!query) {
+        cards.forEach(function(card) { card.style.display = ''; });
+        return;
+    }
+
+    cards.forEach(function(card) {
+        var text = card.textContent.toUpperCase();
+        card.style.display = text.includes(query) ? '' : 'none';
+    });
+});
+
+document.getElementById('cve-search').addEventListener('keyup', function(e) {
+    if (e.key === 'Enter') {
+        document.getElementById('search-cve-btn').click();
+    }
+});
+
+document.getElementById('newsletter-btn').addEventListener('click', async function() {
+    var email = document.getElementById('newsletter-email').value.trim();
+    var msgDiv = document.getElementById('newsletter-message');
+
+    if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+        msgDiv.style.display = 'block';
+        msgDiv.innerHTML = '<span style="color: var(--red);">Email invalide.</span>';
+        return;
+    }
+
+    this.disabled = true;
+    this.textContent = 'Inscription...';
+
+    try {
+        var res = await fetch('/api/subscribe', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ email: email, source: 'Veille cybersécurité' })
+        });
+        var data = await res.json();
+
+        msgDiv.style.display = 'block';
+        if (data.success) {
+            msgDiv.innerHTML = '<span style="color: var(--green);">' + data.message + '</span>';
+            document.getElementById('newsletter-email').value = '';
+        } else {
+            msgDiv.innerHTML = '<span style="color: var(--red);">' + (data.error || 'Erreur lors de l\'inscription.') + '</span>';
+        }
+    } catch (e) {
+        msgDiv.style.display = 'block';
+        msgDiv.innerHTML = '<span style="color: var(--red);">Erreur réseau. Réessayez plus tard.</span>';
+    }
+
+    this.disabled = false;
+    this.textContent = 'S\'abonner';
+});
+</script>
+
+<script src="js/main.js"></script>
+
+</body>
+</html>

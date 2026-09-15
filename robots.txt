@@ -1,0 +1,8 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://teamlauncher.vercel.app/sitemap.xml
+
+# Paths
+Disallow: /api/
+Disallow: /data/

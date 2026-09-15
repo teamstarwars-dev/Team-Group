@@ -1,0 +1,4 @@
+Contact: mailto:teamluncher@gmail.com
+Contact: https://github.com/teamstarwars-dev/Team-Luncher-/issues
+Preferred-Languages: fr, en
+Expires: 2026-12-31T23:59:59.000Z

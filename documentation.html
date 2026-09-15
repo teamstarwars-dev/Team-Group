@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Documentation — Team Group</title>
+    <link rel="icon" href="img/logo.png">
+    <link rel="stylesheet" href="css/style.css">
+    <meta name="description" content="Documentation complète Team Group. Guide d'installation et d'utilisation de Team Launcher, Team Shield et Aqua Launcher.">
+    <meta property="og:title" content="Documentation — Team Group">
+    <meta property="og:description" content="Guide complet pour utiliser les solutions Team Group.">
+    <meta property="og:image" content="img/logo.png">
+    <meta property="og:type" content="website">
+    <meta name="twitter:card" content="summary">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        .doc-content { max-width: 800px; }
+        .doc-content h3 {
+            font-size: 1.15rem;
+            font-weight: 700;
+            margin: 36px 0 12px;
+            color: var(--text);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .doc-content p {
+            color: var(--text-dim);
+            font-size: .92rem;
+            line-height: 1.75;
+            margin-bottom: 12px;
+        }
+        .doc-content ul {
+            list-style: none;
+            padding: 0;
+            margin-bottom: 16px;
+        }
+        .doc-content ul li {
+            color: var(--text-dim);
+            font-size: .9rem;
+            line-height: 1.7;
+            padding: 4px 0 4px 20px;
+            position: relative;
+        }
+        .doc-content ul li::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 12px;
+            width: 6px;
+            height: 6px;
+            background: var(--accent);
+            border-radius: 50%;
+        }
+        .doc-step {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 32px;
+            margin-bottom: 16px;
+        }
+        .doc-step-num {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 28px;
+            height: 28px;
+            background: var(--accent-soft);
+            color: var(--accent);
+            font-size: .8rem;
+            font-weight: 800;
+            border-radius: 8px;
+            margin-right: 10px;
+            flex-shrink: 0;
+        }
+        .doc-step h3 {
+            margin: 0 0 8px;
+            display: flex;
+            align-items: center;
+        }
+        .doc-step p {
+            color: var(--text-dim);
+            font-size: .9rem;
+            line-height: 1.7;
+            margin-bottom: 10px;
+        }
+        .doc-step ul {
+            list-style: none;
+            padding: 0;
+            margin-bottom: 0;
+        }
+        .doc-step ul li {
+            padding: 3px 0 3px 18px;
+            position: relative;
+            font-size: .88rem;
+            color: var(--text-dim);
+        }
+        .doc-step ul li::before {
+            content: "—";
+            position: absolute;
+            left: 0;
+            color: var(--accent);
+        }
+        .doc-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            color: var(--accent);
+            font-weight: 600;
+            font-size: .9rem;
+        }
+        .doc-link:hover { text-decoration: underline; }
+        .doc-info {
+            background: var(--accent-soft);
+            border: 1px solid rgba(37, 99, 235, .2);
+            border-radius: 12px;
+            padding: 16px 20px;
+            margin: 16px 0;
+            font-size: .88rem;
+            color: var(--text-dim);
+            line-height: 1.6;
+        }
+        .doc-info strong { color: var(--accent); }
+        .doc-warn {
+            background: var(--red-soft);
+            border: 1px solid rgba(239, 68, 68, .2);
+            border-radius: 12px;
+            padding: 16px 20px;
+            margin: 16px 0;
+            font-size: .88rem;
+            color: var(--text-dim);
+            line-height: 1.6;
+        }
+        .doc-warn strong { color: var(--red); }
+        .doc-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: .88rem;
+            margin: 12px 0;
+        }
+        .doc-table th {
+            text-align: left;
+            padding: 10px 14px;
+            background: var(--bg);
+            color: var(--text);
+            font-weight: 700;
+            border-bottom: 1px solid var(--border);
+        }
+        .doc-table td {
+            padding: 10px 14px;
+            color: var(--text-dim);
+            border-bottom: 1px solid var(--border);
+        }
+        .doc-sep {
+            border: none;
+            border-top: 1px solid var(--border);
+            margin: 40px 0;
+        }
+    </style>
+</head>
+<body>
+<a class="skip-to-content" href="#main-content">Aller au contenu principal</a>
+
+<header>
+    <div class="navbar">
+        <a class="brand" href="index.html">
+            <img src="img/logo.png" alt="Team Group">
+            <div class="brand-dot"></div>
+            Team Group
+        </a>
+        <div class="hamburger" aria-label="Menu" role="button" tabindex="0">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+        <nav>
+            <a href="index.html">Accueil</a>
+            <a href="projets.html">Solutions</a>
+            <a href="equipe.html">Équipe</a>
+            <a href="partenaires.html">Partenaires</a>
+            <a href="contact.html">Contact</a>
+        </nav>
+    </div>
+</header>
+
+<main id="main-content">
+    <section class="section">
+        <div class="legal-header">
+            <div class="label">Guide complet</div>
+            <h1>Documentation Team Group</h1>
+            <p>Tout ce qu'il faut savoir pour utiliser Team Launcher, Aqua Launcher et contribuer au projet.</p>
+            <div class="legal-meta">
+                <svg class="icon icon-sm" viewBox="0 0 16 16"><path d="M3 0h10a1 1 0 0 1 1 1v14a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V1a1 1 0 0 1 1-1zm1 2v12h8V2H4zm2 2h4v1H6V4zm0 3h4v1H6V7zm0 3h2v1H6v-1z"/></svg>
+                Dernière mise à jour : septembre 2026
+            </div>
+        </div>
+
+        <div class="doc-content">
+
+            <!-- ============================== -->
+            <!-- SECTION 1 : PRÉSENTATION -->
+            <!-- ============================== -->
+
+            <h3>Qu'est-ce que Team Group ?</h3>
+            <p>
+                Team Group est une entreprise spécialisée en cybersécurité et solutions gaming
+                natives Windows. Fondée par Team Star Wars, elle développe des outils performants,
+                sécurisés et transparents.
+            </p>
+            <p>Nos solutions actuelles :</p>
+            <ul>
+                <li><strong>Team Shield</strong> — Outil de cybersécurité natif Windows (en développement)</li>
+                <li><strong>Team Launcher</strong> — Launcher Minecraft en C# natif Windows</li>
+                <li><strong>Aqua Launcher</strong> — Launcher multigaming (en cours de dev)</li>
+            </ul>
+
+            <div class="doc-info">
+                <strong>Team Launcher</strong> est gratuit, open source, et tourne sur ~65 Mo. Pas d'Electron, pas de Chromium.
+                Le site officiel : <a href="https://teamlauncher.vercel.app" target="_blank" rel="noopener noreferrer" class="doc-link">teamlauncher.vercel.app</a>
+            </div>
+
+            <hr class="doc-sep">
+
+            <!-- ============================== -->
+            <!-- SECTION 2 : TEAM SHIELD -->
+            <!-- ============================== -->
+
+            <h3>Team Shield — Cybersécurité</h3>
+            <p>
+                Team Shield est notre outil de cybersécurité natif Windows. Protection en temps réel,
+                analyse de menaces et firewall avancé.
+            </p>
+
+            <div class="doc-step">
+                <h3><span class="doc-step-num">1</span> Fonctionnalités principales</h3>
+                <ul>
+                    <li><strong>Protection en temps réel</strong> — Surveillance continue du système</li>
+                    <li><strong>Analyse de menaces</strong> — Détection avancée des logiciels malveillants</li>
+                    <li><strong>Firewall avancé</strong> — Contrôle granulaire du trafic réseau</li>
+                    <li><strong>Performance native</strong> — Développé en C# pour Windows</li>
+                </ul>
+            </div>
+
+            <div class="doc-step">
+                <h3><span class="doc-step-num">2</span> État de développement</h3>
+                <p>
+                    Team Shield est actuellement en cours de développement. Pas de date de sortie annoncée.
+                    Suivez l'avancement sur le <a href="contact.html" class="doc-link">site officiel</a> ou via le
+                    <a href="https://github.com/teamstarwars-dev/Team-Luncher-" target="_blank" rel="noopener noreferrer" class="doc-link">GitHub</a>.
+                </p>
+            </div>
+
+            <hr class="doc-sep">
+
+            <!-- ============================== -->
+            <!-- SECTION 2 : TEAM LAUNCHER -->
+            <!-- ============================== -->
+
+            <h3>Team Launcher — Installation et utilisation</h3>
+
+            <div class="doc-step">
+                <h3><span class="doc-step-num">1</span> Télécharger le launcher</h3>
+                <p>
+                    Rendez-vous sur le site officiel ou sur GitHub pour télécharger la dernière version :
+                </p>
+                <ul>
+                    <li><a href="https://teamlauncher.vercel.app" target="_blank" rel="noopener noreferrer" class="doc-link">Site officiel</a></li>
+                    <li><a href="https://github.com/teamstarwars-dev/Team-Luncher-" target="_blank" rel="noopener noreferrer" class="doc-link">GitHub (code source + releases)</a></li>
+                </ul>
+                <p>Le launcher est un fichier .exe d'environ 65 Mo. Pas besoin d'installer quoi que ce soit d'autre.</p>
+
+                <div class="doc-warn">
+                    <strong>Windows uniquement.</strong> Team Launcher est développé en C# / WinForms pour Windows 10/11.
+                    Pas de version Mac ou Linux pour l'instant.
+                </div>
+            </div>
+
+            <div class="doc-step">
+                <h3><span class="doc-step-num">2</span> Lancer le launcher</h3>
+                <p>Double-cliquez sur le fichier téléchargé. Pas d'installation requise, c'est un .exe portable.</p>
+                <ul>
+                    <li>Si Windows Defender affiche un avertissement, cliquez "Informations complémentaires" puis "Exécuter quand même"</li>
+                    <li>Le launcher se lance et affiche l'écran de connexion</li>
+                </ul>
+            </div>
+
+            <div class="doc-step">
+                <h3><span class="doc-step-num">3</span> Se connecter</h3>
+                <p>
+                    Team Launcher supporte deux modes de connexion :
+                </p>
+                <ul>
+                    <li><strong>Compte Microsoft (officiel)</strong> — connexion sécurisée, authentification via le site officiel de Microsoft</li>
+                    <li><strong>Mode hors-ligne</strong> — pour jouer seul, sans connexion internet</li>
+                </ul>
+
+                <div class="doc-info">
+                    <strong>Astuce :</strong> La connexion Microsoft est recommandée. Elle permet d'accéder aux serveurs en ligne et d'utiliser vos skins.
+                </div>
+            </div>
+
+            <div class="doc-step">
+                <h3><span class="doc-step-num">4</span> Gérer les instances</h3>
+                <p>
+                    Une instance = une configuration Minecraft séparée (version, mods, configs).
+                    Vous pouvez en créer autant que vous voulez.
+                </p>
+                <ul>
+                    <li>Cliquez sur "Nouvelle instance" pour en créer une</li>
+                    <li>Choisissez la version de Minecraft (1.8, 1.12, 1.20, etc.)</li>
+                    <li>Choisissez le loader (Vanilla, Forge, Fabric, Quilt)</li>
+                    <li>Donnez un nom à votre instance</li>
+                </ul>
+            </div>
+
+            <div class="doc-step">
+                <h3><span class="doc-step-num">5</span> Installer des mods</h3>
+                <p>
+                    Le launcher intègre une recherche de mods via CurseForge et Modrinth.
+                </p>
+                <ul>
+                    <li>Allez dans l'onglet "Mods" de votre instance</li>
+                    <li>Recherchez le mod que vous voulez</li>
+                    <li>Cliquez "Installer" — le mod et ses dépendances sont téléchargés automatiquement</li>
+                    <li>Vous pouvez aussi déposer des .jar manuellement dans le dossier mods</li>
+                </ul>
+            </div>
+
+            <div class="doc-step">
+                <h3><span class="doc-step-num">6</span> Configurer les serveurs</h3>
+                <p>
+                    Team Launcher inclut un gestionnaire de serveurs avec ping en temps réel.
+                </p>
+                <ul>
+                    <li>Ajoutez des serveurs avec leur adresse IP</li>
+                    <li>Le ping se met à jour automatiquement</li>
+                    <li>Mettez des serveurs en favoris pour les retrouver vite</li>
+                    <li><strong>Tunnel Internet intégré</strong> via playit.gg — créez votre propre serveur sans ouvrir de ports</li>
+                </ul>
+            </div>
+
+            <div class="doc-step">
+                <h3><span class="doc-step-num">7</span> Optimiser les performances</h3>
+                <p>
+                    Le launcher vous aide à configurer Minecraft pour qu'il tourne bien sur votre PC.
+                </p>
+                <ul>
+                    <li><strong>RAM :</strong> choisissez combien de mémoire Minecraft peut utiliser</li>
+                    <li><strong>Arguments JVM :</strong> le launcher génère automatiquement les meilleurs paramètres</li>
+                    <li><strong>Profils de perf :</strong> économie, standard, ou max performances</li>
+                </ul>
+            </div>
+
+            <div class="doc-step">
+                <h3><span class="doc-step-num">8</span> Gérer Java</h3>
+                <p>
+                    Pas besoin d'installer Java vous-même. Le launcher :
+                </p>
+                <ul>
+                    <li>Détecte les versions de Java installées</li>
+                    <li>Télécharge automatiquement la bonne version pour la version de Minecraft choisie</li>
+                    <li>Gère les versions 8, 17 et 21 selon les besoins</li>
+                </ul>
+            </div>
+
+            <div class="doc-step">
+                <h3><span class="doc-step-num">9</span> Comprendre les crashs</h3>
+                <p>
+                    Quand Minecraft crash, le launcher ne vous montre pas un mur de texte incompréhensible.
+                    Il explique en français ce qui s'est passé et propose des solutions.
+                </p>
+                <ul>
+                    <li>Cause du crash identifiée</li>
+                    <li>Solution proposée en clair</li>
+                    <li>Lien vers la page d'aide si besoin</li>
+                </ul>
+            </div>
+
+            <hr class="doc-sep">
+
+            <!-- ============================== -->
+            <!-- SECTION 3 : AQUA LAUNCHER -->
+            <!-- ============================== -->
+
+            <h3>Aqua Launcher — Le futur</h3>
+            <p>
+                Aqua Launcher est le deuxième projet de Team Group. Ce sera un launcher multigaming
+                qui rassemble tous vos jeux au même endroit.
+            </p>
+
+            <div class="doc-step">
+                <h3><span class="doc-step-num">1</span> Ce qui est prévu</h3>
+                <ul>
+                    <li><strong>Bibliothèque unifiée</strong> — tous vos jeux dans une seule interface</li>
+                    <li><strong>Store intégré</strong> — découvrez et installez des jeux sans quitter le launcher</li>
+                    <li><strong>Stats de jeu</strong> — heures jouées, victoires, classements</li>
+                    <li><strong>Amis & chat</strong> — voyez qui joue à quoi, discutez en temps réel</li>
+                    <li><strong>Thème personnalisable</strong> — changez les couleurs comme vous voulez</li>
+                    <li><strong>Plugins</strong> — ajoutez des fonctionnalités via DLL sans toucher au code</li>
+                </ul>
+            </div>
+
+            <div class="doc-step">
+                <h3><span class="doc-step-num">2</span> Quand est-ce que c'est dispo ?</h3>
+                <p>
+                    Aqua Launcher est en cours de développement. Pas de date de sortie annoncée.
+                    Suivez l'avancement sur le <a href="contact.html" class="doc-link">Discord</a> ou via le
+                    <a href="https://github.com/teamstarwars-dev/Team-Luncher-" target="_blank" rel="noopener noreferrer" class="doc-link">GitHub</a>.
+                </p>
+            </div>
+
+            <hr class="doc-sep">
+
+            <!-- ============================== -->
+            <!-- SECTION 4 : CONTRIBUER -->
+            <!-- ============================== -->
+
+            <h3>Contribuer au projet</h3>
+            <p>
+                Team Group est open source. Vous pouvez contribuer, signaler des bugs, proposer des idées.
+            </p>
+
+            <div class="doc-step">
+                <h3><span class="doc-step-num">1</span> Signaler un bug</h3>
+                <p>
+                    Vous avez trouvé un bug ? Merci de nous le dire.
+                </p>
+                <ul>
+                    <li>Ouvrez une <a href="https://github.com/teamstarwars-dev/Team-Luncher-/issues" target="_blank" rel="noopener noreferrer" class="doc-link">issue sur GitHub</a></li>
+                    <li>Ou envoyez un mail à <a href="mailto:teamluncher@gmail.com" class="doc-link">teamluncher@gmail.com</a></li>
+                </ul>
+                <p>Précisez toujours :</p>
+                <ul>
+                    <li>Ce que vous étiez en train de faire</li>
+                    <li>Le message d'erreur (copiez-le en entier)</li>
+                    <li>Les étapes pour reproduire le problème</li>
+                    <li>Votre version du launcher et votre version de Windows</li>
+                </ul>
+            </div>
+
+            <div class="doc-step">
+                <h3><span class="doc-step-num">2</span> Proposer une idée</h3>
+                <p>
+                    Une feature qui manque ? Un truc qui pourrait être mieux ?
+                </p>
+                <ul>
+                    <li>Ouvrez une <a href="https://github.com/teamstarwars-dev/Team-Luncher-/issues" target="_blank" rel="noopener noreferrer" class="doc-link">issue "Enhancement"</a> sur GitHub</li>
+                    <li>Décrivez ce que vous voudriez et pourquoi</li>
+                </ul>
+            </div>
+
+            <div class="doc-step">
+                <h3><span class="doc-step-num">3</span> Contribuer au code</h3>
+                <p>
+                    Vous êtes dev et vous voulez aider ?
+                </p>
+                <ul>
+                    <li>Fork le repo GitHub</li>
+                    <li>Créez une branche pour votre feature</li>
+                    <li>Faites vos modifs</li>
+                    <li>Ouvrez une Pull Request</li>
+                </ul>
+
+                <div class="doc-info">
+                    <strong>Techno :</strong> C# / .NET 8 / WinForms. Le projet utilise LLVM pour la compilation ahead-of-time.
+                    Pas de Electron, pas de Node.js.
+                </div>
+            </div>
+
+            <hr class="doc-sep">
+
+            <!-- ============================== -->
+            <!-- SECTION 5 : PARTENAIRES -->
+            <!-- ============================== -->
+
+            <h3>Partenaires et intégrations</h3>
+            <p>
+                Team Group utilise des services tiers pour améliorer ses applications.
+            </p>
+
+            <table class="doc-table">
+                <tr>
+                    <th>Partenaire</th>
+                    <th>Utilisation</th>
+                </tr>
+                <tr>
+                    <td><strong>CurseForge</strong></td>
+                    <td>API mods — clé API obtenue, intégration prévue</td>
+                </tr>
+                <tr>
+                    <td><strong>Modrinth</strong></td>
+                    <td>API mods — intégrée dans Team Launcher</td>
+                </tr>
+                <tr>
+                    <td><strong>playit.gg</strong></td>
+                    <td>Tunnel Internet pour serveurs — intégré dans Team Launcher</td>
+                </tr>
+                <tr>
+                    <td><strong>GitHub</strong></td>
+                    <td>Hébergement du code source</td>
+                </tr>
+                <tr>
+                    <td><strong>Vercel</strong></td>
+                    <td>Hébergement du site web</td>
+                </tr>
+            </table>
+
+            <hr class="doc-sep">
+
+            <!-- ============================== -->
+            <!-- SECTION 6 : CONTACT -->
+            <!-- ============================== -->
+
+            <h3>Besoin d'aide ?</h3>
+            <p>
+                Pour toute question technique ou demande de support, contactez-nous :
+            </p>
+            <ul>
+                <li><strong>Email :</strong> <a href="mailto:teamluncher@gmail.com" class="doc-link">teamluncher@gmail.com</a></li>
+                <li><strong>GitHub :</strong> <a href="https://github.com/teamstarwars-dev/Team-Luncher-" target="_blank" rel="noopener noreferrer" class="doc-link">github.com/teamstarwars-dev/Team-Luncher-</a></li>
+                <li><strong>Site Team Launcher :</strong> <a href="https://teamlauncher.vercel.app" target="_blank" rel="noopener noreferrer" class="doc-link">teamlauncher.vercel.app</a></li>
+            </ul>
+
+            <div class="doc-info">
+                Notre équipe répond généralement sous 48 à 72 heures. En période de mise à jour
+                importante, les délais peuvent être légèrement plus longs.
+            </div>
+        </div>
+    </section>
+</main>
+
+<footer>
+    <div class="footer-inner">
+        <div class="footer-links">
+            <span>&copy; 2026 Team Group</span>
+            <a href="documentation.html">
+                <svg class="icon icon-sm" viewBox="0 0 16 16"><path d="M3 0h10a1 1 0 0 1 1 1v14a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V1a1 1 0 0 1 1-1zm1 2v12h8V2H4zm2 2h4v1H6V4zm0 3h4v1H6V7zm0 3h2v1H6v-1z"/></svg>
+                Documentation
+            </a>
+            <a href="mentions-legales.html">
+                <svg class="icon icon-sm" viewBox="0 0 16 16"><path d="M3 0h10a1 1 0 0 1 1 1v14a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V1a1 1 0 0 1 1-1zm1 2v12h8V2H4zm2 2h4v1H6V4zm0 3h4v1H6V7zm0 3h2v1H6v-1z"/></svg>
+                Mentions légales
+            </a>
+            <a href="confidentialite.html">
+                <svg class="icon icon-sm" viewBox="0 0 16 16"><path d="M8 1a4 4 0 0 0-4 4v2H3a1 1 0 0 0-1 1v6a1 1 0 0 0 1 1h10a1 1 0 0 0 1-1V8a1 1 0 0 0-1-1h-1V5a4 4 0 0 0-4-4zm2 6H6V5a2 2 0 1 1 4 0v2z"/></svg>
+                Confidentialité
+            </a>
+            <a href="conditions-utilisation.html">
+                <svg class="icon icon-sm" viewBox="0 0 16 16"><path d="M7.5 1A5.5 5.5 0 0 0 2 6.5c0 1.3.5 2.5 1.4 3.4L2 14l4.1-1.4c.9.3 1.9.4 2.9.4A5.5 5.5 0 0 0 7.5 1zm0 10a4.5 4.5 0 0 1-4.5-4.5A4.5 4.5 0 0 1 7.5 2 4.5 4.5 0 0 1 12 6.5 4.5 4.5 0 0 1 7.5 11z"/></svg>
+                CGU
+            </a>
+        </div>
+        <div class="footer-social">
+            <a href="https://github.com/teamstarwars-dev/Team-Luncher-" target="_blank" rel="noopener noreferrer" title="GitHub">
+                <svg class="icon" viewBox="0 0 16 16"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg>
+            </a>
+            <a href="mailto:teamluncher@gmail.com" title="Email">
+                <svg class="icon" viewBox="0 0 16 16"><path d="M2 2A2 2 0 0 0 0 4v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H2zm0 1h12a1 1 0 0 1 1 1v.2l-7 4.2-7-4.2V4a1 1 0 0 1 1-1zm13 2.5L8.1 9.7a.5.5 0 0 1-.5 0L1 5.5V4a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v1.5z"/></svg>
+            </a>
+            <a href="https://teamlauncher.vercel.app" target="_blank" rel="noopener noreferrer" title="Team Launcher">
+                <svg class="icon" viewBox="0 0 16 16"><path d="M8.6 2.5A5.5 5.5 0 0 0 2.5 8H1a7 7 0 0 0 7 7v-1.5a5.5 5.5 0 0 1-.4-11zM9 1a8 8 0 1 0 0 16A8 8 0 0 0 9 1z"/><path d="M10.5 4.5L7 8l3.5 3.5-1 1L5 8l4.5-4.5z"/></svg>
+            </a>
+        </div>
+    </div>
+</footer>
+
+<button class="back-to-top" aria-label="Retour en haut">
+    <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M10 16V4M10 4L4 10M10 4L16 10" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+</button>
+<script src="js/main.js"></script>
+</body>
+</html>

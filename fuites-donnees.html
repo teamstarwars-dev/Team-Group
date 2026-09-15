@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fuites de données — Team Group</title>
+    <link rel="icon" href="img/logo.png">
+    <link rel="stylesheet" href="css/style.css">
+    <meta name="description" content="Vérifiez si votre email a été compromis dans une fuite de données. Outil gratuit de Team Group.">
+    <meta property="og:title" content="Fuites de données — Team Group">
+    <meta property="og:description" content="Vérificateur de fuites de données. Scannez votre email en quelques secondes.">
+    <meta property="og:image" content="img/logo.png">
+    <meta property="og:type" content="website">
+    <meta name="twitter:card" content="summary">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+<a class="skip-to-content" href="#main-content">Aller au contenu principal</a>
+
+<header>
+    <div class="navbar">
+        <a class="brand" href="index.html">
+            <img src="img/logo.png" alt="Team Group">
+            <div class="brand-dot"></div>
+            Team Group
+        </a>
+        <div class="hamburger" aria-label="Menu" role="button" tabindex="0">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+        <nav>
+            <a href="index.html">Accueil</a>
+            <a href="projets.html">Solutions</a>
+            <a href="equipe.html">Équipe</a>
+            <a href="partenaires.html">Partenaires</a>
+            <a href="contact.html">Contact</a>
+        </nav>
+    </div>
+</header>
+
+<main id="main-content">
+    <section class="cyber-hero">
+        <div class="hero-eyebrow">Team Shield — Outil gratuit</div>
+        <h1>Fuites de données</h1>
+        <p>
+            Vérifiez si votre adresse email a été compromise dans des fuites de données connues.
+            Protégez votre identité numérique.
+        </p>
+        <div class="search-box">
+            <input type="email" id="breach-email" placeholder="votre@email.com" aria-label="Adresse email à vérifier">
+            <button class="btn btn-primary" id="check-breach-btn">Vérifier</button>
+        </div>
+        <div id="breach-result" style="margin-top: 20px; display: none;"></div>
+    </section>
+
+    <section class="section">
+        <div class="section-header">
+            <div class="label">Statistiques</div>
+            <h2>Vue d'ensemble</h2>
+        </div>
+        <div class="stats animate-on-scroll">
+            <div class="stat">
+                <div class="stat-number amber" id="total-breaches">0</div>
+                <div class="stat-label">Fuites répertoriées</div>
+            </div>
+            <div class="stat">
+                <div class="stat-number red" id="total-accounts">0</div>
+                <div class="stat-label">Comptes exposés</div>
+            </div>
+            <div class="stat">
+                <div class="stat-number teal" id="total-services">0</div>
+                <div class="stat-label">Services concernés</div>
+            </div>
+            <div class="stat">
+                <div class="stat-number green">Gratuit</div>
+                <div class="stat-label">Sans inscription</div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="section-header">
+            <div class="label">Dernières fuites</div>
+            <h2>Fuites récentes</h2>
+            <p>Les fuites de données les plus récentes et les plus impactantes.</p>
+        </div>
+
+        <div class="filter-bar">
+            <button class="filter-btn active" data-filter="all">Toutes</button>
+            <button class="filter-btn" data-filter="critical">Critique</button>
+            <button class="filter-btn" data-filter="high">Élevée</button>
+            <button class="filter-btn" data-filter="medium">Moyenne</button>
+        </div>
+
+        <div id="breach-list">
+            <div class="breach-card animate-on-scroll" data-severity="critical">
+                <h3>Adobe</h3>
+                <div class="breach-meta">
+                    <span class="severity-badge critical">Critique</span>
+                    <span>Octobre 2013</span>
+                    <span>153 millions de comptes</span>
+                </div>
+                <p>Fuite massive comprenant emails, mots de passe hashés (MD5), questions de sécurité et mots de passe en clair pour 3 millions de comptes.</p>
+                <a href="fuite/adobe.html" class="btn btn-sm" style="margin-top:12px;">Voir la fiche complète →</a>
+            </div>
+
+            <div class="breach-card animate-on-scroll" data-severity="critical">
+                <h3>LinkedIn</h3>
+                <div class="breach-meta">
+                    <span class="severity-badge critical">Critique</span>
+                    <span>Mai 2012</span>
+                    <span>164 millions de comptes</span>
+                </div>
+                <p>Emails et mots de passe hashés (SHA-1 sans sel). Une partie des données a été vendue puis vérifiée en 2016.</p>
+                <a href="fuite/linkedin.html" class="btn btn-sm" style="margin-top:12px;">Voir la fiche complète →</a>
+            </div>
+
+            <div class="breach-card animate-on-scroll" data-severity="high">
+                <h3>Dropbox</h3>
+                <div class="breach-meta">
+                    <span class="severity-badge high">Élevée</span>
+                    <span>Août 2012</span>
+                    <span>68 millions de comptes</span>
+                </div>
+                <p>Emails et mots de passe hashés (bcrypt). Fuite confirmée en 2016 après une tentative de vol de 2012.</p>
+                <a href="fuite/dropbox.html" class="btn btn-sm" style="margin-top:12px;">Voir la fiche complète →</a>
+            </div>
+
+            <div class="breach-card animate-on-scroll" data-severity="high">
+                <h3>Canva</h3>
+                <div class="breach-meta">
+                    <span class="severity-badge high">Élevée</span>
+                    <span>Mai 2019</span>
+                    <span>137 millions de comptes</span>
+                </div>
+                <p>Emails, noms, villes, mots de passe hashés (bcrypt). Données de connexion Facebook et Google pour certains comptes.</p>
+                <a href="fuite/canva.html" class="btn btn-sm" style="margin-top:12px;">Voir la fiche complète →</a>
+            </div>
+
+            <div class="breach-card animate-on-scroll" data-severity="medium">
+                <h3>Dailymotion</h3>
+                <div class="breach-meta">
+                    <span class="severity-badge medium">Moyenne</span>
+                    <span>Octobre 2016</span>
+                    <span>8,5 millions de comptes</span>
+                </div>
+                <p>Emails et mots de passe hashés (bcrypt). Données de connexion GitHub pour environ 2 millions de comptes.</p>
+                <a href="fuite/dailymotion.html" class="btn btn-sm" style="margin-top:12px;">Voir la fiche complète →</a>
+            </div>
+
+            <div class="breach-card animate-on-scroll" data-severity="critical">
+                <h3>Collection #1-5</h3>
+                <div class="breach-meta">
+                    <span class="severity-badge critical">Critique</span>
+                    <span>Janvier 2019</span>
+                    <span>2,2 milliards de comptes</span>
+                </div>
+                <p>Compilation de plus de 2 000 fuites distinctes. Emails et mots de passe en clair. La plus grande collection de données fuitées jamais assemblée.</p>
+                <a href="fuite/collection-1-5.html" class="btn btn-sm" style="margin-top:12px;">Voir la fiche complète →</a>
+            </div>
+
+            <div class="breach-card animate-on-scroll" data-severity="high">
+                <h3>Zoom</h3>
+                <div class="breach-meta">
+                    <span class="severity-badge high">Élevée</span>
+                    <span>Avril 2020</span>
+                    <span>500 000 comptes</span>
+                </div>
+                <p>Emails, mots de passe et noms de session vendus sur le dark web. Zoom a réagi en désactivant les fonctionnalités compromises.</p>
+                <a href="fuite/zoom.html" class="btn btn-sm" style="margin-top:12px;">Voir la fiche complète →</a>
+            </div>
+
+            <div class="breach-card animate-on-scroll" data-severity="medium">
+                <h3>Twitch</h3>
+                <div class="breach-meta">
+                    <span class="severity-badge medium">Moyenne</span>
+                    <span>Octobre 2021</span>
+                    <span>7,5 millions de comptes</span>
+                </div>
+                <p>Code source complet, données de paiement (partielles) etemails/hashés de mots de passe fuités publiquement.</p>
+                <a href="fuite/twitch.html" class="btn btn-sm" style="margin-top:12px;">Voir la fiche complète →</a>
+            </div>
+
+            <div class="breach-card animate-on-scroll" data-severity="critical">
+                <h3>Facebook</h3>
+                <div class="breach-meta">
+                    <span class="severity-badge critical">Critique</span>
+                    <span>Avril 2021</span>
+                    <span>533 millions de comptes</span>
+                </div>
+                <p>Données de plus de 500 millions de comptes Facebook exposées publiquement. Emails, noms, numéros de téléphone et localisations.</p>
+                <a href="fuite/facebook.html" class="btn btn-sm" style="margin-top:12px;">Voir la fiche complète →</a>
+            </div>
+
+            <div class="breach-card animate-on-scroll" data-severity="high">
+                <h3>Twitter</h3>
+                <div class="breach-meta">
+                    <span class="severity-badge high">Élevée</span>
+                    <span>Décembre 2022</span>
+                    <span>5,4 millions de comptes</span>
+                </div>
+                <p>Emails et informations personnelles de 5,4 millions de comptes Twitter fuitées via une vulnérabilité de l'API.</p>
+                <a href="fuite/twitter.html" class="btn btn-sm" style="margin-top:12px;">Voir la fiche complète →</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="section-header">
+            <div class="label">Protection</div>
+            <h2>Comment se protéger</h2>
+        </div>
+
+        <div class="values">
+            <div class="value animate-on-scroll">
+                <div class="value-symbol"><svg class="icon" viewBox="0 0 16 16"><path d="M8 1a4 4 0 0 0-4 4v2H3a1 1 0 0 0-1 1v6a1 1 0 0 0 1 1h10a1 1 0 0 0 1-1V8a1 1 0 0 0-1-1h-1V5a4 4 0 0 0-4-4zm2 6H6V5a2 2 0 1 1 4 0v2z"/></svg></div>
+                <h4>Mots de passe uniques</h4>
+                <p>Utilisez un mot de passe différent pour chaque service. Un gestionnaire de mots de passe est indispensable.</p>
+            </div>
+            <div class="value animate-on-scroll">
+                <div class="value-symbol"><svg class="icon" viewBox="0 0 16 16"><path d="M8 4a4 4 0 1 0 0 8 4 4 0 0 0 0-8zM2 8a6 6 0 1 1 10.89 3.476l4.817 4.817a1 1 0 0 1-1.414 1.414l-4.816-4.816A6 6 0 0 1 2 8z"/></svg></div>
+                <h4>Authentification 2FA</h4>
+                <p>Activez la vérification en deux étapes partout où c'est possible. C'est la protection la plus efficace.</p>
+            </div>
+            <div class="value animate-on-scroll">
+                <div class="value-symbol"><svg class="icon" viewBox="0 0 16 16"><path d="M5.5 4C3.5 4 2 5.5 2 7s1.5 3 3.5 3c1.3 0 2.4-.6 3-1.5.6.9 1.7 1.5 3 1.5 2 0 3.5-1.5 3.5-3S13.5 4 11.5 4c-1.3 0-2.4.6-3 1.5C7.9 4.6 6.8 4 5.5 4z"/></svg></div>
+                <h4>Surveillance</h4>
+                <p>Vérifiez régulièrement si vos données ont fuité. Agissez vite en cas de compromission.</p>
+            </div>
+            <div class="value animate-on-scroll">
+                <div class="value-symbol"><svg class="icon" viewBox="0 0 16 16"><path d="M8 1a7 7 0 1 0 0 14A7 7 0 0 0 8 1zM0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-5a.5.5 0 0 1 .5.5v3a.5.5 0 0 1-1 0v-3A.5.5 0 0 1 8 3zm0 8a.5.5 0 0 1 0-1 .5.5 0 0 1 0 1z"/></svg></div>
+                <h4>Team Shield</h4>
+                <p>Notre outil de cybersécurité surveille votre système en temps réel et bloque les menaces.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="newsletter-box">
+        <h3>Protégez-vous avec Team Shield</h3>
+        <p>Soyez averti de la sortie de notre outil de cybersécurité. Zéro spam, promis.</p>
+        <div class="form-inline">
+            <input type="email" id="newsletter-email" placeholder="votre@email.com" aria-label="Email pour newsletter" style="flex:1; padding:12px 16px; background:var(--bg); border:1px solid var(--border); border-radius:10px; color:var(--text); font:inherit;">
+            <button class="btn btn-primary" id="newsletter-btn">Me prévenir</button>
+        </div>
+        <div id="newsletter-message" style="margin-top:12px; display:none; font-size:.88rem;"></div>
+    </section>
+</main>
+
+<footer>
+    <div class="footer-inner">
+        <div class="footer-links">
+            <span>&copy; 2026 Team Group</span>
+            <a href="documentation.html">
+                <svg class="icon icon-sm" viewBox="0 0 16 16"><path d="M3 0h10a1 1 0 0 1 1 1v14a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V1a1 1 0 0 1 1-1zm1 2v12h8V2H4zm2 2h4v1H6V4zm0 3h4v1H6V7zm0 3h2v1H6v-1z"/></svg>
+                Documentation
+            </a>
+            <a href="mentions-legales.html">
+                <svg class="icon icon-sm" viewBox="0 0 16 16"><path d="M3 0h10a1 1 0 0 1 1 1v14a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V1a1 1 0 0 1 1-1zm1 2v12h8V2H4zm2 2h4v1H6V4zm0 3h4v1H6V7zm0 3h2v1H6v-1z"/></svg>
+                Mentions légales
+            </a>
+            <a href="confidentialite.html">
+                <svg class="icon icon-sm" viewBox="0 0 16 16"><path d="M8 1a4 4 0 0 0-4 4v2H3a1 1 0 0 0-1 1v6a1 1 0 0 0 1 1h10a1 1 0 0 0 1-1V8a1 1 0 0 0-1-1h-1V5a4 4 0 0 0-4-4zm2 6H6V5a2 2 0 1 1 4 0v2z"/></svg>
+                Confidentialité
+            </a>
+            <a href="conditions-utilisation.html">
+                <svg class="icon icon-sm" viewBox="0 0 16 16"><path d="M7.5 1A5.5 5.5 0 0 0 2 6.5c0 1.3.5 2.5 1.4 3.4L2 14l4.1-1.4c.9.3 1.9.4 2.9.4A5.5 5.5 0 0 0 7.5 1zm0 10a4.5 4.5 0 0 1-4.5-4.5A4.5 4.5 0 0 1 7.5 2 4.5 4.5 0 0 1 12 6.5 4.5 4.5 0 0 1 7.5 11z"/></svg>
+                CGU
+            </a>
+        </div>
+        <div class="footer-social">
+            <a href="https://github.com/teamstarwars-dev/Team-Luncher-" target="_blank" rel="noopener noreferrer" title="GitHub">
+                <svg class="icon" viewBox="0 0 16 16"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg>
+            </a>
+            <a href="mailto:teamluncher@gmail.com" title="Email">
+                <svg class="icon" viewBox="0 0 16 16"><path d="M2 2A2 2 0 0 0 0 4v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H2zm0 1h12a1 1 0 0 1 1 1v.2l-7 4.2-7-4.2V4a1 1 0 0 1 1-1zm13 2.5L8.1 9.7a.5.5 0 0 1-.5 0L1 5.5V4a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v1.5z"/></svg>
+            </a>
+            <a href="https://teamlauncher.vercel.app" target="_blank" rel="noopener noreferrer" title="Team Launcher">
+                <svg class="icon" viewBox="0 0 16 16"><path d="M8.6 2.5A5.5 5.5 0 0 0 2.5 8H1a7 7 0 0 0 7 7v-1.5a5.5 5.5 0 0 1-.4-11zM9 1a8 8 0 1 0 0 16A8 8 0 0 0 9 1z"/><path d="M10.5 4.5L7 8l3.5 3.5-1 1L5 8l4.5-4.5z"/></svg>
+            </a>
+        </div>
+    </div>
+</footer>
+
+<button class="back-to-top" aria-label="Retour en haut">
+    <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M10 16V4M10 4L4 10M10 4L16 10" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+</button>
+
+<script>
+document.getElementById('check-breach-btn').addEventListener('click', function() {
+    var email = document.getElementById('breach-email').value.trim();
+    var resultDiv = document.getElementById('breach-result');
+
+    if (!email || !email.includes('@')) {
+        resultDiv.style.display = 'block';
+        resultDiv.innerHTML = '<div class="breach-card" style="border-color: var(--red);"><h3 style="color: var(--red);">Email invalide</h3><p>Veuillez entrer une adresse email valide.</p></div>';
+        return;
+    }
+
+    resultDiv.style.display = 'block';
+    resultDiv.innerHTML = '<div class="breach-card"><h3>Vérification en cours...</h3><p>Recherche de fuites pour ' + email + '</p></div>';
+
+    setTimeout(function() {
+        resultDiv.innerHTML = '<div class="breach-card" style="border-color: var(--accent);"><h3 style="color: var(--accent);">Service en développement</h3><p>Le vérificateur de fuites sera bientôt disponible via l\'API Have I Been Pwned. En attendant, vous pouvez vérifier manuellement sur <a href="https://haveibeenpwned.com" target="_blank" rel="noopener noreferrer">haveibeenpwned.com</a>.</p></div>';
+    }, 1500);
+});
+
+document.getElementById('newsletter-btn').addEventListener('click', async function() {
+    var email = document.getElementById('newsletter-email').value.trim();
+    var msgDiv = document.getElementById('newsletter-message');
+
+    if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+        msgDiv.style.display = 'block';
+        msgDiv.innerHTML = '<span style="color: var(--red);">Email invalide.</span>';
+        return;
+    }
+
+    this.disabled = true;
+    this.textContent = 'Inscription...';
+
+    try {
+        var res = await fetch('/api/subscribe', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ email: email, source: 'Fuites de données' })
+        });
+        var data = await res.json();
+
+        msgDiv.style.display = 'block';
+        if (data.success) {
+            msgDiv.innerHTML = '<span style="color: var(--green);">' + data.message + '</span>';
+            document.getElementById('newsletter-email').value = '';
+        } else {
+            msgDiv.innerHTML = '<span style="color: var(--red);">' + (data.error || 'Erreur lors de l\'inscription.') + '</span>';
+        }
+    } catch (e) {
+        msgDiv.style.display = 'block';
+        msgDiv.innerHTML = '<span style="color: var(--red);">Erreur réseau. Réessayez plus tard.</span>';
+    }
+
+    this.disabled = false;
+    this.textContent = 'Me prévenir';
+});
+</script>
+
+<script src="js/main.js"></script>
+
+</body>
+</html>

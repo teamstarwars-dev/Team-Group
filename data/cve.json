@@ -1,0 +1,86 @@
+[
+  {
+    "id": 1,
+    "cve_id": "CVE-2026-21887",
+    "score": 10.0,
+    "severity": "critical",
+    "title": "FortiGate — Injection de commandes",
+    "description": "Vulnérabilité critique dans FortiOS permettant l'exécution de commandes arbitraires via des requêtes HTTP craftées.",
+    "vendor": "Fortinet",
+    "product": "FortiOS",
+    "date": "2026-01-15",
+    "references": ["https://nvd.nist.gov/vuln/detail/CVE-2026-21887"]
+  },
+  {
+    "id": 2,
+    "cve_id": "CVE-2026-0217",
+    "score": 9.8,
+    "severity": "critical",
+    "title": "Windows Kerberos — Élévation de privilèges",
+    "description": "Vulnérabilité dans le protocole Kerberos sur Windows Server permettant à un attaquant authentifié d'obtenir des privilèges administrateur.",
+    "vendor": "Microsoft",
+    "product": "Windows Server",
+    "date": "2026-01-10",
+    "references": ["https://nvd.nist.gov/vuln/detail/CVE-2026-0217"]
+  },
+  {
+    "id": 3,
+    "cve_id": "CVE-2026-23878",
+    "score": 9.8,
+    "severity": "critical",
+    "title": "Apache Struts — Remote Code Execution",
+    "description": "Exécution de code à distance dans Apache Struts via une désérialisation unsafe.",
+    "vendor": "Apache",
+    "product": "Struts",
+    "date": "2026-01-08",
+    "references": ["https://nvd.nist.gov/vuln/detail/CVE-2026-23878"]
+  },
+  {
+    "id": 4,
+    "cve_id": "CVE-2026-19074",
+    "score": 8.8,
+    "severity": "high",
+    "title": "VMware vCenter — SSRF",
+    "description": "Falsification de requête côté serveur dans VMware vCenter Server.",
+    "vendor": "VMware",
+    "product": "vCenter",
+    "date": "2026-01-05",
+    "references": ["https://nvd.nist.gov/vuln/detail/CVE-2026-19074"]
+  },
+  {
+    "id": 5,
+    "cve_id": "CVE-2026-25244",
+    "score": 8.1,
+    "severity": "high",
+    "title": "Microsoft Exchange — Bypass d'authentification",
+    "description": "Bypass d'authentification dans Microsoft Exchange Server permettant l'accès aux boîtes mail.",
+    "vendor": "Microsoft",
+    "product": "Exchange Server",
+    "date": "2025-12-28",
+    "references": ["https://nvd.nist.gov/vuln/detail/CVE-2026-25244"]
+  },
+  {
+    "id": 6,
+    "cve_id": "CVE-2026-30291",
+    "score": 6.5,
+    "severity": "medium",
+    "title": "WordPress Plugin — SQL Injection",
+    "description": "Injection SQL dans le plugin WordPress Contact Form 7.",
+    "vendor": "WordPress",
+    "product": "Contact Form 7",
+    "date": "2025-12-20",
+    "references": ["https://nvd.nist.gov/vuln/detail/CVE-2026-30291"]
+  },
+  {
+    "id": 7,
+    "cve_id": "CVE-2026-28912",
+    "score": 7.5,
+    "severity": "high",
+    "title": "OpenSSL — Memory Disclosure",
+    "description": "Fuite de mémoire dans OpenSSL affecting les serveurs TLS.",
+    "vendor": "OpenSSL",
+    "product": "OpenSSL",
+    "date": "2025-12-15",
+    "references": ["https://nvd.nist.gov/vuln/detail/CVE-2026-28912"]
+  }
+]

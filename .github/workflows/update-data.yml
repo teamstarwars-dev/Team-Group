@@ -1,0 +1,79 @@
+name: Update CVE Data
+
+on:
+  schedule:
+    - cron: '0 6 * * *'
+  workflow_dispatch:
+
+jobs:
+  update-cve:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Fetch CVE data from ENISA EUVD
+        run: |
+          node -e "
+          const https = require('https');
+          const fs = require('fs');
+
+          const today = new Date();
+          const startDate = new Date(today);
+          startDate.setDate(startDate.getDate() - 30);
+
+          const start = startDate.toISOString().split('T')[0];
+          const end = today.toISOString().split('T')[0];
+
+          const url = \`https://services.euroid.eu/vulnerability-euroid/v1/vulnerabilities?dateStart=\${start}&dateEnd=\${end}&limit=50&order=desc\`;
+
+          https.get(url, { headers: { 'Accept': 'application/json' } }, (res) => {
+            let data = '';
+            res.on('data', (chunk) => { data += chunk; });
+            res.on('end', () => {
+              if (res.statusCode === 200) {
+                try {
+                  const parsed = JSON.parse(data);
+                  const cves = (parsed.vulnerabilities || []).map((v, i) => ({
+                    id: i + 1,
+                    cve_id: v.cveId || v.id,
+                    score: v.cvssScore || 0,
+                    severity: (v.cvssScore || 0) >= 9.0 ? 'critical' : (v.cvssScore || 0) >= 7.0 ? 'high' : (v.cvssScore || 0) >= 4.0 ? 'medium' : 'low',
+                    title: v.cveId || v.id,
+                    description: v.description || '',
+                    vendor: v.vendor || 'Inconnu',
+                    product: v.product || 'Inconnu',
+                    date: v.publishedDate || end,
+                    references: v.references ? v.references.map(r => r.url || r) : []
+                  }));
+
+                  if (cves.length > 0) {
+                    fs.writeFileSync('data/cve.json', JSON.stringify(cves, null, 2));
+                    console.log('Updated cve.json with ' + cves.length + ' CVEs');
+                  } else {
+                    console.log('No CVEs found, keeping existing data');
+                  }
+                } catch (e) {
+                  console.error('Parse error:', e.message);
+                }
+              } else {
+                console.log('API returned status ' + res.statusCode);
+              }
+            });
+          }).on('error', (e) => {
+            console.error('Request error:', e.message);
+          });
+          "
+
+      - name: Commit changes
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add data/cve.json
+          git diff --staged --quiet || git commit -m "chore: update CVE data [$(date +'%Y-%m-%d')]"
+          git push
