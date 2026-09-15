@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Newsletter — Team Group</title>
+    <link rel="icon" href="img/logo.png">
+    <link rel="stylesheet" href="css/style.css">
+    <meta name="robots" content="noindex, nofollow">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        .admin-login { max-width: 400px; margin: 120px auto; padding: 40px; background: var(--surface); border: 1px solid var(--border); border-radius: 16px; }
+        .admin-login h2 { text-align: center; margin-bottom: 24px; }
+        .admin-login input { width: 100%; padding: 12px 16px; background: var(--bg); border: 1px solid var(--border); border-radius: 10px; color: var(--text); font: inherit; margin-bottom: 12px; box-sizing: border-box; }
+        .admin-panel { display: none; }
+        .admin-stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 16px; margin-bottom: 32px; }
+        .admin-stat { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 24px; text-align: center; }
+        .admin-stat .num { font-size: 2rem; font-weight: 800; color: var(--accent); }
+        .admin-stat .label { color: var(--text-dim); font-size: .85rem; margin-top: 4px; }
+        .subscriber-list { list-style: none; padding: 0; }
+        .subscriber-item { display: flex; justify-content: space-between; align-items: center; padding: 12px 16px; background: var(--surface); border: 1px solid var(--border); border-radius: 10px; margin-bottom: 8px; }
+        .subscriber-item .email { font-weight: 600; }
+        .subscriber-item .meta { color: var(--text-dim); font-size: .82rem; }
+        .subscriber-item .del-btn { background: none; border: none; color: var(--red); cursor: pointer; font-size: .85rem; padding: 4px 8px; }
+        .subscriber-item .del-btn:hover { text-decoration: underline; }
+    </style>
+</head>
+<body>
+<a class="skip-to-content" href="#main-content">Aller au contenu principal</a>
+
+<header>
+    <div class="navbar">
+        <a class="brand" href="index.html">
+            <img src="img/logo.png" alt="Team Group">
+            <div class="brand-dot"></div>
+            Team Group
+        </a>
+        <nav>
+            <a href="index.html">Retour au site</a>
+        </nav>
+    </div>
+</header>
+
+<main id="main-content">
+    <section class="section" style="padding-top:48px;">
+        <div class="section-header">
+            <div class="label">Administration</div>
+            <h2>Newsletter</h2>
+        </div>
+
+        <div id="login-form" class="admin-login">
+            <h2>Connexion</h2>
+            <input type="password" id="admin-key" placeholder="Clé d'administration" autofocus>
+            <button class="btn btn-primary" style="width:100%;" onclick="login()">Se connecter</button>
+            <p id="login-error" style="color:var(--red); text-align:center; margin-top:12px; display:none; font-size:.85rem;"></p>
+        </div>
+
+        <div id="admin-panel" class="admin-panel">
+            <div class="admin-stats">
+                <div class="admin-stat">
+                    <div class="num" id="total-subscribers">0</div>
+                    <div class="label">Abonnés</div>
+                </div>
+                <div class="admin-stat">
+                    <div class="num" id="last-sub-date">-</div>
+                    <div class="label">Dernière inscription</div>
+                </div>
+            </div>
+
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:16px;">
+                <h3>Liste des abonnés</h3>
+                <button class="btn btn-ghost" onclick="loadSubscribers()">Rafraîchir</button>
+            </div>
+
+            <ul id="subscriber-list" class="subscriber-list"></ul>
+        </div>
+    </section>
+</main>
+
+<script>
+let ADMIN_KEY = '';
+
+function login() {
+    ADMIN_KEY = document.getElementById('admin-key').value.trim();
+    if (!ADMIN_KEY) return;
+    loadSubscribers();
+}
+
+async function loadSubscribers() {
+    const errEl = document.getElementById('login-error');
+    errEl.style.display = 'none';
+
+    try {
+        const res = await fetch('/api/subscribers', {
+            headers: { 'Authorization': 'Bearer ' + ADMIN_KEY }
+        });
+        const data = await res.json();
+
+        if (res.status === 401) {
+            errEl.textContent = 'Clé invalide.';
+            errEl.style.display = 'block';
+            return;
+        }
+
+        document.getElementById('login-form').style.display = 'none';
+        document.getElementById('admin-panel').style.display = 'block';
+        document.getElementById('total-subscribers').textContent = data.count;
+
+        if (data.subscribers.length > 0) {
+            const last = data.subscribers[0];
+            const d = new Date(last.date);
+            document.getElementById('last-sub-date').textContent = d.toLocaleDateString('fr-FR');
+        }
+
+        const list = document.getElementById('subscriber-list');
+        list.innerHTML = '';
+        data.subscribers.forEach(function(sub) {
+            const d = new Date(sub.date);
+            const li = document.createElement('li');
+            li.className = 'subscriber-item';
+            li.innerHTML = '<div><div class="email">' + sub.email + '</div><div class="meta">' + sub.source + ' · ' + d.toLocaleDateString('fr-FR') + ' ' + d.toLocaleTimeString('fr-FR') + '</div></div><button class="del-btn" onclick="deleteSubscriber(\'' + sub.email + '\')">Supprimer</button>';
+            list.appendChild(li);
+        });
+    } catch (e) {
+        errEl.textContent = 'Erreur réseau.';
+        errEl.style.display = 'block';
+    }
+}
+
+async function deleteSubscriber(email) {
+    if (!confirm('Supprimer ' + email + ' ?')) return;
+    await fetch('/api/subscribers?email=' + encodeURIComponent(email), {
+        method: 'DELETE',
+        headers: { 'Authorization': 'Bearer ' + ADMIN_KEY }
+    });
+    loadSubscribers();
+}
+
+document.getElementById('admin-key').addEventListener('keyup', function(e) {
+    if (e.key === 'Enter') login();
+});
+</script>
+
+</body>
+</html>

@@ -5,100 +5,88 @@ module.exports = async (req, res) => {
     res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
     res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
 
-    if (req.method === 'OPTIONS') {
-        return res.status(200).end();
-    }
-
-    if (req.method !== 'POST') {
-        return res.status(405).json({ error: 'Méthode non autorisée.' });
-    }
+    if (req.method === 'OPTIONS') return res.status(200).end();
+    if (req.method !== 'POST') return res.status(405).json({ error: 'Méthode non autorisée.' });
 
     const { email, source } = req.body || {};
-
     if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
         return res.status(400).json({ error: 'Adresse email invalide.' });
     }
 
-    const apiKey = process.env.BUTTONDOWN_API_KEY;
+    const kvUrl = process.env.KV_REST_API_URL;
+    const kvToken = process.env.KV_REST_API_TOKEN;
 
-    if (!apiKey) {
-        return res.status(503).json({
-            error: 'Service newsletter non configuré.',
-            hint: 'Ajoutez BUTTONDOWN_API_KEY dans les variables d\'environnement Vercel.'
-        });
+    if (!kvUrl || !kvToken) {
+        return res.status(503).json({ error: 'Base de données non configurée.' });
     }
 
     try {
-        const result = await buttondownSubscribe(email, source || 'Team Group', apiKey);
+        const key = `newsletter:${email.toLowerCase()}`;
+        const existing = await kvGet(key, kvUrl, kvToken);
 
-        if (result.success) {
-            return res.status(200).json({
-                success: true,
-                message: 'Inscription confirmée ! Vous recevrez nos prochaines alertes.'
-            });
-        } else {
-            return res.status(400).json({
-                error: result.message || 'Erreur lors de l\'inscription.'
-            });
+        if (existing) {
+            return res.status(200).json({ success: true, message: 'Déjà inscrit !' });
         }
+
+        const subscriber = {
+            email: email.toLowerCase(),
+            source: source || 'Team Group',
+            date: new Date().toISOString(),
+            id: Date.now().toString(36) + Math.random().toString(36).substr(2, 5)
+        };
+
+        await kvSet(key, JSON.stringify(subscriber), kvUrl, kvToken);
+
+        const listKey = 'newsletter:list';
+        const listRaw = await kvGet(listKey, kvUrl, kvToken);
+        const list = listRaw ? JSON.parse(listRaw) : [];
+        list.push(email.toLowerCase());
+        await kvSet(listKey, JSON.stringify(list), kvUrl, kvToken);
+
+        return res.status(200).json({ success: true, message: 'Inscription confirmée ! Vous recevrez nos prochaines alertes.' });
     } catch (err) {
-        console.error('Buttondown API error:', err.message);
+        console.error('Newsletter error:', err.message);
         return res.status(500).json({ error: 'Erreur serveur. Réessayez plus tard.' });
     }
 };
 
-function buttondownSubscribe(email, source, apiKey) {
+function kvGet(key, url, token) {
     return new Promise((resolve, reject) => {
-        const payload = JSON.stringify({
-            email_address: email,
-            type: 'subscriber',
-            metadata: { source }
-        });
+        const encodedKey = encodeURIComponent(key);
+        https.get(`${url}/get/${encodedKey}`, {
+            headers: { 'Authorization': `Bearer ${token}` }
+        }, (res) => {
+            let data = '';
+            res.on('data', c => data += c);
+            res.on('end', () => {
+                try {
+                    const parsed = JSON.parse(data);
+                    resolve(parsed.result || null);
+                } catch { resolve(null); }
+            });
+        }).on('error', reject);
+    });
+}
 
+function kvSet(key, value, url, token) {
+    return new Promise((resolve, reject) => {
+        const encodedKey = encodeURIComponent(key);
+        const payload = JSON.stringify({ value });
         const options = {
-            hostname: 'api.buttondown.email',
-            path: '/v1/subscribers',
+            hostname: new URL(url).hostname,
+            path: `/set/${encodedKey}`,
             method: 'POST',
             headers: {
-                'Authorization': `Token ${apiKey}`,
+                'Authorization': `Bearer ${token}`,
                 'Content-Type': 'application/json',
                 'Content-Length': Buffer.byteLength(payload)
             }
         };
-
-        const request = https.request(options, (response) => {
+        const request = https.request(options, (res) => {
             let data = '';
-
-            response.on('data', (chunk) => { data += chunk; });
-
-            response.on('end', () => {
-                try {
-                    const parsed = JSON.parse(data);
-
-                    if (response.statusCode === 201) {
-                        resolve({ success: true });
-                    } else if (response.statusCode === 409) {
-                        resolve({ success: true, message: 'Déjà inscrit !' });
-                    } else if (response.statusCode === 400) {
-                        resolve({
-                            success: false,
-                            message: parsed.email_address ? 'Email invalide.' : (parsed.detail || 'Paramètres invalides.')
-                        });
-                    } else {
-                        resolve({
-                            success: false,
-                            message: parsed.detail || `Erreur ${response.statusCode}`
-                        });
-                    }
-                } catch (e) {
-                    resolve({
-                        success: false,
-                        message: 'Réponse invalide du serveur.'
-                    });
-                }
-            });
+            res.on('data', c => data += c);
+            res.on('end', () => resolve(data));
         });
-
         request.on('error', reject);
         request.write(payload);
         request.end();
