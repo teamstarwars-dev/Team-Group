@@ -3,3 +3,5 @@ node_modules/
 .env.local
 .vercel/
 server.js
+
+.vercel

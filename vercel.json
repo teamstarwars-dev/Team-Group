@@ -1,6 +1,3 @@
 {
-  "framework": null,
-  "outputDirectory": ".",
-  "installCommand": "echo noop",
-  "buildCommand": "echo noop"
+  "outputDirectory": "."
 }
