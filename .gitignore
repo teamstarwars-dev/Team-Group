@@ -7,3 +7,4 @@ local-server.js
 .agents/
 skills-lock.json
 neon.ts
+.vercel
