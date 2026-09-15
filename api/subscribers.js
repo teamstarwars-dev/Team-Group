@@ -1,4 +1,6 @@
-const https = require('https');
+const { Pool } = require('pg');
+
+const pool = new Pool({ connectionString: process.env.DATABASE_URL });
 
 module.exports = async (req, res) => {
     res.setHeader('Access-Control-Allow-Origin', '*');
@@ -7,11 +9,8 @@ module.exports = async (req, res) => {
 
     if (req.method === 'OPTIONS') return res.status(200).end();
 
-    const apiUrl = process.env.POSTGRES_REST_API_URL;
-    const apiToken = process.env.POSTGRES_REST_API_TOKEN;
     const adminKey = process.env.ADMIN_KEY;
-
-    if (!apiUrl || !apiToken) {
+    if (!process.env.DATABASE_URL) {
         return res.status(503).json({ error: 'Base de données non configurée.' });
     }
 
@@ -20,68 +19,54 @@ module.exports = async (req, res) => {
         return res.status(401).json({ error: 'Non autorisé.' });
     }
 
+    const client = await pool.connect();
     try {
         if (req.method === 'GET') {
-            const { action, email, subscriber_id } = req.query || {};
+            const { action, subscriber_id } = req.query || {};
 
             if (action === 'events' && subscriber_id) {
-                const events = await pgQuery(
-                    `SELECT * FROM subscriber_events WHERE subscriber_id = ${subscriber_id} ORDER BY created_at DESC LIMIT 100`,
-                    apiUrl, apiToken
+                const events = await client.query(
+                    'SELECT * FROM subscriber_events WHERE subscriber_id = $1 ORDER BY created_at DESC LIMIT 100',
+                    [subscriber_id]
                 );
-                return res.status(200).json({ events: events.rows || [] });
+                return res.status(200).json({ events: events.rows });
             }
 
             if (action === 'stats') {
-                const total = await pgQuery('SELECT COUNT(*) as total FROM subscribers', apiUrl, apiToken);
-                const active = await pgQuery('SELECT COUNT(*) as active FROM subscribers WHERE active = TRUE', apiUrl, apiToken);
-                const today = await pgQuery(
-                    "SELECT COUNT(*) as today FROM subscribers WHERE subscribed_at >= CURRENT_DATE",
-                    apiUrl, apiToken
-                );
-                const thisWeek = await pgQuery(
-                    "SELECT COUNT(*) as week FROM subscribers WHERE subscribed_at >= CURRENT_DATE - INTERVAL '7 days'",
-                    apiUrl, apiToken
-                );
+                const [total, active, today, thisWeek] = await Promise.all([
+                    client.query('SELECT COUNT(*) as total FROM subscribers'),
+                    client.query('SELECT COUNT(*) as active FROM subscribers WHERE active = TRUE'),
+                    client.query("SELECT COUNT(*) as today FROM subscribers WHERE subscribed_at >= CURRENT_DATE"),
+                    client.query("SELECT COUNT(*) as week FROM subscribers WHERE subscribed_at >= CURRENT_DATE - INTERVAL '7 days'")
+                ]);
                 return res.status(200).json({
-                    total: total.rows[0]?.total || 0,
-                    active: active.rows[0]?.active || 0,
-                    today: today.rows[0]?.today || 0,
-                    thisWeek: thisWeek.rows[0]?.week || 0
+                    total: parseInt(total.rows[0].total),
+                    active: parseInt(active.rows[0].active),
+                    today: parseInt(today.rows[0].today),
+                    thisWeek: parseInt(thisWeek.rows[0].week)
                 });
             }
 
-            const rows = await pgQuery(
-                "SELECT * FROM subscribers WHERE active = TRUE ORDER BY subscribed_at DESC",
-                apiUrl, apiToken
-            );
-            return res.status(200).json({ count: rows.rows.length, subscribers: rows.rows || [] });
+            const rows = await client.query('SELECT * FROM subscribers ORDER BY subscribed_at DESC');
+            return res.status(200).json({ count: rows.rows.length, subscribers: rows.rows });
         }
 
         if (req.method === 'DELETE') {
             const { email, reason } = req.query || {};
             if (!email) return res.status(400).json({ error: 'Email requis.' });
 
-            const sub = await pgQuery(
-                `SELECT id FROM subscribers WHERE email = '${esc(email.toLowerCase())}'`,
-                apiUrl, apiToken
+            const sub = await client.query('SELECT id FROM subscribers WHERE email = $1', [email.toLowerCase()]);
+            await client.query(
+                'UPDATE subscribers SET active = FALSE, unsubscribed_at = NOW(), unsubscription_reason = $1 WHERE email = $2',
+                [reason || 'admin', email.toLowerCase()]
             );
 
-            const now = new Date().toISOString();
-            await pgQuery(
-                `UPDATE subscribers SET active = FALSE, unsubscribed_at = '${now}',
-                 unsubscription_reason = '${esc(reason || 'admin')}' WHERE email = '${esc(email.toLowerCase())}'`,
-                apiUrl, apiToken
-            );
-
-            if (sub.rows && sub.rows[0]) {
+            if (sub.rows[0]) {
                 const ip = req.headers['x-forwarded-for'] || 'admin';
                 const ua = req.headers['user-agent'] || 'admin';
-                await pgQuery(
-                    `INSERT INTO subscriber_events (subscriber_id, event_type, ip_address, user_agent, metadata)
-                     VALUES (${sub.rows[0].id}, 'unsubscribe', '${esc(ip)}', '${esc(ua)}',
-                     '{"reason": "${esc(reason || 'admin')}"}'::jsonb)`,
-                    apiUrl, apiToken
+                await client.query(
+                    'INSERT INTO subscriber_events (subscriber_id, event_type, ip_address, user_agent, metadata) VALUES ($1, $2, $3, $4, $5)',
+                    [sub.rows[0].id, 'unsubscribe', ip, ua, JSON.stringify({ reason: reason || 'admin' })]
                 );
             }
 
@@ -90,38 +75,7 @@ module.exports = async (req, res) => {
     } catch (err) {
         console.error('Admin API error:', err.message);
         return res.status(500).json({ error: 'Erreur serveur.' });
+    } finally {
+        client.release();
     }
 };
-
-function esc(str) {
-    if (!str) return '';
-    return String(str).replace(/'/g, "''");
-}
-
-function pgQuery(query, apiUrl, apiToken) {
-    return new Promise((resolve, reject) => {
-        const payload = JSON.stringify({ query });
-        const url = new URL(apiUrl);
-        const options = {
-            hostname: url.hostname,
-            path: url.pathname,
-            method: 'POST',
-            headers: {
-                'Authorization': `Bearer ${apiToken}`,
-                'Content-Type': 'application/json',
-                'Content-Length': Buffer.byteLength(payload)
-            }
-        };
-        const request = https.request(options, (response) => {
-            let data = '';
-            response.on('data', c => data += c);
-            response.on('end', () => {
-                try { resolve(JSON.parse(data)); }
-                catch { resolve({ rows: [] }); }
-            });
-        });
-        request.on('error', reject);
-        request.write(payload);
-        request.end();
-    });
-}

@@ -1,4 +1,6 @@
-const https = require('https');
+const { Pool } = require('pg');
+
+const pool = new Pool({ connectionString: process.env.DATABASE_URL });
 
 module.exports = async (req, res) => {
     res.setHeader('Access-Control-Allow-Origin', '*');
@@ -13,54 +15,43 @@ module.exports = async (req, res) => {
         return res.status(400).json({ error: 'Adresse email invalide.' });
     }
 
-    const apiUrl = process.env.POSTGRES_REST_API_URL;
-    const apiToken = process.env.POSTGRES_REST_API_TOKEN;
-    if (!apiUrl || !apiToken) {
+    if (!process.env.DATABASE_URL) {
         return res.status(503).json({ error: 'Base de données non configurée.' });
     }
 
+    const client = await pool.connect();
     try {
         const ip = req.headers['x-forwarded-for'] || req.headers['x-real-ip'] || 'unknown';
         const userAgent = req.headers['user-agent'] || 'unknown';
         const referer = req.headers['referer'] || req.headers['referrer'] || 'direct';
         const normalizedEmail = email.toLowerCase().trim();
-        const now = new Date().toISOString();
         const parsedUA = parseUserAgent(userAgent);
 
-        const check = await pgQuery(
-            `SELECT id, active FROM subscribers WHERE email = '${esc(normalizedEmail)}'`,
-            apiUrl, apiToken
-        );
+        const existing = await client.query('SELECT id, active FROM subscribers WHERE email = $1', [normalizedEmail]);
+        if (existing.rows.length > 0 && existing.rows[0].active) {
+            return res.status(200).json({ success: true, message: 'Déjà inscrit !' });
+        }
 
-        if (check.rows && check.rows.length > 0) {
-            const sub = check.rows[0];
-            if (sub.active) {
-                return res.status(200).json({ success: true, message: 'Déjà inscrit !' });
-            }
-            await pgQuery(
+        if (existing.rows.length > 0) {
+            await client.query(
                 `UPDATE subscribers SET active = TRUE, unsubscribed_at = NULL, unsubscription_reason = NULL,
-                 ip_address = '${esc(ip)}', user_agent = '${esc(userAgent)}',
-                 browser = '${esc(parsedUA.browser)}', os = '${esc(parsedUA.os)}', device = '${esc(parsedUA.device)}',
-                 page_visited = '${esc(pageVisited || '')}', referer = '${esc(referer)}',
-                 updated_at = '${now}' WHERE email = '${esc(normalizedEmail)}'`,
-                apiUrl, apiToken
+                 ip_address = $1, user_agent = $2, browser = $3, os = $4, device = $5,
+                 page_visited = $6, referer = $7, updated_at = NOW()
+                 WHERE email = $8`,
+                [ip, userAgent, parsedUA.browser, parsedUA.os, parsedUA.device, pageVisited || '', referer, normalizedEmail]
             );
-            await logEvent(sub.id, 'resubscribe', ip, userAgent, { pageVisited, referer }, apiUrl, apiToken);
+            await logEvent(client, existing.rows[0].id, 'resubscribe', ip, userAgent, { pageVisited, referer });
             return res.status(200).json({ success: true, message: 'Réinscription confirmée !' });
         }
 
-        const ins = await pgQuery(
-            `INSERT INTO subscribers (email, source, ip_address, user_agent, browser, os, device, page_visited, referer, subscribed_at)
-             VALUES ('${esc(normalizedEmail)}', '${esc(source || 'Team Group')}', '${esc(ip)}', '${esc(userAgent)}',
-                     '${esc(parsedUA.browser)}', '${esc(parsedUA.os)}', '${esc(parsedUA.device)}',
-                     '${esc(pageVisited || '')}', '${esc(referer)}', '${now}')
-             RETURNING id`,
-            apiUrl, apiToken
+        const result = await client.query(
+            `INSERT INTO subscribers (email, source, ip_address, user_agent, browser, os, device, page_visited, referer)
+             VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING id`,
+            [normalizedEmail, source || 'Team Group', ip, userAgent, parsedUA.browser, parsedUA.os, parsedUA.device, pageVisited || '', referer]
         );
 
-        const newId = ins.rows && ins.rows[0] ? ins.rows[0].id : null;
-        if (newId) {
-            await logEvent(newId, 'subscribe', ip, userAgent, { pageVisited, referer }, apiUrl, apiToken);
+        if (result.rows[0]) {
+            await logEvent(client, result.rows[0].id, 'subscribe', ip, userAgent, { pageVisited, referer });
         }
 
         return res.status(200).json({
@@ -70,15 +61,15 @@ module.exports = async (req, res) => {
     } catch (err) {
         console.error('Newsletter error:', err.message);
         return res.status(500).json({ error: 'Erreur serveur. Réessayez plus tard.' });
+    } finally {
+        client.release();
     }
 };
 
-function logEvent(subscriberId, eventType, ip, userAgent, metadata, apiUrl, apiToken) {
-    const metaJson = JSON.stringify(metadata).replace(/'/g, "''");
-    return pgQuery(
-        `INSERT INTO subscriber_events (subscriber_id, event_type, ip_address, user_agent, metadata)
-         VALUES (${subscriberId}, '${eventType}', '${esc(ip)}', '${esc(userAgent)}', '${metaJson}'::jsonb)`,
-        apiUrl, apiToken
+function logEvent(client, subscriberId, eventType, ip, userAgent, metadata) {
+    return client.query(
+        'INSERT INTO subscriber_events (subscriber_id, event_type, ip_address, user_agent, metadata) VALUES ($1, $2, $3, $4, $5)',
+        [subscriberId, eventType, ip, userAgent, JSON.stringify(metadata)]
     );
 }
 
@@ -103,37 +94,4 @@ function parseUserAgent(ua) {
     else if (/iphone|ipad|ipod/i.test(ua)) os = 'iOS';
 
     return { browser, os, device };
-}
-
-function esc(str) {
-    if (!str) return '';
-    return String(str).replace(/'/g, "''");
-}
-
-function pgQuery(query, apiUrl, apiToken) {
-    return new Promise((resolve, reject) => {
-        const payload = JSON.stringify({ query });
-        const url = new URL(apiUrl);
-        const options = {
-            hostname: url.hostname,
-            path: url.pathname,
-            method: 'POST',
-            headers: {
-                'Authorization': `Bearer ${apiToken}`,
-                'Content-Type': 'application/json',
-                'Content-Length': Buffer.byteLength(payload)
-            }
-        };
-        const request = https.request(options, (response) => {
-            let data = '';
-            response.on('data', c => data += c);
-            response.on('end', () => {
-                try { resolve(JSON.parse(data)); }
-                catch { resolve({ rows: [] }); }
-            });
-        });
-        request.on('error', reject);
-        request.write(payload);
-        request.end();
-    });
 }
