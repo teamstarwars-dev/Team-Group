@@ -284,63 +284,72 @@
 </button>
 
 <script>
-document.getElementById('search-cve-btn').addEventListener('click', function() {
-    var query = document.getElementById('cve-search').value.trim().toUpperCase();
-    var cards = document.querySelectorAll('#cve-list .cve-card');
+(function() {
+    var cveList = document.getElementById('cve-list');
+    var totalEl = document.getElementById('total-cve');
 
-    if (!query) {
-        cards.forEach(function(card) { card.style.display = ''; });
-        return;
+    async function loadCVEs() {
+        try {
+            var res = await fetch('/api/hg-cve');
+            var data = await res.json();
+            if (!data.cves || !data.cves.length) return;
+
+            if (totalEl) totalEl.textContent = data.count || data.cves.length;
+
+            var html = '';
+            data.cves.slice(0, 30).forEach(function(cve) {
+                var severityClass = cve.severity === 'critical' ? 'critical' : cve.severity === 'high' ? 'high' : cve.severity === 'medium' ? 'medium' : 'low';
+                var scoreClass = severityClass;
+                var link = 'cve/' + cve.cve_id + '.html';
+                html += '<div class="cve-card animate-on-scroll" data-severity="' + severityClass + '">';
+                html += '  <div class="cve-score ' + scoreClass + '">' + cve.score.toFixed(1) + '</div>';
+                html += '  <div class="cve-info">';
+                html += '    <div class="cve-id">' + cve.cve_id + '</div>';
+                html += '    <div style="color:var(--text-dim); font-size:.85rem; margin-top:4px;">' + (cve.product || 'N/A') + ' — ' + (cve.vendor || '') + '</div>';
+                html += '    <div class="cve-tags"><span class="project-tags"><span>' + severityClass.toUpperCase() + '</span></span></div>';
+                html += '    <a href="' + link + '" class="btn btn-sm" style="margin-top:12px;">Voir la fiche complète →</a>';
+                html += '  </div>';
+                html += '</div>';
+            });
+            cveList.innerHTML = html;
+
+            if (typeof IntersectionObserver !== 'undefined') {
+                var observer = new IntersectionObserver(function(entries) {
+                    entries.forEach(function(entry) {
+                        if (entry.isIntersecting) { entry.target.classList.add('visible'); observer.unobserve(entry.target); }
+                    });
+                }, { threshold: 0.1 });
+                cveList.querySelectorAll('.animate-on-scroll').forEach(function(el) { observer.observe(el); });
+            }
+        } catch (e) { console.error('CVE load error:', e); }
     }
 
-    cards.forEach(function(card) {
-        var text = card.textContent.toUpperCase();
-        card.style.display = text.includes(query) ? '' : 'none';
+    loadCVEs();
+
+    document.getElementById('search-cve-btn').addEventListener('click', function() {
+        var query = document.getElementById('cve-search').value.trim().toUpperCase();
+        var cards = document.querySelectorAll('#cve-list .cve-card');
+        if (!query) { cards.forEach(function(card) { card.style.display = ''; }); return; }
+        cards.forEach(function(card) { card.style.display = card.textContent.toUpperCase().includes(query) ? '' : 'none'; });
     });
-});
 
-document.getElementById('cve-search').addEventListener('keyup', function(e) {
-    if (e.key === 'Enter') {
-        document.getElementById('search-cve-btn').click();
-    }
-});
+    document.getElementById('cve-search').addEventListener('keyup', function(e) { if (e.key === 'Enter') document.getElementById('search-cve-btn').click(); });
 
-document.getElementById('newsletter-btn').addEventListener('click', async function() {
-    var email = document.getElementById('newsletter-email').value.trim();
-    var msgDiv = document.getElementById('newsletter-message');
-
-    if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-        msgDiv.style.display = 'block';
-        msgDiv.innerHTML = '<span style="color: var(--red);">Email invalide.</span>';
-        return;
-    }
-
-    this.disabled = true;
-    this.textContent = 'Inscription...';
-
-    try {
-        var res = await fetch('/api/subscribe', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ email: email, source: 'Veille cybersécurité' })
-        });
-        var data = await res.json();
-
-        msgDiv.style.display = 'block';
-        if (data.success) {
-            msgDiv.innerHTML = '<span style="color: var(--green);">' + data.message + '</span>';
-            document.getElementById('newsletter-email').value = '';
-        } else {
-            msgDiv.innerHTML = '<span style="color: var(--red);">' + (data.error || 'Erreur lors de l\'inscription.') + '</span>';
-        }
-    } catch (e) {
-        msgDiv.style.display = 'block';
-        msgDiv.innerHTML = '<span style="color: var(--red);">Erreur réseau. Réessayez plus tard.</span>';
-    }
-
-    this.disabled = false;
-    this.textContent = 'S\'abonner';
-});
+    document.getElementById('newsletter-btn').addEventListener('click', async function() {
+        var email = document.getElementById('newsletter-email').value.trim();
+        var msgDiv = document.getElementById('newsletter-message');
+        if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { msgDiv.style.display = 'block'; msgDiv.innerHTML = '<span style="color:var(--red);">Email invalide.</span>'; return; }
+        this.disabled = true; this.textContent = 'Inscription...';
+        try {
+            var res = await fetch('/api/subscribe', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ email: email, source: 'Veille cybersécurité' }) });
+            var data = await res.json();
+            msgDiv.style.display = 'block';
+            if (data.success) { msgDiv.innerHTML = '<span style="color:var(--green);">' + data.message + '</span>'; document.getElementById('newsletter-email').value = ''; }
+            else { msgDiv.innerHTML = '<span style="color:var(--red);">' + (data.error || 'Erreur lors de l\'inscription.') + '</span>'; }
+        } catch (e) { msgDiv.style.display = 'block'; msgDiv.innerHTML = '<span style="color:var(--red);">Erreur réseau. Réessayez plus tard.</span>'; }
+        this.disabled = false; this.textContent = 'S\'abonner';
+    });
+})();
 </script>
 
 <script src="js/main.js"></script>

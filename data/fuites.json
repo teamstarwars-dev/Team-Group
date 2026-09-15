@@ -1,6 +1,86 @@
 [
   {
     "id": 1,
+    "name": "Instructure (Canvas LMS)",
+    "date": "2026-04-29",
+    "accounts": 275000000,
+    "severity": "critical",
+    "data_types": ["emails", "noms", "IDs étudiants", "inscriptions", "messages privés"],
+    "description": "275 millions d'utilisateurs affectés via l'exploitation du programme Free-For-Teacher. ShinyHunters a exfiltré 3,65 To de données incluant noms, emails, IDs étudiants et messages privés de 8 809 institutions.",
+    "source": "HIBP"
+  },
+  {
+    "id": 2,
+    "name": "McKesson",
+    "date": "2026-08-25",
+    "accounts": 6400000,
+    "severity": "critical",
+    "data_types": ["noms", "adresses", "SSN", "diagnostics", "médicaments", "allergies", "numéros Medicaid"],
+    "description": "Géant pharmaceutique américain. ShinyHunters a volé ~1 To de données via vishing (ingénierie sociale vocale). Rançon de 55 millions de dollars exigée. 6,4 millions de patients, employés et prestataires affectés.",
+    "source": "HIBP"
+  },
+  {
+    "id": 3,
+    "name": "DentaQuest",
+    "date": "2026-05-17",
+    "accounts": 15000000,
+    "severity": "critical",
+    "data_types": ["SSN", "adresses", "IDs Medicaid/Medicare", "diagnostics dentaires", "historiques de traitement"],
+    "description": "Deuxième plus grand administrateur de prestations dentaires aux USA. 15 millions de personnes affectées. ShinyHunters a publié 234 Go de données après refus de rançon. Classe action déposée en juin 2026.",
+    "source": "HIBP"
+  },
+  {
+    "id": 4,
+    "name": "IDScan.net (Nexus)",
+    "date": "2026-09-01",
+    "accounts": 153000000,
+    "severity": "critical",
+    "data_types": ["permis de conduire", "passeports", "cartes d'identité", "documents médicaux"],
+    "description": "153 millions de permis de conduire US/Canadiens vendus sur le dark web via le service Nexus. Le FBI a ouvert une enquête. Les données provenaient d'une entreprise de vérification d'identité basée en Louisiane.",
+    "source": "KrebsOnSecurity"
+  },
+  {
+    "id": 5,
+    "name": "Revolut",
+    "date": "2026-09-12",
+    "accounts": 680,
+    "severity": "high",
+    "data_types": ["passeports", "permis de conduire", "IBANs", "selfies de vérification", "histórico de transacciones", "Bitcoin wallet refs"],
+    "description": "Arnaque d'usurpation d'identité gouvernementale. ~680 clients de haute valeur affectés. Passeports, IBANs, selfies de vérification faciale et références de portefeuilles Bitcoin exposés.",
+    "source": "TechCrunch"
+  },
+  {
+    "id": 6,
+    "name": "Manchester Airports Group",
+    "date": "2026-03-15",
+    "accounts": 8700000,
+    "severity": "high",
+    "data_types": ["noms", "emails", "voyages", "données personnelles"],
+    "description": "8,7 millions de dossiers exposés après une attaque de rançongiciel. L'entreprise a refusé de payer la rançon. Données de passagers des aéroports de Manchester, Londres et Bournemouth.",
+    "source": "UpGuard"
+  },
+  {
+    "id": 7,
+    "name": "Nike",
+    "date": "2026-06-10",
+    "accounts": 0,
+    "severity": "high",
+    "data_types": ["données internes", "emails d'employés", "documents internes"],
+    "description": "1,4 To de données internes Nike volées. L'entreprise a lancé une enquête après la revendication d'attaquants. Données internes potentiellement sensibles de l'entreprise exposées.",
+    "source": "ACI Learning"
+  },
+  {
+    "id": 8,
+    "name": "Match Group (Tinder/Hinge)",
+    "date": "2026-01-20",
+    "accounts": 10000000,
+    "severity": "high",
+    "data_types": ["profils", "messages", "données de localisation", "emails"],
+    "description": "10 millions de comptes affectés via les plateformes de rencontre Tinder, Hinge et OkCupid. Groupe ShinyHunters revendiqué la responsabilité de l'attaque.",
+    "source": "ACI Learning"
+  },
+  {
+    "id": 9,
     "name": "Adobe",
     "date": "2013-10-04",
     "accounts": 153000000,
@@ -10,7 +90,7 @@
     "source": "HIBP"
   },
   {
-    "id": 2,
+    "id": 10,
     "name": "LinkedIn",
     "date": "2012-05-05",
     "accounts": 164000000,
@@ -20,83 +100,23 @@
     "source": "HIBP"
   },
   {
-    "id": 3,
-    "name": "Dropbox",
-    "date": "2012-08-31",
-    "accounts": 68000000,
-    "severity": "high",
-    "data_types": ["emails", "passwords"],
-    "description": "Emails et mots de passe hashés (bcrypt). Fuite confirmée en 2016 après une tentative de vol de 2012.",
-    "source": "HIBP"
-  },
-  {
-    "id": 4,
-    "name": "Canva",
-    "date": "2019-05-24",
-    "accounts": 137000000,
-    "severity": "high",
-    "data_types": ["emails", "names", "cities", "passwords"],
-    "description": "Emails, noms, villes, mots de passe hashés (bcrypt). Données de connexion Facebook et Google pour certains comptes.",
-    "source": "HIBP"
-  },
-  {
-    "id": 5,
-    "name": "Dailymotion",
-    "date": "2016-10-20",
-    "accounts": 8500000,
-    "severity": "medium",
-    "data_types": ["emails", "passwords", "github tokens"],
-    "description": "Emails et mots de passe hashés (bcrypt). Données de connexion GitHub pour environ 2 millions de comptes.",
-    "source": "HIBP"
-  },
-  {
-    "id": 6,
+    "id": 11,
     "name": "Collection #1-5",
     "date": "2019-01-17",
     "accounts": 2200000000,
     "severity": "critical",
     "data_types": ["emails", "passwords"],
-    "description": "Compilation de plus de 2000 fuites distinctes. Emails et mots de passe en clair. La plus grande collection de données fuitées jamais assemblée.",
+    "description": "Compilation de plus de 2000 fuites distinctes. La plus grande collection de données fuitées jamais assemblée — 2,2 milliards de comptes.",
     "source": "HIBP"
   },
   {
-    "id": 7,
-    "name": "Zoom",
-    "date": "2020-04-01",
-    "accounts": 500000,
-    "severity": "high",
-    "data_types": ["emails", "passwords", "meeting URLs"],
-    "description": "Emails, mots de passe et noms de session vendus sur le dark web.",
-    "source": "HIBP"
-  },
-  {
-    "id": 8,
-    "name": "Twitch",
-    "date": "2021-10-06",
-    "accounts": 7500000,
-    "severity": "medium",
-    "data_types": ["emails", "passwords", "payment data", "source code"],
-    "description": "Code source complet, données de paiement et emails/hashés de mots de passe fuités publiquement.",
-    "source": "HIBP"
-  },
-  {
-    "id": 9,
+    "id": 12,
     "name": "Facebook",
     "date": "2021-04-03",
     "accounts": 533000000,
     "severity": "critical",
     "data_types": ["emails", "phone numbers", "names", "locations"],
     "description": "Données de plus de 500 millions de comptes Facebook exposées publiquement.",
-    "source": "HIBP"
-  },
-  {
-    "id": 10,
-    "name": "Twitter",
-    "date": "2022-12-01",
-    "accounts": 5400000,
-    "severity": "high",
-    "data_types": ["emails", "usernames", "names", "phone numbers"],
-    "description": "Emails et informations personnelles de 5,4 millions de comptes Twitter fuitées via une vulnérabilité de l'API.",
     "source": "HIBP"
   }
 ]
