@@ -133,11 +133,18 @@
                 </div>
                 <div style="margin-bottom:16px;">
                     <label style="display:block; margin-bottom:6px; color:var(--text-dim); font-size:.85rem;">Sujet</label>
-                    <input type="text" id="send-subject" placeholder="Alerte sécurité critique..." style="width:100%; padding:10px 14px; background:var(--bg); border:1px solid var(--border); border-radius:8px; color:var(--text); font:inherit; box-sizing:border-box;">
+                    <input type="text" id="send-subject" value="[Team Group] Alerte sécurité - CVE critique détecté" style="width:100%; padding:10px 14px; background:var(--bg); border:1px solid var(--border); border-radius:8px; color:var(--text); font:inherit; box-sizing:border-box;">
                 </div>
                 <div style="margin-bottom:16px;">
                     <label style="display:block; margin-bottom:6px; color:var(--text-dim); font-size:.85rem;">Contenu HTML</label>
-                    <textarea id="send-html" rows="8" placeholder="<h2>Alerte CVE</h2><p>Une nouvelle vulnérabilité critique a été découverte...</p>" style="width:100%; padding:10px 14px; background:var(--bg); border:1px solid var(--border); border-radius:8px; color:var(--text); font:inherit; box-sizing:border-box; resize:vertical; font-family:monospace; font-size:.85rem;"></textarea>
+                    <textarea id="send-html" rows="8" style="width:100%; padding:10px 14px; background:var(--bg); border:1px solid var(--border); border-radius:8px; color:var(--text); font:inherit; box-sizing:border-box; resize:vertical; font-family:monospace; font-size:.85rem;"><h2 style="color:#2563eb;">🔒 Alerte Sécurité Team Group</h2>
+<p>Une nouvelle vulnérabilité critique a été identifiée ce jour.</p>
+<h3>CVE-2026-XXXXX — Score CVSS 10.0</h3>
+<p><strong>Produit affecté :</strong> Exemple Software</p>
+<p><strong>Description :</strong> Une faille critique permettant l'exécution de code arbitraire à distance sans authentification a été découverte.</p>
+<p><strong>Action requise :</strong> Appliquez le correctif de sécurité immédiatement.</p>
+<hr style="border:none;border-top:1px solid #ddd;margin:20px 0;">
+<p style="color:#888;font-size:12px;">Team Group — Protection &amp; Cybersécurité<br>Ce message est envoyé uniquement aux abonnés de la newsletter.</p></textarea>
                 </div>
                 <div style="display:flex; gap:8px; align-items:center;">
                     <button class="btn btn-primary" id="send-btn" onclick="sendNewsletter()">Envoyer</button>
