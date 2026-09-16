@@ -112,6 +112,39 @@
 
             <div id="subscriber-list"></div>
         </div>
+
+        <div id="newsletter-panel" style="margin-top:48px; display:none;">
+            <div class="section-header">
+                <div class="label">Envoi</div>
+                <h2>Envoyer une newsletter</h2>
+            </div>
+
+            <div style="background:var(--surface); border:1px solid var(--border); border-radius:12px; padding:24px;">
+                <div style="margin-bottom:16px;">
+                    <label style="display:block; margin-bottom:6px; color:var(--text-dim); font-size:.85rem;">Destinataires</label>
+                    <select id="send-target" style="width:100%; padding:10px 14px; background:var(--bg); border:1px solid var(--border); border-radius:8px; color:var(--text); font:inherit;">
+                        <option value="all">Tous les abonnés actifs</option>
+                        <option value="test">Email de test (ci-dessous)</option>
+                    </select>
+                </div>
+                <div id="test-email-field" style="margin-bottom:16px; display:none;">
+                    <label style="display:block; margin-bottom:6px; color:var(--text-dim); font-size:.85rem;">Email de test</label>
+                    <input type="email" id="test-email" placeholder="test@example.com" style="width:100%; padding:10px 14px; background:var(--bg); border:1px solid var(--border); border-radius:8px; color:var(--text); font:inherit; box-sizing:border-box;">
+                </div>
+                <div style="margin-bottom:16px;">
+                    <label style="display:block; margin-bottom:6px; color:var(--text-dim); font-size:.85rem;">Sujet</label>
+                    <input type="text" id="send-subject" placeholder="Alerte sécurité critique..." style="width:100%; padding:10px 14px; background:var(--bg); border:1px solid var(--border); border-radius:8px; color:var(--text); font:inherit; box-sizing:border-box;">
+                </div>
+                <div style="margin-bottom:16px;">
+                    <label style="display:block; margin-bottom:6px; color:var(--text-dim); font-size:.85rem;">Contenu HTML</label>
+                    <textarea id="send-html" rows="8" placeholder="<h2>Alerte CVE</h2><p>Une nouvelle vulnérabilité critique a été découverte...</p>" style="width:100%; padding:10px 14px; background:var(--bg); border:1px solid var(--border); border-radius:8px; color:var(--text); font:inherit; box-sizing:border-box; resize:vertical; font-family:monospace; font-size:.85rem;"></textarea>
+                </div>
+                <div style="display:flex; gap:8px; align-items:center;">
+                    <button class="btn btn-primary" id="send-btn" onclick="sendNewsletter()">Envoyer</button>
+                    <span id="send-message" style="font-size:.85rem;"></span>
+                </div>
+            </div>
+        </div>
     </section>
 </main>
 
@@ -146,6 +179,7 @@ async function loadAll() {
 
         document.getElementById('login-form').style.display = 'none';
         document.getElementById('admin-panel').style.display = 'block';
+        document.getElementById('newsletter-panel').style.display = 'block';
 
         document.getElementById('stat-active').textContent = statsData.active || subsData.count || 0;
         document.getElementById('stat-total').textContent = statsData.total || 0;
@@ -262,6 +296,46 @@ async function deleteSub(email) {
 document.getElementById('admin-key').addEventListener('keyup', function(e) {
     if (e.key === 'Enter') login();
 });
+
+document.getElementById('send-target').addEventListener('change', function() {
+    document.getElementById('test-email-field').style.display = this.value === 'test' ? 'block' : 'none';
+});
+
+async function sendNewsletter() {
+    const target = document.getElementById('send-target').value;
+    const subject = document.getElementById('send-subject').value.trim();
+    const html = document.getElementById('send-html').value.trim();
+    const msgEl = document.getElementById('send-message');
+    const btn = document.getElementById('send-btn');
+
+    if (!subject || !html) { msgEl.innerHTML = '<span style="color:var(--red);">Sujet et contenu requis.</span>'; return; }
+
+    const body = { subject, html };
+    if (target === 'test') {
+        body.testEmail = document.getElementById('test-email').value.trim();
+        if (!body.testEmail) { msgEl.innerHTML = '<span style="color:var(--red);">Email de test requis.</span>'; return; }
+    }
+
+    btn.disabled = true; btn.textContent = 'Envoi...';
+    msgEl.innerHTML = '';
+
+    try {
+        const res = await fetch('/api/send-newsletter', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + ADMIN_KEY },
+            body: JSON.stringify(body)
+        });
+        const data = await res.json();
+        if (data.success) {
+            msgEl.innerHTML = '<span style="color:var(--green);">' + data.message + '</span>';
+        } else {
+            msgEl.innerHTML = '<span style="color:var(--red);">' + (data.error || 'Erreur lors de l\'envoi.') + '</span>';
+        }
+    } catch (e) {
+        msgEl.innerHTML = '<span style="color:var(--red);">Erreur réseau.</span>';
+    }
+    btn.disabled = false; btn.textContent = 'Envoyer';
+}
 </script>
 
 </body>
