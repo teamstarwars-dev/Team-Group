@@ -162,7 +162,7 @@ jobs:
       - name: Sync CVEs to database
         env:
           CRON_SECRET: ${{ secrets.CRON_SECRET }}
-          SITE_URL: ${{ vars.SITE_URL || 'https://team-group.vercel.app' }}
+          SITE_URL: ${{ vars.SITE_URL || 'https://team-group-site.vercel.app' }}
         run: |
           if [ -z "$CRON_SECRET" ]; then
             echo "CRON_SECRET non défini — sync BDD ignorée (fallback JSON actif)."
