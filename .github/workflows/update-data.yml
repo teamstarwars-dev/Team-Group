@@ -156,8 +156,13 @@ jobs:
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
           git add data/cve.json
-          git diff --staged --quiet || git commit -m "chore: update CVE data [$(date +'%Y-%m-%d')]"
-          git push
+          if ! git diff --staged --quiet; then
+            git commit -m "chore: update CVE data [$(date +'%Y-%m-%d')]"
+            for i in 1 2 3; do
+              git pull --rebase origin master && git push && break
+              sleep 5
+            done
+          fi
 
       - name: Sync CVEs to database
         env:
