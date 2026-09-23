@@ -23,6 +23,12 @@ module.exports = async (req, res) => {
                     source: 'database'
                 });
             }
+            if (search) {
+                const any = await fetchCVEsFromDb({ limit: 1 });
+                if (any.length) {
+                    return res.status(200).json({ count: 0, cves: [], source: 'database' });
+                }
+            }
         }
     } catch (err) {
         console.error('CVE database error:', err.message);
