@@ -1,5 +1,6 @@
 const https = require('https');
 const http = require('http');
+const { upsertCVEs } = require('./db');
 
 function fetch(url) {
   return new Promise((resolve, reject) => {
@@ -75,6 +76,15 @@ module.exports = async (req, res) => {
   try {
     const html = await fetch('https://hginfoandco.com/cyber-veille');
     const cves = parseCVEs(html);
+
+    if (process.env.DATABASE_URL && cves.length) {
+      try {
+        await upsertCVEs(cves.slice(0, 100).map(c => ({ ...c, source: 'HG' })));
+      } catch (e) {
+        console.error('HG CVE upsert error:', e.message);
+      }
+    }
+
     res.status(200).json({ source: 'HG Info & Co', url: 'https://hginfoandco.com/cyber-veille', count: cves.length, last_update: new Date().toISOString(), cves: cves.slice(0, 100) });
   } catch (e) {
     res.status(500).json({ error: 'Failed to fetch CVE data', message: e.message });

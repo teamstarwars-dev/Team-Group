@@ -35,3 +35,41 @@ CREATE INDEX IF NOT EXISTS idx_subscribers_date ON subscribers(subscribed_at);
 CREATE INDEX IF NOT EXISTS idx_events_subscriber ON subscriber_events(subscriber_id);
 CREATE INDEX IF NOT EXISTS idx_events_type ON subscriber_events(event_type);
 CREATE INDEX IF NOT EXISTS idx_events_date ON subscriber_events(created_at);
+
+CREATE TABLE IF NOT EXISTS alert_log (
+    id SERIAL PRIMARY KEY,
+    alert_type VARCHAR(50) NOT NULL,
+    item_id VARCHAR(100) NOT NULL,
+    item_title TEXT,
+    item_score DECIMAL(3,1),
+    item_severity VARCHAR(20),
+    sent_at TIMESTAMP WITH TIME ZONE DEFAULT NOW(),
+    recipients_count INTEGER DEFAULT 0,
+    email_id VARCHAR(100)
+);
+
+CREATE INDEX IF NOT EXISTS idx_alert_log_type ON alert_log(alert_type);
+CREATE INDEX IF NOT EXISTS idx_alert_log_item ON alert_log(item_id);
+CREATE INDEX IF NOT EXISTS idx_alert_log_sent ON alert_log(sent_at);
+
+CREATE TABLE IF NOT EXISTS cves (
+    id SERIAL PRIMARY KEY,
+    cve_id VARCHAR(50) NOT NULL UNIQUE,
+    score DECIMAL(3,1) DEFAULT 0,
+    severity VARCHAR(20),
+    title TEXT,
+    description TEXT,
+    vendor TEXT,
+    product TEXT,
+    date DATE,
+    "references" JSONB DEFAULT '[]'::jsonb,
+    source VARCHAR(50) DEFAULT 'ENISA',
+    created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW(),
+    updated_at TIMESTAMP WITH TIME ZONE DEFAULT NOW()
+);
+
+CREATE INDEX IF NOT EXISTS idx_cves_cve_id ON cves(cve_id);
+CREATE INDEX IF NOT EXISTS idx_cves_date ON cves(date);
+CREATE INDEX IF NOT EXISTS idx_cves_score ON cves(score);
+CREATE INDEX IF NOT EXISTS idx_cves_severity ON cves(severity);
+CREATE INDEX IF NOT EXISTS idx_cves_vendor ON cves(vendor);

@@ -1,0 +1,24 @@
+{
+  "crons": [
+    {
+      "path": "/api/cron/notify?type=cve",
+      "schedule": "5 8 * * *"
+    },
+    {
+      "path": "/api/cron/notify?type=breach",
+      "schedule": "15 8 * * *"
+    },
+    {
+      "path": "/api/cron/notify?type=zero-day",
+      "schedule": "30 8 * * *"
+    },
+    {
+      "path": "/api/cron/notify?type=weekly",
+      "schedule": "0 7 * * 1"
+    },
+    {
+      "path": "/api/cron/notify?type=patch-tuesday",
+      "schedule": "0 9 * * *"
+    }
+  ]
+}

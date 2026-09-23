@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
@@ -35,6 +35,7 @@
             <a href="index.html">Accueil</a>
             <a href="projets.html">Solutions</a>
             <a href="veille-cybersecurite.html">Veille</a>
+            <a href="guide-cybersecurite.html">Guide</a>
             <a href="equipe.html">Équipe</a>
             <a href="partenaires.html">Partenaires</a>
             <a href="contact.html">Contact</a>
@@ -290,9 +291,19 @@
 
     async function loadCVEs() {
         try {
-            var res = await fetch('/api/hg-cve');
-            var data = await res.json();
-            if (!data.cves || !data.cves.length) return;
+            var data = null;
+            try {
+                var dbRes = await fetch('/api/cve');
+                var dbData = await dbRes.json();
+                if (dbData && dbData.cves && dbData.cves.length) data = dbData;
+            } catch (e) {}
+
+            if (!data) {
+                var res = await fetch('/api/hg-cve');
+                data = await res.json();
+            }
+
+            if (!data || !data.cves || !data.cves.length) return;
 
             if (totalEl) totalEl.textContent = data.count || data.cves.length;
 

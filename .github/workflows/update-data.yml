@@ -158,3 +158,49 @@ jobs:
           git add data/cve.json
           git diff --staged --quiet || git commit -m "chore: update CVE data [$(date +'%Y-%m-%d')]"
           git push
+
+      - name: Sync CVEs to database
+        env:
+          CRON_SECRET: ${{ secrets.CRON_SECRET }}
+          SITE_URL: ${{ vars.SITE_URL || 'https://team-group.vercel.app' }}
+        run: |
+          if [ -z "$CRON_SECRET" ]; then
+            echo "CRON_SECRET non défini — sync BDD ignorée (fallback JSON actif)."
+            exit 0
+          fi
+          node -e "
+          const fs = require('fs');
+          const https = require('https');
+          const { URL } = require('url');
+
+          const cves = JSON.parse(fs.readFileSync('data/cve.json', 'utf8'));
+          if (!Array.isArray(cves) || !cves.length) {
+            console.log('Aucune CVE à synchroniser.');
+            process.exit(0);
+          }
+
+          const target = new URL('/api/sync-cve', process.env.SITE_URL);
+          const payload = JSON.stringify({ cves });
+          const options = {
+            hostname: target.hostname,
+            path: target.pathname,
+            method: 'POST',
+            headers: {
+              'Authorization': 'Bearer ' + process.env.CRON_SECRET,
+              'Content-Type': 'application/json',
+              'Content-Length': Buffer.byteLength(payload)
+            }
+          };
+
+          const req = https.request(options, (res) => {
+            let data = '';
+            res.on('data', (chunk) => { data += chunk; });
+            res.on('end', () => {
+              console.log('sync-cve HTTP', res.statusCode, data);
+              if (res.statusCode >= 400) process.exit(1);
+            });
+          });
+          req.on('error', (e) => { console.error(e.message); process.exit(1); });
+          req.write(payload);
+          req.end();
+          "
