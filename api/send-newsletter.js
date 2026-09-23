@@ -45,7 +45,7 @@ module.exports = async (req, res) => {
         }
 
         const result = await resendSend({
-            from: 'Team Group <newsletter@team-group.vercel.app>',
+            from: 'Team Group <onboarding@resend.dev>',
             to: recipients,
             subject,
             html

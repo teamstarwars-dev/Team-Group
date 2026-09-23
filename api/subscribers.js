@@ -30,17 +30,21 @@ module.exports = async (req, res) => {
             }
 
             if (action === 'stats') {
-                const [total, active, today, thisWeek] = await Promise.all([
-                    neonQuery('SELECT COUNT(*) as total FROM subscribers'),
-                    neonQuery('SELECT COUNT(*) as active FROM subscribers WHERE active = TRUE'),
-                    neonQuery("SELECT COUNT(*) as today FROM subscribers WHERE subscribed_at >= CURRENT_DATE"),
-                    neonQuery("SELECT COUNT(*) as week FROM subscribers WHERE subscribed_at >= CURRENT_DATE - INTERVAL '7 days'")
-                ]);
+                const getTotal = await neonQuery('SELECT COUNT(*) as total FROM subscribers');
+                const getActive = await neonQuery('SELECT COUNT(*) as active FROM subscribers WHERE active = TRUE');
+                const getToday = await neonQuery("SELECT COUNT(*) as today FROM subscribers WHERE subscribed_at >= CURRENT_DATE");
+                const getWeek = await neonQuery("SELECT COUNT(*) as week FROM subscribers WHERE subscribed_at >= CURRENT_DATE - INTERVAL '7 days'");
+
+                const safeInt = (result, key) => {
+                    const row = result.rows && result.rows[0];
+                    return row ? parseInt(row[key]) || 0 : 0;
+                };
+
                 return res.status(200).json({
-                    total: parseInt(total.rows[0].total),
-                    active: parseInt(active.rows[0].active),
-                    today: parseInt(today.rows[0].today),
-                    thisWeek: parseInt(thisWeek.rows[0].week)
+                    total: safeInt(getTotal, 'total'),
+                    active: safeInt(getActive, 'active'),
+                    today: safeInt(getToday, 'today'),
+                    thisWeek: safeInt(getWeek, 'week')
                 });
             }
 
