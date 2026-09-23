@@ -13,7 +13,9 @@ module.exports = async (req, res) => {
     const resendKey = process.env.RESEND_API_KEY;
 
     const authHeader = req.headers.authorization;
-    if (!adminKey || !authHeader || authHeader !== `Bearer ${adminKey}`) {
+    const okAdmin = adminKey && authHeader === `Bearer ${adminKey}`;
+    const okCron = process.env.CRON_SECRET && authHeader === `Bearer ${process.env.CRON_SECRET}`;
+    if (!authHeader || (!okAdmin && !okCron)) {
         return res.status(401).json({ error: 'Non autorisé.' });
     }
 
