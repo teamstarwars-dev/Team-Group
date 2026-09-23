@@ -43,9 +43,14 @@ module.exports = async (req, res) => {
 
 function fetchCVEs() {
     return new Promise((resolve, reject) => {
-        const url = 'https://services.euroid.eu/vulnerability-euroid/v1/vulnerabilities?dateStart=2026-01-01&dateEnd=2026-12-31&limit=50&order=desc';
+        const today = new Date();
+        const startDate = new Date(today);
+        startDate.setDate(startDate.getDate() - 30);
+        const start = startDate.toISOString().split('T')[0];
+        const end = today.toISOString().split('T')[0];
+        const url = `https://euvdservices.enisa.europa.eu/api/vulnerabilities?fromDate=${start}&toDate=${end}&size=50`;
 
-        https.get(url, { headers: { 'Accept': 'application/json' } }, (res) => {
+        https.get(url, { headers: { 'Accept': 'application/json', 'User-Agent': 'TeamGroup-CVE-Bot/1.0' } }, (res) => {
             let data = '';
 
             res.on('data', (chunk) => { data += chunk; });
@@ -54,16 +59,25 @@ function fetchCVEs() {
                 if (res.statusCode === 200) {
                     try {
                         const parsed = JSON.parse(data);
-                        const cves = (parsed.vulnerabilities || []).map(v => ({
-                            cve_id: v.cveId || v.id,
-                            score: v.cvssScore || 0,
-                            severity: getSeverity(v.cvssScore || 0),
-                            title: v.cveId || v.id,
-                            description: v.description || '',
-                            vendor: v.vendor || 'Inconnu',
-                            product: v.product || 'Inconnu',
-                            date: v.publishedDate || new Date().toISOString().split('T')[0]
-                        }));
+                        const items = Array.isArray(parsed) ? parsed : (parsed.items || []);
+                        const cves = items.map(v => {
+                            const aliases = String(v.aliases || '').split('\n').map(s => s.trim()).filter(Boolean);
+                            const cveId = aliases.find(a => a.startsWith('CVE-')) || v.id;
+                            const score = Number(v.baseScore) || 0;
+                            const vendor = v.enisaIdVendor?.[0]?.vendor?.name || 'Inconnu';
+                            const product = v.enisaIdProduct?.[0]?.product?.name || 'Inconnu';
+                            const date = parseEuvdDate(v.datePublished) || new Date().toISOString().split('T')[0];
+                            return {
+                                cve_id: cveId,
+                                score,
+                                severity: getSeverity(score),
+                                title: cveId,
+                                description: v.description || '',
+                                vendor,
+                                product,
+                                date
+                            };
+                        });
                         resolve(cves);
                     } catch (e) {
                         reject(e);
@@ -74,6 +88,12 @@ function fetchCVEs() {
             });
         }).on('error', reject);
     });
+}
+
+function parseEuvdDate(s) {
+    if (!s) return null;
+    const d = new Date(String(s).replace(/,(?= \d)/, ''));
+    return isNaN(d) ? null : d.toISOString().split('T')[0];
 }
 
 function loadLocalCVEs() {

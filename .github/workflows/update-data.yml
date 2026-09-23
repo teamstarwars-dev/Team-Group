@@ -5,6 +5,9 @@ on:
     - cron: '0 6 * * *'
   workflow_dispatch:
 
+permissions:
+  contents: write
+
 jobs:
   update-cve:
     runs-on: ubuntu-latest
@@ -23,50 +26,128 @@ jobs:
           const https = require('https');
           const fs = require('fs');
 
-          const today = new Date();
-          const startDate = new Date(today);
-          startDate.setDate(startDate.getDate() - 30);
-
-          const start = startDate.toISOString().split('T')[0];
-          const end = today.toISOString().split('T')[0];
-
-          const url = \`https://services.euroid.eu/vulnerability-euroid/v1/vulnerabilities?dateStart=\${start}&dateEnd=\${end}&limit=50&order=desc\`;
-
-          https.get(url, { headers: { 'Accept': 'application/json' } }, (res) => {
-            let data = '';
-            res.on('data', (chunk) => { data += chunk; });
-            res.on('end', () => {
-              if (res.statusCode === 200) {
-                try {
-                  const parsed = JSON.parse(data);
-                  const cves = (parsed.vulnerabilities || []).map((v, i) => ({
-                    id: i + 1,
-                    cve_id: v.cveId || v.id,
-                    score: v.cvssScore || 0,
-                    severity: (v.cvssScore || 0) >= 9.0 ? 'critical' : (v.cvssScore || 0) >= 7.0 ? 'high' : (v.cvssScore || 0) >= 4.0 ? 'medium' : 'low',
-                    title: v.cveId || v.id,
-                    description: v.description || '',
-                    vendor: v.vendor || 'Inconnu',
-                    product: v.product || 'Inconnu',
-                    date: v.publishedDate || end,
-                    references: v.references ? v.references.map(r => r.url || r) : []
-                  }));
-
-                  if (cves.length > 0) {
-                    fs.writeFileSync('data/cve.json', JSON.stringify(cves, null, 2));
-                    console.log('Updated cve.json with ' + cves.length + ' CVEs');
-                  } else {
-                    console.log('No CVEs found, keeping existing data');
-                  }
-                } catch (e) {
-                  console.error('Parse error:', e.message);
-                }
-              } else {
-                console.log('API returned status ' + res.statusCode);
-              }
+          function get(url) {
+            return new Promise((resolve, reject) => {
+              https.get(url, { headers: { 'Accept': 'application/json', 'User-Agent': 'TeamGroup-CVE-Bot/1.0' } }, (res) => {
+                let data = '';
+                res.on('data', (chunk) => { data += chunk; });
+                res.on('end', () => resolve({ status: res.statusCode, body: data }));
+              }).on('error', reject);
             });
-          }).on('error', (e) => {
-            console.error('Request error:', e.message);
+          }
+
+          function severityOf(score) {
+            if (score >= 9.0) return 'critical';
+            if (score >= 7.0) return 'high';
+            if (score >= 4.0) return 'medium';
+            return 'low';
+          }
+
+          function parseEuvdDate(s) {
+            if (!s) return null;
+            const d = new Date(String(s).replace(/,(?= \d)/, ''));
+            return isNaN(d) ? null : d.toISOString().split('T')[0];
+          }
+
+          function mapEuvd(items) {
+            return items.map((v, i) => {
+              const aliases = String(v.aliases || '').split('\n').map(s => s.trim()).filter(Boolean);
+              const cveId = aliases.find(a => a.startsWith('CVE-')) || v.id;
+              const score = Number(v.baseScore) || 0;
+              const refs = String(v.references || '').split('\n').map(s => s.trim()).filter(Boolean);
+              const vendor = (v.enisaIdVendor && v.enisaIdVendor[0] && v.enisaIdVendor[0].vendor && v.enisaIdVendor[0].vendor.name) || 'Inconnu';
+              const product = (v.enisaIdProduct && v.enisaIdProduct[0] && v.enisaIdProduct[0].product && v.enisaIdProduct[0].product.name) || 'Inconnu';
+              return {
+                id: i + 1,
+                cve_id: cveId,
+                score: score,
+                severity: severityOf(score),
+                title: cveId,
+                description: v.description || '',
+                vendor: vendor,
+                product: product,
+                date: parseEuvdDate(v.datePublished) || new Date().toISOString().split('T')[0],
+                references: refs
+              };
+            });
+          }
+
+          function mapNvd(parsed) {
+            return (parsed.vulnerabilities || []).map((item, i) => {
+              const c = item.cve;
+              const m = c.metrics || {};
+              let score = 0;
+              const groups = [m.cvssMetricV40, m.cvssMetricV31, m.cvssMetricV30, m.cvssMetricV2];
+              for (const g of groups) {
+                if (!g) continue;
+                for (const metric of g) {
+                  const s = metric.cvssData && metric.cvssData.baseScore;
+                  if (s && s > score) score = s;
+                }
+              }
+              const en = (c.descriptions || []).find(d => d.lang === 'en');
+              const aff = c.affected && c.affected[0] && c.affected[0].affectedData && c.affected[0].affectedData[0];
+              return {
+                id: i + 1,
+                cve_id: c.id,
+                score: score,
+                severity: severityOf(score),
+                title: c.id,
+                description: (en && en.value) || '',
+                vendor: (aff && aff.vendor) || 'Inconnu',
+                product: (aff && aff.product) || 'Inconnu',
+                date: (c.published || '').split('T')[0],
+                references: (c.references || []).map(r => r.url)
+              };
+            });
+          }
+
+          (async () => {
+            const today = new Date();
+            const startDate = new Date(today);
+            startDate.setDate(startDate.getDate() - 30);
+            const start = startDate.toISOString().split('T')[0];
+            const end = today.toISOString().split('T')[0];
+
+            let cves = [];
+            try {
+              const euvdUrl = 'https://euvdservices.enisa.europa.eu/api/vulnerabilities?fromDate=' + start + '&toDate=' + end + '&size=50';
+              const res = await get(euvdUrl);
+              if (res.status === 200) {
+                const parsed = JSON.parse(res.body);
+                cves = mapEuvd(Array.isArray(parsed) ? parsed : (parsed.items || []));
+                console.log('EUVD: ' + cves.length + ' CVEs');
+              } else {
+                console.log('EUVD returned status ' + res.status);
+              }
+            } catch (e) {
+              console.error('EUVD request error:', e.message);
+            }
+
+            if (cves.length === 0) {
+              try {
+                const nvdUrl = 'https://services.nvd.nist.gov/rest/json/cves/2.0?resultsPerPage=50&pubStartDate=' + start + 'T00:00:00.000&pubEndDate=' + end + 'T23:59:59.999';
+                const res = await get(nvdUrl);
+                if (res.status === 200) {
+                  cves = mapNvd(JSON.parse(res.body));
+                  console.log('NVD fallback: ' + cves.length + ' CVEs');
+                } else {
+                  console.log('NVD returned status ' + res.status);
+                }
+              } catch (e) {
+                console.error('NVD request error:', e.message);
+              }
+            }
+
+            if (cves.length > 0) {
+              fs.writeFileSync('data/cve.json', JSON.stringify(cves, null, 2));
+              console.log('Updated cve.json with ' + cves.length + ' CVEs');
+            } else {
+              console.log('No CVEs found, keeping existing data');
+            }
+          })().catch((e) => {
+            console.error(e);
+            process.exit(1);
           });
           "
 
