@@ -121,7 +121,7 @@ async function upsertCVEs(cves) {
         const params = [];
         chunk.forEach((c, idx) => {
             const base = idx * 10;
-            values.push(`($${base + 1}, $${base + 2}, $${base + 3}, $${base + 4}, $${base + 5}, $${base + 6}, $${base + 7}, $${base + 8}, $${base + 9}::jsonb, $${base + 10})`);
+            values.push(`($${base + 1}, $${base + 2}, $${base + 3}, $${base + 4}, $${base + 5}, $${base + 6}, $${base + 7}, $${base + 8}, $${base + 9}::jsonb, $${base + 10}, NOW())`);
             params.push(c.cveId, c.score, c.severity, c.title, c.description, c.vendor, c.product, c.date, c.refs, c.source);
         });
 
