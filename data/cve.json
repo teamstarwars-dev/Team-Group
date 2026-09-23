@@ -1,182 +1,882 @@
 [
   {
     "id": 1,
-    "cve_id": "CVE-2026-75650",
-    "score": 10.0,
-    "severity": "critical",
-    "title": "Adobe Commerce — Exécution de code arbitraire",
-    "description": "Vulnérabilité critique dans Adobe Commerce et Magento permettant l'exécution de code arbitraire via le moteur de templates. Aucune interaction utilisateur requise.",
-    "vendor": "Adobe",
-    "product": "Commerce / Magento",
-    "date": "2026-09-07",
-    "references": ["https://nvd.nist.gov/vuln/detail/CVE-2026-75650"]
+    "cve_id": "CVE-2026-78148",
+    "score": 6.9,
+    "severity": "medium",
+    "title": "CVE-2026-78148",
+    "description": "A vulnerability was determined in ggml-org llama.cpp bec4772f6. This affects the function rpc_server::graph_compute of the file ggml/src/ggml-rpc/ggml-rpc.cpp of the component ggml-RPC Server. Executing a manipulation can lead to null pointer dereference. The attack may be launched remotely. The pull request to fix this issue awaits acceptance.",
+    "vendor": "ggml-org",
+    "product": "llama.cpp",
+    "date": "2026-08-24",
+    "references": [
+      "https://github.com/ggml-org/llama.cpp/",
+      "https://github.com/ggml-org/llama.cpp/issues/25299",
+      "https://github.com/ggml-org/llama.cpp/pull/25670",
+      "https://vuldb.com/cve/CVE-2026-78148",
+      "https://vuldb.com/submit/882535",
+      "https://vuldb.com/vuln/394535",
+      "https://vuldb.com/vuln/394535/cti"
+    ]
   },
   {
     "id": 2,
-    "cve_id": "CVE-2026-59310",
-    "score": 9.8,
-    "severity": "critical",
-    "title": "VMware vCenter — RCE via traversal de répertoires",
-    "description": "Faille critique dans le serveur Syslog de VMware vCenter permettant l'exécution de code arbitraire à distance sans authentification. Exploitée par des groupes de rançongiciels.",
-    "vendor": "VMware",
-    "product": "vCenter Server",
-    "date": "2026-07-29",
-    "references": ["https://nvd.nist.gov/vuln/detail/CVE-2026-59310"]
+    "cve_id": "CVE-2026-78154",
+    "score": 0,
+    "severity": "low",
+    "title": "CVE-2026-78154",
+    "description": "Rejected reason: ** REJECT ** DO NOT USE THIS CANDIDATE NUMBER. ConsultIDs: none. Reason: This candidate was withdrawn by its CNA. Further investigation showed that it was not a security issue. Notes: The endpoint is public on purpose and the invitation code is the credential. This is the standalone SDK onboarding path for mobile apps that have no backend of their own: a developer generates a code via the authenticated dashboard endpoint, the user types it into the app, and it's redeemed for SDK-scoped tokens.",
+    "vendor": "Inconnu",
+    "product": "Inconnu",
+    "date": "2026-08-24",
+    "references": []
   },
   {
     "id": 3,
-    "cve_id": "CVE-2026-82329",
-    "score": 9.8,
-    "severity": "critical",
-    "title": "JFrog Artifactory — Bypass d'authentification",
-    "description": "Faille d'authentification dans JFrog Artifactory en configuration par défaut permettant à un attaquant non authentifié d'obtenir des privilèges administrateur.",
-    "vendor": "JFrog",
-    "product": "Artifactory",
-    "date": "2026-08-28",
-    "references": ["https://nvd.nist.gov/vuln/detail/CVE-2026-82329"]
+    "cve_id": "CVE-2026-78156",
+    "score": 7.4,
+    "severity": "high",
+    "title": "CVE-2026-78156",
+    "description": "A security vulnerability has been detected in Open5GS 2.8.0. Affected by this issue is the function hss_ogs_diam_s6a_air_cb of the file src/hss/hss-s6a-path.c of the component S6a Authentication-Information-Request Handler. Such manipulation of the argument Visited-PLMN-Id leads to heap-based buffer overflow. The attack may be performed from remote. The name of the patch is a9c82ee0b590d76a581b0580cb46b598984e2392. A patch should be applied to remediate this issue.",
+    "vendor": "n/a",
+    "product": "Open5GS",
+    "date": "2026-08-24",
+    "references": [
+      "https://github.com/open5gs/open5gs/",
+      "https://github.com/open5gs/open5gs/commit/a9c82ee0b590d76a581b0580cb46b598984e2392",
+      "https://github.com/open5gs/open5gs/issues/4661",
+      "https://vuldb.com/cve/CVE-2026-78156",
+      "https://vuldb.com/submit/882951",
+      "https://vuldb.com/vuln/394539",
+      "https://vuldb.com/vuln/394539/cti"
+    ]
   },
   {
     "id": 4,
-    "cve_id": "CVE-2026-34477",
-    "score": 10.0,
-    "severity": "critical",
-    "title": "Apache Log4j — Bypass de vérification TLS",
-    "description": "Le paramètre verifyHostName est ignoré silencieusement dans la configuration TLS, permettant des attaques man-in-the-middle sur les appenders SMTP, Socket et Syslog.",
-    "vendor": "Apache",
-    "product": "Log4j Core",
-    "date": "2026-04-10",
-    "references": ["https://nvd.nist.gov/vuln/detail/CVE-2026-34477"]
+    "cve_id": "CVE-2026-78157",
+    "score": 7.4,
+    "severity": "high",
+    "title": "CVE-2026-78157",
+    "description": "A vulnerability was detected in Open5GS 2.8.0. This affects the function pcrf_rx_aar_cb of the file src/pcrf/pcrf-rx-path.c of the component Rx AA-Request Handler. Performing a manipulation results in out-of-bounds read. It is possible to initiate the attack remotely. The patch is named c18dc6938bf63cc7374315d3dca303d92066e746. To fix this issue, it is recommended to deploy a patch.",
+    "vendor": "n/a",
+    "product": "Open5GS",
+    "date": "2026-08-24",
+    "references": [
+      "https://github.com/open5gs/open5gs/",
+      "https://github.com/open5gs/open5gs/commit/c18dc6938bf63cc7374315d3dca303d92066e746",
+      "https://github.com/open5gs/open5gs/issues/4663",
+      "https://vuldb.com/cve/CVE-2026-78157",
+      "https://vuldb.com/submit/882953",
+      "https://vuldb.com/vuln/394540",
+      "https://vuldb.com/vuln/394540/cti",
+      "https://github.com/open5gs/open5gs/issues/4663"
+    ]
   },
   {
     "id": 5,
-    "cve_id": "CVE-2026-69586",
-    "score": 9.8,
-    "severity": "critical",
-    "title": "Windows PDF — Heap Overflow",
-    "description": "Débordement de tampon heap dans le composant de parsing PDF de Windows permettant l'exécution de code arbitraire à distance sans interaction utilisateur.",
-    "vendor": "Microsoft",
-    "product": "Windows 10/11/Server",
-    "date": "2026-09-08",
-    "references": ["https://nvd.nist.gov/vuln/detail/CVE-2026-69586"]
+    "cve_id": "CVE-2026-78158",
+    "score": 6.5,
+    "severity": "medium",
+    "title": "CVE-2026-78158",
+    "description": "A flaw has been found in Open5GS 2.8.0. This vulnerability affects unknown code of the component AMF UEContextReleaseRequest Path Handler. Executing a manipulation can lead to improper authorization. It is possible to launch the attack remotely.",
+    "vendor": "n/a",
+    "product": "Open5GS",
+    "date": "2026-08-24",
+    "references": [
+      "https://github.com/open5gs/open5gs/",
+      "https://github.com/open5gs/open5gs/security/advisories/GHSA-mg8r-2cvv-xq9j",
+      "https://vuldb.com/cve/CVE-2026-78158",
+      "https://vuldb.com/submit/883023",
+      "https://vuldb.com/vuln/394541",
+      "https://vuldb.com/vuln/394541/cti"
+    ]
   },
   {
     "id": 6,
-    "cve_id": "CVE-2026-63978",
-    "score": 9.8,
-    "severity": "critical",
-    "title": "Linux Kernel — Élévation de privilèges TLS",
-    "description": "Bug dans le sous-système TLS handshake du noyau Linux causant des fuites de mémoire et permettant potentiellement une élévation de privilèges.",
-    "vendor": "Linux",
-    "product": "Kernel 6.4–7.0",
-    "date": "2026-07-19",
-    "references": ["https://nvd.nist.gov/vuln/detail/CVE-2026-63978"]
+    "cve_id": "CVE-2026-78160",
+    "score": 6.5,
+    "severity": "medium",
+    "title": "CVE-2026-78160",
+    "description": "A vulnerability has been found in Dolibarr ERP up to 18.0.10/22.0.5/23.0.3. This issue affects some unknown processing of the file /user/note.php of the component User Notes Handler. The manipulation of the argument ID leads to authorization bypass. The attack can be initiated remotely. Upgrading to version 23.0.4 and 24.0.0 is capable of addressing this issue. The identifier of the patch is 9b5229ef3a9b58d00252d327936b022fb739f149. Upgrading the affected component is advised.",
+    "vendor": "Dolibarr",
+    "product": "ERP",
+    "date": "2026-08-24",
+    "references": [
+      "https://github.com/Dolibarr/dolibarr/commit/9b5229ef3a9b58d00252d327936b022fb739f149",
+      "https://github.com/Dolibarr/dolibarr/issues/39063",
+      "https://github.com/Dolibarr/dolibarr/pull/39123",
+      "https://github.com/Dolibarr/dolibarr/releases/tag/23.0.4",
+      "https://vuldb.com/cve/CVE-2026-78160",
+      "https://vuldb.com/submit/883067",
+      "https://vuldb.com/vuln/394542",
+      "https://vuldb.com/vuln/394542/cti"
+    ]
   },
   {
     "id": 7,
-    "cve_id": "CVE-2026-19593",
-    "score": 9.8,
-    "severity": "critical",
-    "title": "OpenAI Codex Desktop — Exécution de code via Git",
-    "description": "OpenAI Codex Desktop inspecte automatiquement les métadonnées Git. Un attaquant peut exécuter du code arbitraire en piégeant un dépôt avec un .git/config malveillant.",
-    "vendor": "OpenAI",
-    "product": "Codex Desktop",
-    "date": "2026-09-01",
-    "references": ["https://nvd.nist.gov/vuln/detail/CVE-2026-19593"]
+    "cve_id": "CVE-2026-78161",
+    "score": 7.5,
+    "severity": "high",
+    "title": "CVE-2026-78161",
+    "description": "A vulnerability was found in warmcat libwebsockets 4.5.0. Impacted is the function report_raw_cbor of the file lib/misc/lecp.c of the component LECP CBOR Recording. The manipulation results in out-of-bounds write. The attack can be launched remotely. The exploit has been made public and could be used. The patch is identified as 1d44554a1bb262db63ff4e240152a9deecd99054. It is best practice to apply a patch to resolve this issue.",
+    "vendor": "warmcat",
+    "product": "libwebsockets",
+    "date": "2026-08-24",
+    "references": [
+      "https://github.com/biniamf/pocs/blob/main/libwebsockets-lecp-lecp_parse-cbor_pos_oob_write/poc_lecp_cbor_pos_oob.c",
+      "https://github.com/biniamf/pocs/tree/main/libwebsockets-lecp-lecp_parse-cbor_pos_oob_write",
+      "https://github.com/warmcat/libwebsockets/",
+      "https://github.com/warmcat/libwebsockets/commit/1d44554a1bb262db63ff4e240152a9deecd99054",
+      "https://vuldb.com/cve/CVE-2026-78161",
+      "https://vuldb.com/submit/883225",
+      "https://vuldb.com/vuln/394543",
+      "https://vuldb.com/vuln/394543/cti"
+    ]
   },
   {
     "id": 8,
-    "cve_id": "CVE-2026-76461",
-    "score": 9.8,
-    "severity": "critical",
-    "title": "Cisco Secure Email Gateway — Injection SQL",
-    "description": "Injection SQL dans Cisco AsyncOS permettant à un attaquant non authentifié d'exécuter des commandes arbitraires avec les privilèges root.",
-    "vendor": "Cisco",
-    "product": "Secure Email Gateway",
-    "date": "2026-09-09",
-    "references": ["https://nvd.nist.gov/vuln/detail/CVE-2026-76461"]
+    "cve_id": "CVE-2026-78203",
+    "score": 7.1,
+    "severity": "high",
+    "title": "CVE-2026-78203",
+    "description": "Ghostwriter before 7.1.2 fails to validate template ownership in the report template swap endpoint, allowing attackers to attach client-scoped templates from other clients to their own reports. Attackers can exploit sequential template primary keys to enumerate and attach foreign templates, then generate reports to disclose template contents including letterhead, boilerplate, and methodology text.",
+    "vendor": "GhostManager",
+    "product": "Ghostwriter",
+    "date": "2026-08-24",
+    "references": [
+      "https://github.com/GhostManager/Ghostwriter",
+      "https://github.com/GhostManager/Ghostwriter/blob/v7.1.1/ghostwriter/reporting/views.py#L275-L315",
+      "https://github.com/GhostManager/Ghostwriter/commit/5b2a4a297e44c823c16f65b1ba101c742791cd0b",
+      "https://github.com/geo-chen/oss/blob/main/Ghostwriter.md",
+      "https://www.vulncheck.com/advisories/ghostwriter-before-cross-client-report-template-disclosure-via-unauthorized-template-swap"
+    ]
   },
   {
     "id": 9,
-    "cve_id": "CVE-2026-0217",
-    "score": 9.8,
-    "severity": "critical",
-    "title": "Windows Kerberos — Élévation de privilèges",
-    "description": "Vulnérabilité dans le protocole Kerberos sur Windows Server permettant à un attaquant authentifié d'obtenir des privilèges administrateur.",
-    "vendor": "Microsoft",
-    "product": "Windows Server",
-    "date": "2026-01-10",
-    "references": ["https://nvd.nist.gov/vuln/detail/CVE-2026-0217"]
+    "cve_id": "CVE-2026-78204",
+    "score": 5.4,
+    "severity": "medium",
+    "title": "CVE-2026-78204",
+    "description": "Ghostwriter through 7.2.6 does not apply per-object authorization on its report template lint endpoints. RoleBasedAccessControlMixin.test_func returns only request.user.is_active unless a view overrides it, and neither the endpoint that lints a report template nor the endpoint that returns stored lint results provides an override, so each resolves a ReportTemplate from a caller-supplied primary key with no ownership or client-scope check. Any authenticated account can therefore lint an arbitrary template, which overwrites that template's stored lint result, and can read the returned findings, which enumerate the template's variable names and template-engine errors and so disclose its structure. This is distinct from the template swap path: that endpoint authorizes the report but omits the per-template check, whereas these endpoints omit authorization entirely and remain unfixed.",
+    "vendor": "GhostManager",
+    "product": "Ghostwriter",
+    "date": "2026-08-24",
+    "references": [
+      "https://github.com/GhostManager/Ghostwriter",
+      "https://github.com/GhostManager/Ghostwriter/blob/v7.2.6/ghostwriter/api/utils.py#L470-L480",
+      "https://github.com/geo-chen/oss/blob/main/Ghostwriter.md",
+      "https://www.vulncheck.com/advisories/ghostwriter-through-missing-authorization-on-report-template-lint-endpoints",
+      "https://github.com/geo-chen/oss/blob/main/Ghostwriter.md"
+    ]
   },
   {
     "id": 10,
-    "cve_id": "CVE-2026-21887",
-    "score": 10.0,
-    "severity": "critical",
-    "title": "FortiGate — Injection de commandes",
-    "description": "Vulnérabilité critique dans FortiOS permettant l'exécution de commandes arbitraires via des requêtes HTTP craftées.",
-    "vendor": "Fortinet",
-    "product": "FortiOS",
-    "date": "2026-01-15",
-    "references": ["https://nvd.nist.gov/vuln/detail/CVE-2026-21887"]
+    "cve_id": "CVE-2026-78205",
+    "score": 6.9,
+    "severity": "medium",
+    "title": "CVE-2026-78205",
+    "description": "BentoML's outbound connection safeguard (make_safe_connect in _internal/utils/uri.py) blocks private, loopback, and link-local IP addresses but fails to reject the RFC 6598 shared address space (100.64.0.0/10, CGNAT). In versions 1.4.19 through 1.4.39, an unauthenticated attacker can supply URLs pointing to that range via multipart file handling (MultipartSerde.ensure_file) or JSON request parsing (JSONSerde.parse_request), causing the server to make outbound requests to internal hosts on CGNAT networks (Server-Side Request Forgery). This is an incomplete fix for CVE-2025-54381.",
+    "vendor": "bentoml",
+    "product": "BentoML",
+    "date": "2026-08-24",
+    "references": [
+      "https://github.com/bentoml/BentoML",
+      "https://github.com/bentoml/BentoML/blob/v1.4.39/src/bentoml/_internal/utils/uri.py#L89-L96",
+      "https://github.com/bentoml/BentoML/issues/5644",
+      "https://www.vulncheck.com/advisories/bentoml-through-server-side-request-forgery-via-unfiltered-rfc-6598-shared-address-space"
+    ]
   },
   {
     "id": 11,
-    "cve_id": "CVE-2026-23878",
-    "score": 9.8,
-    "severity": "critical",
-    "title": "Apache Struts — Remote Code Execution",
-    "description": "Exécution de code à distance dans Apache Struts via une désérialisation unsafe.",
-    "vendor": "Apache",
-    "product": "Struts",
-    "date": "2026-01-08",
-    "references": ["https://nvd.nist.gov/vuln/detail/CVE-2026-23878"]
+    "cve_id": "CVE-2026-78206",
+    "score": 8.7,
+    "severity": "high",
+    "title": "CVE-2026-78206",
+    "description": "exceljs through 4.4.0 decompresses all entries from supplied xlsx archives into memory without limits on entry size, total size, or compression ratio. Attackers can upload highly compressed workbooks that expand to gigabytes in memory, exhausting available resources and causing denial of service.",
+    "vendor": "exceljs",
+    "product": "exceljs",
+    "date": "2026-08-24",
+    "references": [
+      "https://github.com/exceljs/exceljs",
+      "https://github.com/exceljs/exceljs/blob/v4.4.0/lib/xlsx/xlsx.js#L257-L281",
+      "https://github.com/mateocallec/exceljs-hardened/security/advisories/GHSA-7cvf-3r55-r39q",
+      "https://www.vulncheck.com/advisories/exceljs-through-uncontrolled-resource-consumption-via-unbounded-xlsx-decompression"
+    ]
   },
   {
     "id": 12,
-    "cve_id": "CVE-2026-19074",
-    "score": 8.8,
-    "severity": "high",
-    "title": "VMware vCenter — SSRF",
-    "description": "Falsification de requête côté serveur dans VMware vCenter Server.",
-    "vendor": "VMware",
-    "product": "vCenter",
-    "date": "2026-01-05",
-    "references": ["https://nvd.nist.gov/vuln/detail/CVE-2026-19074"]
+    "cve_id": "CVE-2026-78207",
+    "score": 9.4,
+    "severity": "critical",
+    "title": "CVE-2026-78207",
+    "description": "exceljs through 4.4.0 contains a prototype pollution vulnerability in the deepMerge helper that fails to reject __proto__, constructor, or prototype keys when merging note objects. Attackers can assign parsed JSON with a malicious __proto__ property to cell notes, modifying Object.prototype and affecting all plain objects created in the process.",
+    "vendor": "exceljs",
+    "product": "exceljs",
+    "date": "2026-08-24",
+    "references": [
+      "https://github.com/exceljs/exceljs",
+      "https://github.com/exceljs/exceljs/blob/v4.4.0/lib/utils/under-dash.js#L155-L181",
+      "https://github.com/mateocallec/exceljs-hardened/security/advisories/GHSA-qwr4-7h29-chpf",
+      "https://www.vulncheck.com/advisories/exceljs-through-prototype-pollution-via-deepmerge-reached-from-note-serialization"
+    ]
   },
   {
     "id": 13,
-    "cve_id": "CVE-2026-25244",
-    "score": 8.1,
+    "cve_id": "CVE-2026-78208",
+    "score": 8.7,
     "severity": "high",
-    "title": "Microsoft Exchange — Bypass d'authentification",
-    "description": "Bypass d'authentification dans Microsoft Exchange Server permettant l'accès aux boîtes mail.",
-    "vendor": "Microsoft",
-    "product": "Exchange Server",
-    "date": "2025-12-28",
-    "references": ["https://nvd.nist.gov/vuln/detail/CVE-2026-25244"]
+    "title": "CVE-2026-78208",
+    "description": "exceljs through 4.4.0 contains a path traversal vulnerability in the Workbook.addImage() function that fails to validate file paths. Attackers can supply arbitrary file paths to read any file accessible to the Node.js process and embed it in the generated workbook.",
+    "vendor": "exceljs",
+    "product": "exceljs",
+    "date": "2026-08-24",
+    "references": [
+      "https://github.com/exceljs/exceljs",
+      "https://github.com/exceljs/exceljs/blob/v4.4.0/lib/doc/workbook.js#L142-L147",
+      "https://github.com/exceljs/exceljs/blob/v4.4.0/lib/xlsx/xlsx.js#L421-L429",
+      "https://github.com/mateocallec/exceljs-hardened/security/advisories/GHSA-m8mg-8574-gm3m",
+      "https://www.vulncheck.com/advisories/exceljs-through-path-traversal-via-unvalidated-addimage-filename"
+    ]
   },
   {
     "id": 14,
-    "cve_id": "CVE-2026-28912",
-    "score": 7.5,
+    "cve_id": "CVE-2026-78209",
+    "score": 8.4,
     "severity": "high",
-    "title": "OpenSSL — Memory Disclosure",
-    "description": "Fuite de mémoire dans OpenSSL affectant les serveurs TLS.",
-    "vendor": "OpenSSL",
-    "product": "OpenSSL",
-    "date": "2025-12-15",
-    "references": ["https://nvd.nist.gov/vuln/detail/CVE-2026-28912"]
+    "title": "CVE-2026-78209",
+    "description": "exceljs through 4.4.0 fails to neutralize leading equals, plus, minus, or at signs in cell values written to CSV output. Attackers who can influence exported cell values can inject formulas that execute when the CSV file is opened in a spreadsheet application, potentially exfiltrating data or performing other malicious actions.",
+    "vendor": "exceljs",
+    "product": "exceljs",
+    "date": "2026-08-24",
+    "references": [
+      "https://github.com/exceljs/exceljs",
+      "https://github.com/exceljs/exceljs/blob/v4.4.0/lib/csv/csv.js#L109-L182",
+      "https://github.com/mateocallec/exceljs-hardened/security/advisories/GHSA-9wxc-4rhw-hfrw",
+      "https://www.vulncheck.com/advisories/exceljs-through-csv-formula-injection-via-unescaped-cell-values"
+    ]
   },
   {
     "id": 15,
-    "cve_id": "CVE-2026-30291",
+    "cve_id": "CVE-2026-78166",
     "score": 6.5,
     "severity": "medium",
-    "title": "WordPress Plugin — SQL Injection",
-    "description": "Injection SQL dans le plugin WordPress Contact Form 7.",
-    "vendor": "WordPress",
-    "product": "Contact Form 7",
-    "date": "2025-12-20",
-    "references": ["https://nvd.nist.gov/vuln/detail/CVE-2026-30291"]
+    "title": "CVE-2026-78166",
+    "description": "A security flaw has been discovered in provectus kafka-ui up to 0.7.2. The affected element is the function executeSmartFilterTest of the file kafka-ui-api/src/main/java/com/provectus/kafka/ui/controller/MessagesController.java of the component Groovy Code Handler. The manipulation results in code injection. The attack may be launched remotely. The exploit has been released to the public and may be used for attacks. The project was informed of the problem early through an issue report but has not responded yet.",
+    "vendor": "provectus",
+    "product": "kafka-ui",
+    "date": "2026-08-24",
+    "references": [
+      "https://github.com/provectus/kafka-ui/",
+      "https://github.com/provectus/kafka-ui/issues/4567",
+      "https://vuldb.com/cve/CVE-2026-78166",
+      "https://vuldb.com/submit/883727",
+      "https://vuldb.com/vuln/394555",
+      "https://vuldb.com/vuln/394555/cti"
+    ]
+  },
+  {
+    "id": 16,
+    "cve_id": "CVE-2026-78167",
+    "score": 10,
+    "severity": "critical",
+    "title": "CVE-2026-78167",
+    "description": "A weakness has been identified in EFM ipTIME T16000M 14.20.2. The impacted element is the function httpcon_check_session_url of the component Session Validation Handler. This manipulation causes improper authentication. Remote exploitation of the attack is possible. The exploit has been made available to the public and could be used for attacks. The vendor was contacted early about this disclosure but did not respond in any way.",
+    "vendor": "EFM",
+    "product": "ipTIME T16000M",
+    "date": "2026-08-24",
+    "references": [
+      "https://github.com/AdminSafe/CVE/issues/2",
+      "https://github.com/AdminSafe/CVE/issues/3",
+      "https://vuldb.com/cve/CVE-2026-78167",
+      "https://vuldb.com/submit/874154",
+      "https://vuldb.com/submit/874302",
+      "https://vuldb.com/vuln/394556",
+      "https://vuldb.com/vuln/394556/cti"
+    ]
+  },
+  {
+    "id": 17,
+    "cve_id": "CVE-2026-78168",
+    "score": 10,
+    "severity": "critical",
+    "title": "CVE-2026-78168",
+    "description": "A security vulnerability has been detected in EFM ipTIME T24000M up to 14.20.0. This affects the function httpcon_check_session_url of the component Session Validation Handler. Such manipulation leads to improper authentication. The attack can be executed remotely. The exploit has been disclosed publicly and may be used. The vendor was contacted early about this disclosure but did not respond in any way.",
+    "vendor": "EFM",
+    "product": "ipTIME T24000M",
+    "date": "2026-08-24",
+    "references": [
+      "https://github.com/AdminSafe/CVE/issues/10",
+      "https://vuldb.com/cve/CVE-2026-78168",
+      "https://vuldb.com/submit/883766",
+      "https://vuldb.com/vuln/394557",
+      "https://vuldb.com/vuln/394557/cti"
+    ]
+  },
+  {
+    "id": 18,
+    "cve_id": "CVE-2026-78169",
+    "score": 9.9,
+    "severity": "critical",
+    "title": "CVE-2026-78169",
+    "description": "A vulnerability was detected in UTT HiPER 1250GW up to 3.2.7-210907-180535. This impacts the function strcpy of the file /goform/aspRemoteApConfTempSend of the component HTTP Request Handler. Performing a manipulation of the argument Profile results in stack-based buffer overflow. The attack is possible to be carried out remotely. The exploit is now public and may be used.",
+    "vendor": "UTT",
+    "product": "HiPER 1250GW",
+    "date": "2026-08-24",
+    "references": [
+      "https://github.com/7wkajk/CVE-VUL/blob/main/107.md",
+      "https://vuldb.com/cve/CVE-2026-78169",
+      "https://vuldb.com/submit/883900",
+      "https://vuldb.com/vuln/394558",
+      "https://vuldb.com/vuln/394558/cti"
+    ]
+  },
+  {
+    "id": 19,
+    "cve_id": "CVE-2026-78170",
+    "score": 9,
+    "severity": "critical",
+    "title": "CVE-2026-78170",
+    "description": "A flaw has been found in UTT HiPER 1200GW up to 2.5.3-170306. Affected is the function strcpy of the file /goform/formConfigFastDirectionW. Executing a manipulation of the argument ssid can lead to buffer overflow. The attack may be performed from remote. The exploit has been published and may be used.",
+    "vendor": "UTT",
+    "product": "HiPER 1200GW",
+    "date": "2026-08-24",
+    "references": [
+      "https://github.com/7wkajk/CVE-VUL/blob/main/108.md",
+      "https://vuldb.com/cve/CVE-2026-78170",
+      "https://vuldb.com/submit/883902",
+      "https://vuldb.com/vuln/394559",
+      "https://vuldb.com/vuln/394559/cti"
+    ]
+  },
+  {
+    "id": 20,
+    "cve_id": "CVE-2026-78171",
+    "score": 7.5,
+    "severity": "high",
+    "title": "CVE-2026-78171",
+    "description": "A vulnerability has been found in itsourcecode Sales and Inventory System 1.0. Affected by this vulnerability is an unknown functionality of the file /pages/processlogin.php. The manipulation of the argument User leads to sql injection. It is possible to initiate the attack remotely. The exploit has been disclosed to the public and may be used.",
+    "vendor": "itsourcecode",
+    "product": "Sales and Inventory System",
+    "date": "2026-08-24",
+    "references": [
+      "https://github.com/MounT1veR/new/issues/1",
+      "https://itsourcecode.com/",
+      "https://vuldb.com/cve/CVE-2026-78171",
+      "https://vuldb.com/submit/884109",
+      "https://vuldb.com/vuln/394560",
+      "https://vuldb.com/vuln/394560/cti"
+    ]
+  },
+  {
+    "id": 21,
+    "cve_id": "CVE-2026-78177",
+    "score": 4.5,
+    "severity": "medium",
+    "title": "CVE-2026-78177",
+    "description": "A vulnerability was found in TanStack devtools-vite 0.7.0. Affected by this issue is the function installPackage of the file packages/devtools-bundler-core/src/package-manager.ts of the component Development Devtools Event Bus. The manipulation of the argument packageName results in os command injection. Attacking locally is a requirement. A high complexity level is associated with this attack. The exploitation is known to be difficult. The exploit has been made public and could be used. The project was informed of the problem early through an issue report but has not responded yet.",
+    "vendor": "TanStack",
+    "product": "devtools-vite",
+    "date": "2026-08-24",
+    "references": [
+      "https://github.com/TanStack/devtools/issues/464",
+      "https://vuldb.com/cve/CVE-2026-78177",
+      "https://vuldb.com/submit/884155",
+      "https://vuldb.com/vuln/394561",
+      "https://vuldb.com/vuln/394561/cti"
+    ]
+  },
+  {
+    "id": 22,
+    "cve_id": "CVE-2026-78178",
+    "score": 7.5,
+    "severity": "high",
+    "title": "CVE-2026-78178",
+    "description": "A vulnerability was determined in jQWidgets up to 24.0.1. This affects the function JQXLite.extend/jqxBaseFramework.extend of the file jqwidgets/jqx-all.js. This manipulation causes improperly controlled modification of object prototype attributes. The attack can be initiated remotely. The reported GitHub issue was closed with the label \"not planned\".",
+    "vendor": "n/a",
+    "product": "jQWidgets",
+    "date": "2026-08-24",
+    "references": [
+      "https://github.com/jqwidgets/jQWidgets/",
+      "https://github.com/jqwidgets/jQWidgets/issues/764",
+      "https://vuldb.com/cve/CVE-2026-78178",
+      "https://vuldb.com/submit/884182",
+      "https://vuldb.com/vuln/394562",
+      "https://vuldb.com/vuln/394562/cti"
+    ]
+  },
+  {
+    "id": 23,
+    "cve_id": "CVE-2026-19200",
+    "score": 8.9,
+    "severity": "high",
+    "title": "CVE-2026-19200",
+    "description": "The Velociraptor verify() VQL function allows a user to verify an artifact for syntatic and other issues. Due to an implementation fault in this VQL function, the global artifact repository is used which allows callers to overwrite existing artifacts without the required permissions.  The attacker need only have the NOTEBOOK_EDIT permission (e.g. an analyst role) to be able to call this function.",
+    "vendor": "Rapid7",
+    "product": "Velociraptor",
+    "date": "2026-08-24",
+    "references": [
+      "http://docs.velociraptor.app/announcements/advisories/cve-2026-19200/",
+      "https://github.com/Velocidex/velociraptor/pull/4962"
+    ]
+  },
+  {
+    "id": 24,
+    "cve_id": "CVE-2026-19852",
+    "score": 6.1,
+    "severity": "medium",
+    "title": "CVE-2026-19852",
+    "description": "NewSiteServer (NSS) developed by CyberTutor has an Arbitrary File Upload vulnerability. Unauthenticated remote attackers can upload arbitrary files, including malicious HTML files, thereby achieving effects similar to cross-site scripting.",
+    "vendor": "CyberTutor",
+    "product": "NewSiteServer (NSS)",
+    "date": "2026-08-24",
+    "references": [
+      "https://www.twcert.org.tw/en/cp-139-11120-64c52-2.html",
+      "https://www.twcert.org.tw/tw/cp-132-11116-2c1d8-1.html"
+    ]
+  },
+  {
+    "id": 25,
+    "cve_id": "CVE-2026-19853",
+    "score": 6.9,
+    "severity": "medium",
+    "title": "CVE-2026-19853",
+    "description": "NewSiteServer (NSS) developed by CyberTutor has a Missing Authentication vulnerability. Unauthenticated remote attackers can exploit a specific functionality to send emails to anyone on behalf of the school.",
+    "vendor": "CyberTutor",
+    "product": "NewSiteServer (NSS)",
+    "date": "2026-08-24",
+    "references": [
+      "https://www.twcert.org.tw/en/cp-139-11121-51e56-2.html",
+      "https://www.twcert.org.tw/tw/cp-132-11117-4f503-1.html"
+    ]
+  },
+  {
+    "id": 26,
+    "cve_id": "CVE-2026-78179",
+    "score": 6.5,
+    "severity": "medium",
+    "title": "CVE-2026-78179",
+    "description": "A vulnerability was identified in rexrainbow phaser3-rex-notes up to 1.80.17. This vulnerability affects the function SetValue of the file plugins/utils/object/SetValue.js of the component BehaviorTree Blackboard Data Interface. Such manipulation of the argument key leads to improperly controlled modification of object prototype attributes. The attack can be launched remotely.",
+    "vendor": "rexrainbow",
+    "product": "phaser3-rex-notes",
+    "date": "2026-08-24",
+    "references": [
+      "https://github.com/rexrainbow/phaser3-rex-notes/",
+      "https://github.com/rexrainbow/phaser3-rex-notes/issues/572",
+      "https://vuldb.com/cve/CVE-2026-78179",
+      "https://vuldb.com/submit/884183",
+      "https://vuldb.com/vuln/394563",
+      "https://vuldb.com/vuln/394563/cti"
+    ]
+  },
+  {
+    "id": 27,
+    "cve_id": "CVE-2026-78180",
+    "score": 7.5,
+    "severity": "high",
+    "title": "CVE-2026-78180",
+    "description": "A security flaw has been discovered in alibaba-fusion next up to 1.27.34. This issue affects the function ConfigProvider.getContextProps of the file components/dialog/index.tsx of the component deepMerge. Performing a manipulation of the argument locale results in improperly controlled modification of object prototype attributes. The attack may be initiated remotely. The reported GitHub issue was closed automatically due to inactivity.",
+    "vendor": "alibaba-fusion",
+    "product": "next",
+    "date": "2026-08-24",
+    "references": [
+      "https://github.com/alibaba-fusion/next/",
+      "https://github.com/alibaba-fusion/next/issues/5101",
+      "https://vuldb.com/cve/CVE-2026-78180",
+      "https://vuldb.com/submit/884184",
+      "https://vuldb.com/vuln/394564",
+      "https://vuldb.com/vuln/394564/cti",
+      "https://github.com/alibaba-fusion/next/issues/5101"
+    ]
+  },
+  {
+    "id": 28,
+    "cve_id": "CVE-2026-78181",
+    "score": 7.5,
+    "severity": "high",
+    "title": "CVE-2026-78181",
+    "description": "A weakness has been identified in ractivejs ractive up to 1.4.4. Impacted is the function Ractive#set of the component Keypath Handler. Executing a manipulation can lead to improperly controlled modification of object prototype attributes. The attack may be launched remotely. The exploit has been made available to the public and could be used for attacks. The project was informed of the problem early through an issue report but has not responded yet.",
+    "vendor": "ractivejs",
+    "product": "ractive",
+    "date": "2026-08-24",
+    "references": [
+      "https://github.com/ractivejs/ractive/",
+      "https://github.com/ractivejs/ractive/issues/3448",
+      "https://vuldb.com/cve/CVE-2026-78181",
+      "https://vuldb.com/submit/884187",
+      "https://vuldb.com/vuln/394565",
+      "https://vuldb.com/vuln/394565/cti"
+    ]
+  },
+  {
+    "id": 29,
+    "cve_id": "CVE-2026-78182",
+    "score": 7.5,
+    "severity": "high",
+    "title": "CVE-2026-78182",
+    "description": "A security vulnerability has been detected in Shenzhen Gongji Technology XBROTHER Dynamic Environment Monitoring System up to 300R004C00B300. The affected element is the function PlanController.getImmediatePlans of the file /xbreport/api/v1/plamange/plansImmediate. The manipulation of the argument order/sort leads to sql injection. Remote exploitation of the attack is possible. The exploit has been disclosed publicly and may be used.",
+    "vendor": "Shenzhen Gongji Technology",
+    "product": "XBROTHER Dynamic Environment Monitoring System",
+    "date": "2026-08-24",
+    "references": [
+      "https://ucn9h68n9289.feishu.cn/docx/WgJYd7q4CopTQKxqWuWcJEpinde?from=from_copylink",
+      "https://vuldb.com/cve/CVE-2026-78182",
+      "https://vuldb.com/submit/885103",
+      "https://vuldb.com/vuln/394566",
+      "https://vuldb.com/vuln/394566/cti"
+    ]
+  },
+  {
+    "id": 30,
+    "cve_id": "CVE-2026-78185",
+    "score": 6.5,
+    "severity": "medium",
+    "title": "CVE-2026-78185",
+    "description": "A vulnerability was detected in itsourcecode Sales and Inventory System 1.0. The impacted element is an unknown function of the file /pages/cust_edit.php. The manipulation of the argument ID results in sql injection. The attack can be executed remotely. The exploit is now public and may be used.",
+    "vendor": "itsourcecode",
+    "product": "Sales and Inventory System",
+    "date": "2026-08-24",
+    "references": [
+      "https://github.com/ltranquility/vuln_submit/issues/27",
+      "https://itsourcecode.com/",
+      "https://vuldb.com/cve/CVE-2026-78185",
+      "https://vuldb.com/submit/885182",
+      "https://vuldb.com/vuln/394567",
+      "https://vuldb.com/vuln/394567/cti"
+    ]
+  },
+  {
+    "id": 31,
+    "cve_id": "CVE-2026-78211",
+    "score": 9.8,
+    "severity": "critical",
+    "title": "CVE-2026-78211",
+    "description": "4MOSAn GCB Doctor developed by 4MOSAn Security Technology has a OS Command Injection vulnerability. Unauthenticated remote attackers can inject malicious commands through an unremoved ADOdb test page parameter, thereby executing arbitrary system commands on the server.",
+    "vendor": "4MOSAn Security Technology",
+    "product": "4MOSAn GCB Doctor",
+    "date": "2026-08-24",
+    "references": [
+      "https://www.twcert.org.tw/en/cp-139-11122-3d95a-2.html",
+      "https://www.twcert.org.tw/tw/cp-132-11118-dfee4-1.html"
+    ]
+  },
+  {
+    "id": 32,
+    "cve_id": "CVE-2026-78212",
+    "score": 8.7,
+    "severity": "high",
+    "title": "CVE-2026-78212",
+    "description": "4MOSAn developed by 4MOSAn Security Technology Co., Ltd. has an Arbitrary File Read vulnerability. Unauthenticated remote attackers can exploit a Relative Path Traversal flaw to download arbitrary system files.",
+    "vendor": "4MOSAn Security Technology",
+    "product": "4MOSAn Management Center",
+    "date": "2026-08-24",
+    "references": [
+      "https://www.twcert.org.tw/en/cp-139-11123-79a92-2.html",
+      "https://www.twcert.org.tw/tw/cp-132-11119-25dfc-1.html"
+    ]
+  },
+  {
+    "id": 33,
+    "cve_id": "CVE-2026-78213",
+    "score": 8.7,
+    "severity": "high",
+    "title": "CVE-2026-78213",
+    "description": "Heptabase developed by Hepta Platforms, Inc. has a Stored Cross-Site Scripting vulnerability. Authenticated remote attackers can inject persistent malicious content into specific pages, causing arbitrary JavaScript code to execute when other users click the crafted content.",
+    "vendor": "Hepta Platforms",
+    "product": "Heptabase",
+    "date": "2026-08-24",
+    "references": [
+      "https://www.twcert.org.tw/en/cp-139-11124-b8b51-2.html",
+      "https://www.twcert.org.tw/tw/cp-132-11125-9d359-1.html"
+    ]
+  },
+  {
+    "id": 34,
+    "cve_id": "CVE-2026-59561",
+    "score": 8.4,
+    "severity": "high",
+    "title": "CVE-2026-59561",
+    "description": "Sakura Editor provided by Sakura Editor Development Community contains an OS command injection vulnerability. If a victim user is directed to edit a file in a crafted directory, arbitrary OS command may be executed on the user's PC when the user invokes \"Open Terminal\".",
+    "vendor": "Sakura Editor Development Community",
+    "product": "Sakura Editor",
+    "date": "2026-08-24",
+    "references": [
+      "https://github.com/sakura-editor/sakura/releases/tag/v2.4.3",
+      "https://github.com/sakura-editor/sakura/security/advisories/GHSA-6x2x-729r-wjh5",
+      "https://jvn.jp/en/jp/JVN74538868/"
+    ]
+  },
+  {
+    "id": 35,
+    "cve_id": "CVE-2026-78186",
+    "score": 4.3,
+    "severity": "medium",
+    "title": "CVE-2026-78186",
+    "description": "A flaw has been found in Open5GS up to 2.8.0. This affects an unknown function of the file src/hss/hss-cx-path.c of the component HSS. This manipulation of the argument User-Name causes reachable assertion. The attack is possible to be carried out remotely. The exploit has been published and may be used. Patch name: c9abe09421eb99bbf1cd7862a3d375e58a4eb9e4. It is recommended to apply a patch to fix this issue.",
+    "vendor": "n/a",
+    "product": "Open5GS",
+    "date": "2026-08-24",
+    "references": [
+      "https://github.com/open5gs/open5gs/",
+      "https://github.com/open5gs/open5gs/commit/c9abe09421eb99bbf1cd7862a3d375e58a4eb9e4",
+      "https://github.com/open5gs/open5gs/issues/4675",
+      "https://vuldb.com/cve/CVE-2026-78186",
+      "https://vuldb.com/submit/885203",
+      "https://vuldb.com/vuln/394568",
+      "https://vuldb.com/vuln/394568/cti"
+    ]
+  },
+  {
+    "id": 36,
+    "cve_id": "CVE-2026-78187",
+    "score": 3.1,
+    "severity": "low",
+    "title": "CVE-2026-78187",
+    "description": "A vulnerability has been found in Piwigo 16.3.0. This impacts an unknown function of the component Public Authentication Page. Such manipulation of the argument lang leads to cross site scripting. The attack may be performed from remote. A high complexity level is associated with this attack. The exploitability is said to be difficult. The exploit has been disclosed to the public and may be used. Upgrading to version 16.4.0 will fix this issue. The name of the patch is 5277a7dee4b8f1a174f1d69e1e2a4e1c82a3fc9e. It is recommended to upgrade the affected component.",
+    "vendor": "n/a",
+    "product": "Piwigo",
+    "date": "2026-08-24",
+    "references": [
+      "https://github.com/Leousum/VulnPoC/blob/main/Piwigo%2016.3.0/reflected_XSS.md",
+      "https://github.com/Piwigo/Piwigo/",
+      "https://github.com/Piwigo/Piwigo/commit/5277a7dee4b8f1a174f1d69e1e2a4e1c82a3fc9e",
+      "https://github.com/Piwigo/Piwigo/releases/tag/16.4.0",
+      "https://github.com/Piwigo/Piwigo/security/advisories/GHSA-rr39-mf4j-6594",
+      "https://vuldb.com/cve/CVE-2026-78187",
+      "https://vuldb.com/submit/885228",
+      "https://vuldb.com/vuln/394569",
+      "https://vuldb.com/vuln/394569/cti"
+    ]
+  },
+  {
+    "id": 37,
+    "cve_id": "CVE-2026-78196",
+    "score": 4.8,
+    "severity": "medium",
+    "title": "CVE-2026-78196",
+    "description": "A security flaw has been discovered in achorein expo-share-intent up to 8.0.0. This affects the function getDataColumn of the file ExpoShareIntentModule.kt of the component Android File Copy Routine. The manipulation of the argument _display_name results in path traversal. The attack requires a local approach. Upgrading to version 8.0.1 is able to mitigate this issue. The patch is identified as c6900b1ed06fcc3ca4b09651348974ac5b95e4e6. The affected component should be upgraded.",
+    "vendor": "achorein",
+    "product": "expo-share-intent",
+    "date": "2026-08-24",
+    "references": [
+      "https://github.com/achorein/expo-share-intent/",
+      "https://github.com/achorein/expo-share-intent/commit/c6900b1ed06fcc3ca4b09651348974ac5b95e4e6",
+      "https://github.com/achorein/expo-share-intent/pull/221",
+      "https://github.com/achorein/expo-share-intent/releases/tag/v8.0.1",
+      "https://vuldb.com/cve/CVE-2026-78196",
+      "https://vuldb.com/submit/885425",
+      "https://vuldb.com/vuln/394573",
+      "https://vuldb.com/vuln/394573/cti"
+    ]
+  },
+  {
+    "id": 38,
+    "cve_id": "CVE-2026-78197",
+    "score": 7.5,
+    "severity": "high",
+    "title": "CVE-2026-78197",
+    "description": "A weakness has been identified in SourceCodester Simple Online Food Ordering System 1.0. This vulnerability affects unknown code of the file /fos/admin/ajax.php?action=save_user. This manipulation of the argument Username causes sql injection. The attack may be initiated remotely. The exploit has been made available to the public and could be used for attacks.",
+    "vendor": "SourceCodester",
+    "product": "Simple Online Food Ordering System",
+    "date": "2026-08-24",
+    "references": [
+      "https://github.com/wsx138/cve/issues/3",
+      "https://vuldb.com/cve/CVE-2026-78197",
+      "https://vuldb.com/submit/886034",
+      "https://vuldb.com/submit/886038",
+      "https://vuldb.com/vuln/394574",
+      "https://vuldb.com/vuln/394574/cti",
+      "https://www.sourcecodester.com/"
+    ]
+  },
+  {
+    "id": 39,
+    "cve_id": "CVE-2026-78198",
+    "score": 7.5,
+    "severity": "high",
+    "title": "CVE-2026-78198",
+    "description": "A security vulnerability has been detected in SourceCodester Simple Online Food Ordering System 1.0. This issue affects some unknown processing of the file /fos/admin/ajax.php?action=add_to_cart. Such manipulation of the argument pid leads to sql injection. The attack may be launched remotely. The exploit has been disclosed publicly and may be used.",
+    "vendor": "SourceCodester",
+    "product": "Simple Online Food Ordering System",
+    "date": "2026-08-24",
+    "references": [
+      "https://github.com/wsx138/cve/issues/4",
+      "https://vuldb.com/cve/CVE-2026-78198",
+      "https://vuldb.com/submit/886037",
+      "https://vuldb.com/vuln/394575",
+      "https://vuldb.com/vuln/394575/cti",
+      "https://www.sourcecodester.com/"
+    ]
+  },
+  {
+    "id": 40,
+    "cve_id": "CVE-2026-78199",
+    "score": 7.5,
+    "severity": "high",
+    "title": "CVE-2026-78199",
+    "description": "A vulnerability was detected in SourceCodester Simple Online Food Ordering System 1.0. Impacted is an unknown function of the file /fos/view_prod.php. Performing a manipulation of the argument ID results in sql injection. Remote exploitation of the attack is possible. The exploit is now public and may be used.",
+    "vendor": "SourceCodester",
+    "product": "Simple Online Food Ordering System",
+    "date": "2026-08-24",
+    "references": [
+      "https://github.com/wsx138/cve/issues/5",
+      "https://vuldb.com/cve/CVE-2026-78199",
+      "https://vuldb.com/submit/886040",
+      "https://vuldb.com/vuln/394576",
+      "https://vuldb.com/vuln/394576/cti",
+      "https://www.sourcecodester.com/"
+    ]
+  },
+  {
+    "id": 41,
+    "cve_id": "CVE-2026-78200",
+    "score": 6.5,
+    "severity": "medium",
+    "title": "CVE-2026-78200",
+    "description": "A flaw has been found in itsourcecode Library Management System 1.0. The affected element is an unknown function of the file editbooks.php. Executing a manipulation of the argument ID can lead to sql injection. The attack can be executed remotely. The exploit has been published and may be used.",
+    "vendor": "itsourcecode",
+    "product": "Library Management System",
+    "date": "2026-08-24",
+    "references": [
+      "https://github.com/microwaveabi/vul/issues/89",
+      "https://itsourcecode.com/",
+      "https://vuldb.com/cve/CVE-2026-78200",
+      "https://vuldb.com/submit/886157",
+      "https://vuldb.com/vuln/394577",
+      "https://vuldb.com/vuln/394577/cti"
+    ]
+  },
+  {
+    "id": 42,
+    "cve_id": "CVE-2026-78201",
+    "score": 7.5,
+    "severity": "high",
+    "title": "CVE-2026-78201",
+    "description": "A vulnerability has been found in itsourcecode Payroll System 1.0. The impacted element is the function Login of the file admin_class.php. The manipulation of the argument Username leads to sql injection. The attack is possible to be carried out remotely. The exploit has been disclosed to the public and may be used.",
+    "vendor": "itsourcecode",
+    "product": "Payroll System",
+    "date": "2026-08-24",
+    "references": [
+      "https://github.com/microwaveabi/vul/issues/8",
+      "https://itsourcecode.com/",
+      "https://vuldb.com/cve/CVE-2026-78201",
+      "https://vuldb.com/submit/886158",
+      "https://vuldb.com/vuln/394578",
+      "https://vuldb.com/vuln/394578/cti"
+    ]
+  },
+  {
+    "id": 43,
+    "cve_id": "CVE-2026-78202",
+    "score": 7.5,
+    "severity": "high",
+    "title": "CVE-2026-78202",
+    "description": "A vulnerability was found in itsourcecode Payroll System 1.0. This affects the function save_settings of the file admin_class.php. The manipulation of the argument img results in unrestricted upload. The attack may be performed from remote. The exploit has been made public and could be used.",
+    "vendor": "itsourcecode",
+    "product": "Payroll System",
+    "date": "2026-08-24",
+    "references": [
+      "https://github.com/microwaveabi/vul/issues/12",
+      "https://itsourcecode.com/",
+      "https://vuldb.com/cve/CVE-2026-78202",
+      "https://vuldb.com/submit/886159",
+      "https://vuldb.com/vuln/394579",
+      "https://vuldb.com/vuln/394579/cti"
+    ]
+  },
+  {
+    "id": 44,
+    "cve_id": "CVE-2026-8173",
+    "score": 5.3,
+    "severity": "medium",
+    "title": "CVE-2026-8173",
+    "description": "The web GUI of affected Murrelektronik Xelity switches logs MAC addresses from the devices MAC address table when an authenticated administrator uses the 'Copy learned MAC Addresses' function. Due to improper generation of error messages, an unauthenticated attacker with network access to the web interface can retrieve the logged MAC addresses via browser developer tools.",
+    "vendor": "Murrelektronik",
+    "product": "Xelity 4TX M GE",
+    "date": "2026-08-24",
+    "references": [
+      "https://www.certvde.com/en/advisories/VDE-2026-061/"
+    ]
+  },
+  {
+    "id": 45,
+    "cve_id": "CVE-2026-77993",
+    "score": 5.3,
+    "severity": "medium",
+    "title": "CVE-2026-77993",
+    "description": "Joomla Extension - joomlack.fr - Reflected XSS in Page Builder CK < 3.6.5 - The Joomla extension Page Builder CK is vulnerable to a reflected XSS via the iscontenttype parameter.",
+    "vendor": "joomlack.fr",
+    "product": "Page Builder CK extension for Joomla",
+    "date": "2026-08-24",
+    "references": [
+      "https://www.joomlack.fr/"
+    ]
+  },
+  {
+    "id": 46,
+    "cve_id": "CVE-2026-77994",
+    "score": 9.3,
+    "severity": "critical",
+    "title": "CVE-2026-77994",
+    "description": "Joomla Extension - joomlack.fr - Second order SQL injection in Page Builder CK < 3.6.5 - The Joomla extension Page Builder CK is vulnerable to a SQL injection issue related to the loadStyles method of the frontend page model.",
+    "vendor": "joomlack.fr",
+    "product": "Page Builder CK extension for Joomla",
+    "date": "2026-08-24",
+    "references": [
+      "https://www.joomlack.fr/"
+    ]
+  },
+  {
+    "id": 47,
+    "cve_id": "CVE-2026-78255",
+    "score": 8.7,
+    "severity": "high",
+    "title": "CVE-2026-78255",
+    "description": "The HTTP media server running on DJI drones serves stored photos and videos through the `/v2` endpoint without authenticating the requesting client. Filenames follow a predictable pattern, allowing an attacker who joins the drone's internal network to enumerate valid filenames and exfiltrate stored photos and videos. The exposed media may reveal sensitive information, including private locations, property, travel history, identifiable individuals, and the operator's routines.\n\nAffected models are DJI Neo until 01.00.0400, DJI Neo 2 until 01.00.0500, DJI Flip until 01.00.1200, DJI Air 3 until 01.00.1600, DJI Air 3S until 01.00.1400, DJI Avata 2 until 01.00.0400, DJI Avata 360 until 01.00.0300, DJI Mavic 3 until 01.00.1400, DJI Mavic 3 Classic until 01.00.0800, DJI Mavic 3 Pro until 01.01.0700, DJI Mavic 4 Pro until 01.00.0500, DJI Mini 2 until 01.07.0200, DJI Mini 3 until 01.00.0500, DJI Mini 3 Pro until 01.00.0900, DJI Mini 4 Pro until 01.00.1100, and DJI Mini 5 Pro until 01.00.0600.",
+    "vendor": "DJI",
+    "product": "Neo",
+    "date": "2026-08-24",
+    "references": [
+      "https://support.dji.com/help/content?customId=en-us03400011149&amp;spaceId=34&amp;re=US&amp;lang=en"
+    ]
+  },
+  {
+    "id": 48,
+    "cve_id": "CVE-2026-78306",
+    "score": 8.5,
+    "severity": "high",
+    "title": "CVE-2026-78306",
+    "description": "DJI drones expose an unauthenticated DUML command interface over Bluetooth that allows an attacker within Bluetooth range to modify Wi-Fi configuration parameters, including the SSID, PSK, MAC address, regulatory country code, and wireless channel. An attacker can overwrite the Wi-Fi PSK with a known value and connect to the drone's internal Wi-Fi network, potentially gaining access to the flight control interface and issuing flight commands. Crafted DUML commands can also disable or restart the Wi-Fi and Bluetooth interfaces, disconnect Wi-Fi clients, or reset wireless configuration, resulting in a denial-of-service condition that can disrupt the operator's wireless control, video, and telemetry connections during flight.\n\nAffected models are DJI Neo until 01.00.0400, DJI Neo 2 until 01.00.0500, DJI Flip until 01.00.1200, DJI Air 3 until 01.00.1600, DJI Air 3S until 01.00.1400, DJI Avata 2 until 01.00.0400, DJI Avata 360 until 01.00.0300, DJI Mavic 3 until 01.00.1400, DJI Mavic 3 Classic until 01.00.0800, DJI Mavic 3 Pro until 01.01.0700, DJI Mavic 4 Pro until 01.00.0500, DJI Mini 2 until 01.07.0200, DJI Mini 3 until 01.00.0500, DJI Mini 3 Pro until 01.00.0900, DJI Mini 4 Pro until 01.00.1100, and DJI Mini 5 Pro until 01.00.0600.\n\n\nRemediation requires a firmware update from the vendor.",
+    "vendor": "DJI",
+    "product": "Neo",
+    "date": "2026-08-24",
+    "references": [
+      "https://support.dji.com/help/content?customId=en-us03400011149&amp;spaceId=34&amp;re=US&amp;lang=en"
+    ]
+  },
+  {
+    "id": 49,
+    "cve_id": "CVE-2026-78321",
+    "score": 6,
+    "severity": "medium",
+    "title": "CVE-2026-78321",
+    "description": "The HTTP media server on DJI drones does not enforce sufficient limits on incoming connections or request rates. An attacker with access to the drone's internal network can exhaust the server's connection pool by repeatedly requesting a stored media file, preventing the server from handling legitimate requests and causing a denial of service that prevents the DJI Fly application from retrieving photos and videos from the aircraft in QuickTransfer mode.\n\nAffected models are DJI Neo until 01.00.0400, DJI Neo 2 until 01.00.0500, DJI Flip until 01.00.1200, DJI Air 3 until 01.00.1600, DJI Air 3S until 01.00.1400, DJI Avata 2 until 01.00.0400, DJI Avata 360 until 01.00.0300, DJI Mavic 3 until 01.00.1400, DJI Mavic 3 Classic until 01.00.0800, DJI Mavic 3 Pro until 01.01.0700, DJI Mavic 4 Pro until 01.00.0500, DJI Mini 2 until 01.07.0200, DJI Mini 3 until 01.00.0500, DJI Mini 3 Pro until 01.00.0900, DJI Mini 4 Pro until 01.00.1100, and DJI Mini 5 Pro until 01.00.0600.\n\nRemediation requires a firmware update from the vendor.",
+    "vendor": "DJI",
+    "product": "Neo",
+    "date": "2026-08-24",
+    "references": [
+      "https://support.dji.com/help/content?customId=en-us03400011149&amp;spaceId=34&amp;re=US&amp;lang=en"
+    ]
+  },
+  {
+    "id": 50,
+    "cve_id": "CVE-2026-16249",
+    "score": 0,
+    "severity": "low",
+    "title": "CVE-2026-16249",
+    "description": "Rejected reason: This CVE ID is a duplicate of CVE-2026-15303 and was never published. Both IDs were assigned to the same vulnerability in the 6Storage Rentals WordPress plugin. All CVE users should reference CVE-2026-15303 instead of this ID.",
+    "vendor": "Inconnu",
+    "product": "Inconnu",
+    "date": "2026-08-24",
+    "references": []
   }
 ]
