@@ -1,689 +1,766 @@
 [
   {
     "id": 1,
-    "cve_id": "CVE-2026-47845",
-    "score": 5.3,
-    "severity": "medium",
-    "title": "CVE-2026-47845",
-    "description": "In specific scenarios, Reactor Netty HTTP Server may incorrectly evaluate the remote IP address when HAProxy Protocol is enabled. In order for this to happen, the application must be configured to use HAProxy Protocol.\nReactor Netty 1.3.0 - 1.3.6\nReactor Netty 1.1.0 - 1.2.18\nReactor Netty 1.0.52 and earlier",
-    "vendor": "Spring",
-    "product": "Reactor Netty",
-    "date": "2026-08-27",
+    "cve_id": "CVE-2025-30156",
+    "score": 8.9,
+    "severity": "high",
+    "title": "CVE-2025-30156",
+    "description": "Ceph is an open-source distributed storage platform providing object, block, and file storage. In versions prior to 20.2.4 and 19.2.6, the CephX authentication protocol encrypts tickets with AES-128-CBC in an unauthenticated mode that uses a hard-coded initialization vector and no message authentication, allowing an attacker to forge credentials and gain cluster-wide access. Because the ciphertext is malleable and the monitor will encrypt attacker-chosen entity names, an attacker holding one low-privilege key and able to observe CephX traffic can use the monitor as an encryption oracle and splice ciphertext blocks into valid tickets for privileged entities such as Manager, MDS, and OSD. The same lack of authentication also lets an attacker with CephX permissions escalate privileges by flipping a single bit in a service ticket to set its allow_all field to true. This issue is fixed in versions 20.2.4 and 19.2.6.",
+    "vendor": "ceph",
+    "product": "ceph",
+    "date": "2026-08-28",
     "references": [
-      "https://spring.io/security/cve-2026-47845"
+      "https://github.com/ceph/ceph/commit/2ba086255de09c8b95177717cc7e9dd4377e2f0f",
+      "https://github.com/ceph/ceph/commit/3078188a7bdd89e2975280f2a906c71c2f6effd6",
+      "https://github.com/ceph/ceph/security/advisories/GHSA-7q3q-3975-qw3q"
     ]
   },
   {
     "id": 2,
-    "cve_id": "CVE-2026-47850",
-    "score": 4.3,
+    "cve_id": "CVE-2026-17610",
+    "score": 6,
     "severity": "medium",
-    "title": "CVE-2026-47850",
-    "description": "Spring Data REST does not preserve the persisted version (@Version) property of an aggregate root when handling an HTTP PUT against an immutable target type.\nSpring Data REST 5.1.0\nSpring Data REST 5.0.0 - 5.0.6\nSpring Data REST 4.5.0 - 4.5.12\nSpring Data REST 4.0.0 - 4.4.15\nSpring Data REST 3.7.20 and earlier",
-    "vendor": "Spring",
-    "product": "Spring Data REST",
-    "date": "2026-08-27",
+    "title": "CVE-2026-17610",
+    "description": "In SiSDK v2026.6.0 and earlier, high network traffic loads can cause a dropped ACK leading to a denial of service. This is only present for EFR32MG24 and EFR32MG26 devices running concurrent multiprotocol Zigbee and Thread.",
+    "vendor": "Silicon Labs",
+    "product": "SiSDK",
+    "date": "2026-08-28",
     "references": [
-      "https://spring.io/security/cve-2026-47850"
+      "https://github.com/SiliconLabsSoftware/sisdk-release/tree/sisdk-2026.6",
+      "https://siliconlabs.lightning.force.com/sfc/servlet.shepherd/document/download/a45Vm000000F7VpIAK?operationContext=S1"
     ]
   },
   {
     "id": 3,
-    "cve_id": "CVE-2026-47851",
-    "score": 7.5,
-    "severity": "high",
-    "title": "CVE-2026-47851",
-    "description": "Analyzing a PDF with a deeply nested or cyclic table of contents can cause a StackOverflowError in the ingestion thread.\nSpring AI 2.0.0\nSpring AI 1.1.0 - 1.1.8\nSpring AI 1.0.0 - 1.0.9",
-    "vendor": "Spring",
-    "product": "Spring AI",
-    "date": "2026-08-27",
+    "cve_id": "CVE-2026-18717",
+    "score": 9.1,
+    "severity": "critical",
+    "title": "CVE-2026-18717",
+    "description": "ASE2000 2.35 through 2.37 is vulnerable to an improper certificate validation vulnerability, which may allow an attacker to impersonate the trusted peer, complete the TLS handshake, and read or modify protected communications.",
+    "vendor": "Applied Systems Engineering",
+    "product": "ASE2000 V2",
+    "date": "2026-08-28",
     "references": [
-      "https://spring.io/security/cve-2026-47851"
+      "http://www.ase-systems.com",
+      "https://github.com/cisagov/CSAF/blob/develop/csaf_files/OT/white/2026/icsa-26-239-04.json",
+      "https://www.cisa.gov/news-events/ics-advisories/icsa-26-239-04"
     ]
   },
   {
     "id": 4,
-    "cve_id": "CVE-2026-47852",
-    "score": 7.5,
+    "cve_id": "CVE-2026-18965",
+    "score": 8.8,
     "severity": "high",
-    "title": "CVE-2026-47852",
-    "description": "A local attacker on a multi-user host can pre-create the deterministic cache path and plant a malicious ONNX model file.\nSpring AI 2.0.0\nSpring AI 1.1.0 - 1.1.8\nSpring AI 1.0.0 - 1.0.9",
-    "vendor": "Spring",
-    "product": "Spring AI",
-    "date": "2026-08-27",
+    "title": "CVE-2026-18965",
+    "description": "PayRange API is missing proper authorization on management endpoints, which allows verbose details of every device on the PayRange network to be publicly accessible, with or without an account.",
+    "vendor": "PayRange",
+    "product": "PayRange API",
+    "date": "2026-08-28",
     "references": [
-      "https://spring.io/security/cve-2026-47852"
+      "https://github.com/cisagov/CSAF/blob/develop/csaf_files/OT/white/2026/icsa-26-237-04.json",
+      "https://www.cisa.gov/news-events/ics-advisories/icsa-26-237-04"
     ]
   },
   {
     "id": 5,
-    "cve_id": "CVE-2026-47856",
-    "score": 6.3,
+    "cve_id": "CVE-2026-38343",
+    "score": 6.5,
     "severity": "medium",
-    "title": "CVE-2026-47856",
-    "description": "Spring Integration's JSON to object conversion uses the json__TypeId__ header to choose the deserialization target type, and resolves that header value to a class with ClassUtils.forName and no type/package allow-list.\nSpring Integration 7.1.0\nSpring Integration 7.0.0 - 7.0.5\nSpring Integration 6.5.0 - 6.5.10\nSpring Integration 6.4.0 - 6.4.12\nSpring Integration 5.5.21 and earlier",
-    "vendor": "Spring",
-    "product": "Spring Integration",
-    "date": "2026-08-27",
+    "title": "CVE-2026-38343",
+    "description": "An integer overflow in the libavfilter/vf_scale.c component of FFmpeg N-122528-gdd2976b9e1 allows attackers to cause a Denial of Service (DoS) via supplying a crafted video file.",
+    "vendor": "n/a",
+    "product": "n/a",
+    "date": "2026-08-28",
     "references": [
-      "https://spring.io/security/cve-2026-47856"
+      "https://code.ffmpeg.org/FFmpeg/FFmpeg/issues/21587"
     ]
   },
   {
     "id": 6,
-    "cve_id": "CVE-2026-47857",
-    "score": 5.9,
-    "severity": "medium",
-    "title": "CVE-2026-47857",
-    "description": "In Reactor Core, applications that use the Flux.windowTimeout operator with fairBackpressure enabled are vulnerable to a Denial of Service (DoS) condition.\nReactor Core 3.8.0 - 3.8.6\nReactor Core 3.5.0 - 3.7.19\nReactor Core 3.4.41 and earlier",
-    "vendor": "Spring",
-    "product": "Reactor Core",
-    "date": "2026-08-27",
+    "cve_id": "CVE-2026-38344",
+    "score": 7.5,
+    "severity": "high",
+    "title": "CVE-2026-38344",
+    "description": "A NULL pointer dereference in the get_min_buffer_size function (/libswscale/slice.c) of FFmpeg N-122528-gdd2976b9e1 allows attackers to cause a Denial of Service (DoS) via supplying a crafted video file.",
+    "vendor": "n/a",
+    "product": "n/a",
+    "date": "2026-08-28",
     "references": [
-      "https://spring.io/security/cve-2026-47857"
+      "https://code.ffmpeg.org/FFmpeg/FFmpeg/issues/21583"
     ]
   },
   {
     "id": 7,
-    "cve_id": "CVE-2026-47859",
+    "cve_id": "CVE-2026-38345",
     "score": 6.5,
     "severity": "medium",
-    "title": "CVE-2026-47859",
-    "description": "RFC6587SyslogDeserializer, used by the Spring Integration syslog TCP inbound adapter to decode RFC 6587 / RFC 5424 frames, trusts the sender-supplied octet count of an octet-counted frame and allocates a byte array of exactly that size with no upper bound.\nSpring Integration 7.1.0\nSpring Integration 7.0.0 - 7.0.5\nSpring Integration 6.5.0 - 6.5.10\nSpring Integration 6.4.0 - 6.4.12\nSpring Integration 5.5.21 and earlier",
-    "vendor": "Spring",
-    "product": "Spring Integration",
-    "date": "2026-08-27",
+    "title": "CVE-2026-38345",
+    "description": "A Division-by-Zero vulnerability in the ff_sws_init_single_context function (/libswscale/utils.c) of FFmpeg N-122528-gdd2976b9e1 allows attackers to cause a Denial of Service (DoS) via a crafted input.",
+    "vendor": "n/a",
+    "product": "n/a",
+    "date": "2026-08-28",
     "references": [
-      "https://spring.io/security/cve-2026-47859"
+      "https://code.ffmpeg.org/FFmpeg/FFmpeg/issues/21585",
+      "https://code.ffmpeg.org/FFmpeg/FFmpeg/issues/21585"
     ]
   },
   {
     "id": 8,
-    "cve_id": "CVE-2026-47860",
-    "score": 6.5,
-    "severity": "medium",
-    "title": "CVE-2026-47860",
-    "description": "An attacker who can publish to a queue consumed by an application that has enabled message decompression can crash the consumer JVM with a single ~1 MB message.\nSpring AMQP 4.1.0\nSpring AMQP 4.0.0 - 4.0.4\nSpring AMQP 3.2.0 - 3.2.12\nSpring AMQP 2.4.18 and earlier",
-    "vendor": "Spring",
-    "product": "Spring AMQP",
-    "date": "2026-08-27",
+    "cve_id": "CVE-2026-38346",
+    "score": 7.5,
+    "severity": "high",
+    "title": "CVE-2026-38346",
+    "description": "An integer overflow in the yuv2planeX_8_c() function (libswscale/output.c) of FFmpeg N-122528-gdd2976b9e1 allows attackers to cause a Denial of Service (DoS) via supplying a crafted video file.",
+    "vendor": "n/a",
+    "product": "n/a",
+    "date": "2026-08-28",
     "references": [
-      "https://spring.io/security/cve-2026-47860"
+      "https://code.ffmpeg.org/FFmpeg/FFmpeg/issues/21584"
     ]
   },
   {
     "id": 9,
-    "cve_id": "CVE-2026-47861",
-    "score": 6.3,
-    "severity": "medium",
-    "title": "CVE-2026-47861",
-    "description": "An unauthenticated remote attacker who can send a single UDP packet to a Spring Integration UDP inbound adapter can cause the server to emit an outbound UDP datagram to an arbitrary internal or external host and port of the attacker's choosing.\nSpring Integration 7.1.0\nSpring Integration 7.0.0 - 7.0.5\nSpring Integration 6.5.0 - 6.5.10\nSpring Integration 6.4.0 - 6.4.12\nSpring Integration 5.5.21 and earlier",
-    "vendor": "Spring",
-    "product": "Spring Integration",
-    "date": "2026-08-27",
+    "cve_id": "CVE-2026-38347",
+    "score": 7.5,
+    "severity": "high",
+    "title": "CVE-2026-38347",
+    "description": "A heap overflow in the ff_sws_alphablendaway function (libswscale/alphablend.c) of FFmpeg git-master commit 722a217 allows attackers to cause a Denial of Service (DoS) via a crafted input.",
+    "vendor": "n/a",
+    "product": "n/a",
+    "date": "2026-08-28",
     "references": [
-      "https://spring.io/security/cve-2026-47861"
+      "https://trac.ffmpeg.org/ticket/11692"
     ]
   },
   {
     "id": 10,
-    "cve_id": "CVE-2026-47862",
-    "score": 5.4,
-    "severity": "medium",
-    "title": "CVE-2026-47862",
-    "description": "An attacker who can set the file_name header on a message reaching a ZipTransformer with ZipResultType.FILE (the default) can cause the resulting .zip archive to be written to an arbitrary filesystem path outside the configured workDirectory.\nSpring Integration 7.1.0\nSpring Integration 7.0.0 - 7.0.5\nSpring Integration 6.5.0 - 6.5.10\nSpring Integration 6.4.0 - 6.4.12",
-    "vendor": "Spring",
-    "product": "Spring Integration",
-    "date": "2026-08-27",
+    "cve_id": "CVE-2026-38348",
+    "score": 7.5,
+    "severity": "high",
+    "title": "CVE-2026-38348",
+    "description": "An integer overflow in the libswscale/utils.c component of FFmpeg N-122528-gdd2976b9e1 allows attackers to cause a Denial of Service (DoS) via supplying a crafted image file.",
+    "vendor": "n/a",
+    "product": "n/a",
+    "date": "2026-08-28",
     "references": [
-      "https://spring.io/security/cve-2026-47862"
+      "https://code.ffmpeg.org/FFmpeg/FFmpeg/issues/21588"
     ]
   },
   {
     "id": 11,
-    "cve_id": "CVE-2026-47863",
+    "cve_id": "CVE-2026-38349",
     "score": 7.5,
     "severity": "high",
-    "title": "CVE-2026-47863",
-    "description": "In Reactor Core, applications that use the Flux.bufferTimeout operator with fairBackpressure enabled are vulnerable to a Denial of Service (DoS) condition.\nReactor Core 3.8.0 - 3.8.6\nReactor Core 3.7.19 and earlier",
-    "vendor": "Spring",
-    "product": "Reactor Core",
-    "date": "2026-08-27",
+    "title": "CVE-2026-38349",
+    "description": "An integer overflow in the hScale16To19_c() function (libswscale/output.c) of FFmpeg N-122528-gdd2976b9e1 allows attackers to cause a Denial of Service (DoS) via supplying a crafted image file.",
+    "vendor": "n/a",
+    "product": "n/a",
+    "date": "2026-08-28",
     "references": [
-      "https://spring.io/security/cve-2026-47863"
+      "https://code.ffmpeg.org/FFmpeg/FFmpeg/issues/21592"
     ]
   },
   {
     "id": 12,
-    "cve_id": "CVE-2026-47874",
-    "score": 5.3,
-    "severity": "medium",
-    "title": "CVE-2026-47874",
-    "description": "The vulnerability occurs when a client sends HTTP/1.1 pipelined requests over a single connection, causing the Reactor Netty HTTP server to consume an excessive amount of memory.\nReactor Netty 1.3.0 - 1.3.6\nReactor Netty 1.1.0 - 1.2.18\nReactor Netty 1.0.52 and earlier",
-    "vendor": "Spring",
-    "product": "Reactor Netty",
-    "date": "2026-08-27",
+    "cve_id": "CVE-2026-38350",
+    "score": 7.5,
+    "severity": "high",
+    "title": "CVE-2026-38350",
+    "description": "An integer overflow in the target_sws_fuzzer() function (libswscale/output.c) of FFmpeg N-122528-gdd2976b9e1 allows attackers to cause a Denial of Service (DoS) via supplying a crafted input.",
+    "vendor": "n/a",
+    "product": "n/a",
+    "date": "2026-08-28",
     "references": [
-      "https://spring.io/security/cve-2026-47874"
+      "https://trac.ffmpeg.org/ticket/11686"
     ]
   },
   {
     "id": 13,
-    "cve_id": "CVE-2026-80183",
-    "score": 7.1,
+    "cve_id": "CVE-2026-39944",
+    "score": 8.8,
     "severity": "high",
-    "title": "CVE-2026-80183",
-    "description": "In OpenStack Keystone before 29.0.3, any authenticated user holding role:reader on any project can list every project-scoped role assignment under any domain by passing a domain ID as scope.project.id with include_subtree to the GET /v3/role_assignments endpoint. The domain's project record has domain_id=null, causing the policy domain_id check to pass for any caller. With include_names, the response discloses the names and home-domain IDs of every user, group, project, and role involved. The literal \"default\" domain ID works against any deployment created with keystone-manage bootstrap. An attacker can harvest domain IDs from the response and repeat the query to map role assignments across the entire cloud. This is caused by misuse of \"None\" in \n\nlist_role_assignments_for_tree.",
-    "vendor": "OpenStack",
-    "product": "Keystone",
-    "date": "2026-08-27",
+    "title": "CVE-2026-39944",
+    "description": "Ceph is an open-source distributed storage platform providing object, block, and file storage. In versions prior to 20.2.4 and 19.2.6, the RADOS Gateway (RGW) protects STS session tokens with an AES-128-CBC handler that provides no message authentication, allowing an attacker who holds any valid STS token to tamper with it undetected and escalate to full RGW administrative access. Because the ciphertext is unauthenticated, the attacker can perform a CBC bit-flip on the acct_type, perm_type, and is_admin fields of their own token, and a forged is_admin value triggers a global administrative override that bypasses all capability checks. The attack is reachable remotely over the RGW S3 endpoint and is a self-contained modification of a token the attacker already possesses, requiring no encryption oracle and no network observation. It requires only a single valid STS token, which need not carry any elevated privileges, with STS enabled. This issue is fixed in versions 20.2.4 and 19.2.6.",
+    "vendor": "ceph",
+    "product": "ceph",
+    "date": "2026-08-28",
     "references": [
-      "https://launchpad.net/bugs/2154645"
+      "https://github.com/ceph/ceph/releases/tag/v19.2.6",
+      "https://github.com/ceph/ceph/releases/tag/v20.2.4",
+      "https://github.com/ceph/ceph/security/advisories/GHSA-j73r-qrgx-jvq2"
     ]
   },
   {
     "id": 14,
-    "cve_id": "CVE-2026-81421",
-    "score": 7.5,
+    "cve_id": "CVE-2026-44629",
+    "score": 7.9,
     "severity": "high",
-    "title": "CVE-2026-81421",
-    "description": "A security flaw has been discovered in ddfourtwo sentry-selfhosted-mcp 0.4.0. The affected element is an unknown function of the component raw_sentry_api. The manipulation of the argument endpoint results in server-side request forgery. It is possible to launch the attack remotely. The exploit has been released to the public and may be used for attacks. The project was informed of the problem early through an issue report but has not responded yet.",
-    "vendor": "ddfourtwo",
-    "product": "sentry-selfhosted-mcp",
-    "date": "2026-08-27",
+    "title": "CVE-2026-44629",
+    "description": "Improper access control to the Synergis Softwire installation folder. This vulnerability affects Streamvault all-in-one appliances (SV-100E and SV-300E series) and Synergis Softwire installed on Windows servers.",
+    "vendor": "Genetec Inc.",
+    "product": "Synergis Softwire",
+    "date": "2026-08-28",
     "references": [
-      "https://github.com/ddfourtwo/sentry-selfhosted-mcp/",
-      "https://github.com/ddfourtwo/sentry-selfhosted-mcp/issues/2",
-      "https://vuldb.com/cve/CVE-2026-81421",
-      "https://vuldb.com/submit/887100",
-      "https://vuldb.com/vuln/395941",
-      "https://vuldb.com/vuln/395941/cti"
+      "https://techdocs.genetec.com/r/en-US/Security-Updates-for-SynergisTM-Softwire-12.0/Resolved-vulnerabilities-in-Synergis-Softwire-12.0.2",
+      "https://techdocs.genetec.com/r/en-US/Security-Updates-for-SynergisTM-Softwire-12.2/Resolved-vulnerabilities-in-Synergis-Softwire-12.2.0"
     ]
   },
   {
     "id": 15,
-    "cve_id": "CVE-2026-19398",
-    "score": 6.8,
-    "severity": "medium",
-    "title": "CVE-2026-19398",
-    "description": "An out-of-bounds write in the SmiFlash SMM module of ASUS FA507NU and FA507NV BIOS allows a local  administrator to cause a system crash (BSOD) or BIOS corruption via a crafted software SMI (SW SMI) request with an oversized length value.Refer to the ' \nSecurity Update for ASUS FA507NV / FA507NU BIOS   ' section on the ASUS Security Advisory for more information.",
-    "vendor": "ASUS",
-    "product": "FA507NV",
-    "date": "2026-08-27",
+    "cve_id": "CVE-2026-50152",
+    "score": 9.1,
+    "severity": "critical",
+    "title": "CVE-2026-50152",
+    "description": "Ceph is an open-source distributed storage platform providing object, block, and file storage. In versions prior to 20.2.4 and 19.2.6, the Monitor subscription handler fails to properly authorize access to the configuration-key store, allowing any CephX user with only  `mon allow r` capabilities to read the entire store by sending a single crafted MMonSubscribe message. The config-key store holds sensitive secrets including OSD LUKS disk-encryption passphrases and, on cephadm-managed clusters, the SSH private key that cephadm uses to reach every host in the cluster. Because that key grants root on every node under the default cephadm configuration, a low-privileged read-only account can escalate to full cluster and host compromise. This issue is fixed in versions 20.2.4 and 19.2.6",
+    "vendor": "ceph",
+    "product": "ceph",
+    "date": "2026-08-28",
     "references": [
-      "https://www.asus.com/security-advisory"
+      "https://github.com/ceph/ceph/commit/d971bb2b6199f70b1708a20a63fa944ee7a94727",
+      "https://github.com/ceph/ceph/commit/f2840d2fd338ab5de2865f0f78684bbf7b888c84",
+      "https://github.com/ceph/ceph/security/advisories/GHSA-rg9p-5xcp-wm8h"
     ]
   },
   {
     "id": 16,
-    "cve_id": "CVE-2026-81485",
-    "score": 5.5,
-    "severity": "medium",
-    "title": "CVE-2026-81485",
-    "description": "A security vulnerability has been detected in danielpopamd linkedin-ads-mcp 1.0.0. Affected by this vulnerability is the function fs.readFileSync of the file src/tools/campaign-management.ts of the component Media Upload. Such manipulation of the argument filePath leads to path traversal. The attack may be performed from remote. The exploit has been disclosed publicly and may be used. The project was informed of the problem early through an issue report but has not responded yet.",
-    "vendor": "danielpopamd",
-    "product": "linkedin-ads-mcp",
-    "date": "2026-08-27",
+    "cve_id": "CVE-2026-54083",
+    "score": 8.1,
+    "severity": "high",
+    "title": "CVE-2026-54083",
+    "description": "Wazuh is an open-source security platform providing unified XDR and SIEM protection for endpoints and cloud workloads. The  ip-customblock  active response script contains a path traversal vulnerability that lets an attacker create or delete arbitrary files on the filesystem as root. The script builds a file path by concatenating the  srcip  field taken from alert JSON directly onto the fixed  /ipblock/  base directory, without validating that the value is a well-formed IP address. Because the extraction routine returns the raw string unchecked, an attacker who can trigger alert-matching log events with a crafted  srcip  containing  ../  sequences can escape the base directory. The block action opens the resulting path in append mode, creating an empty file at an arbitrary location, while the unblock action passes it to remove(), deleting an arbitrary file; since the active response daemon runs as root, this includes sensitive files such as system credentials and Wazuh configuration. Unlike the sibling scripts host-deny.c, default-firewall-drop.c, and firewalld-drop.c, which reject non-IP input via get_ip_version(), ip-customblock.c omits this validation. This issue is fixed in version 4.14.7.",
+    "vendor": "wazuh",
+    "product": "wazuh",
+    "date": "2026-08-28",
     "references": [
-      "https://github.com/danielpopamd/linkedin-ads-mcp/",
-      "https://github.com/danielpopamd/linkedin-ads-mcp/issues/5",
-      "https://vuldb.com/cve/CVE-2026-81485",
-      "https://vuldb.com/submit/887136",
-      "https://vuldb.com/vuln/395979",
-      "https://vuldb.com/vuln/395979/cti"
+      "https://github.com/wazuh/wazuh/commit/e6ef99025b2ca4ba8003efb591c51545006bc2d4",
+      "https://github.com/wazuh/wazuh/security/advisories/GHSA-m4mf-qmhf-8vj6"
     ]
   },
   {
     "id": 17,
-    "cve_id": "CVE-2026-81486",
-    "score": 5.5,
+    "cve_id": "CVE-2026-54084",
+    "score": 5.3,
     "severity": "medium",
-    "title": "CVE-2026-81486",
-    "description": "A vulnerability was detected in bsmi021 mcp-file-context-server 1.0.0. Affected by this issue is the function read_context of the file src/index.ts of the component Path Resolution. Performing a manipulation of the argument path results in path traversal. It is possible to initiate the attack remotely. The exploit is now public and may be used. The project was informed of the problem early through an issue report but has not responded yet.",
-    "vendor": "bsmi021",
-    "product": "mcp-file-context-server",
-    "date": "2026-08-27",
+    "title": "CVE-2026-54084",
+    "description": "Wazuh is an open-source security platform providing unified XDR and SIEM protection for endpoints and cloud workloads. In versions 4.0.0 through 4.14.6, a malicious or man-in-the-middle enrollment manager can crash a Wazuh agent during enrollment by returning a malformed key response with fewer than four fields, causing a NULL pointer dereference. The  w_enrollment_process_agent_key()  routine splits the manager-provided key into four space-separated fields but does not verify that all fields are present before passing them to validators. Because OS_StrBreak() leaves missing trailing entries as NULL and OS_IsValidName() calls strlen() on its argument without a NULL check, a response such as  OSSEC K:'1'  reaches OS_IsValidName(NULL) and terminates the agent process. Since Wazuh permits enrollment against an unverified manager when no CA certificate is configured, an attacker operating a rogue manager or intercepting the enrollment flow can deterministically crash agents, resulting in denial of service. This issue is fixed in version 4.14.7.",
+    "vendor": "wazuh",
+    "product": "wazuh",
+    "date": "2026-08-28",
     "references": [
-      "https://github.com/bsmi021/mcp-file-context-server/",
-      "https://github.com/bsmi021/mcp-file-context-server/issues/15",
-      "https://vuldb.com/cve/CVE-2026-81486",
-      "https://vuldb.com/submit/887137",
-      "https://vuldb.com/vuln/395980",
-      "https://vuldb.com/vuln/395980/cti",
-      "https://vuldb.com/submit/887137"
+      "https://github.com/wazuh/wazuh/commit/7dfbb4a292bc6ae8e3bb4c1982f687f35216a748",
+      "https://github.com/wazuh/wazuh/security/advisories/GHSA-ppc7-hj9v-vx39",
+      "https://github.com/wazuh/wazuh/security/advisories/GHSA-ppc7-hj9v-vx39"
     ]
   },
   {
     "id": 18,
-    "cve_id": "CVE-2026-16895",
-    "score": 5.1,
-    "severity": "medium",
-    "title": "CVE-2026-16895",
-    "description": "A logic vulnerability (fail-open condition) has been identified within the Metasploit Framework's JSON-RPC web service interface. When an exception occurs during the database health check (db.check) and the environment variable MSF_WS_JSON_RPC_API_TOKEN is not explicitly set, the application resets the internal state flag msf.auth_initialized to false. The ApiToken Warden authentication strategy misinterprets this false value as an indicator that authentication is not initialized or required, thereby granting unauthenticated local access to the JSON-RPC request dispatcher.",
-    "vendor": "Rapid7",
-    "product": "Metasploit-framework",
-    "date": "2026-08-27",
+    "cve_id": "CVE-2026-54085",
+    "score": 7.1,
+    "severity": "high",
+    "title": "CVE-2026-54085",
+    "description": "Wazuh is an open-source security platform providing unified XDR and SIEM protection for endpoints and cloud workloads. In versions 4.2.0 through 4.14.6, multiple active response scripts pass attacker-influenced alert fields to privileged system commands without validating their format, allowing argument injection into tools that run as root. Five of the eight scripts that handle the srcip field, route-null.c, netsh.c, pf.c, npf.c, and ipfw.c, omit the get_ip_version() check that rejects non-IP input, and disable-account.c passes the dstuser field to passwd/chuser with only a comparison against \"root\". An attacker who can inject crafted log events, for example via syslog, can supply srcip or dstuser values that, when an active response rule triggers, are passed unvalidated to firewall and account-management commands such as pfctl, npfctl, ipfw, route, netsh, and passwd. This enables injecting additional command arguments, and on Windows the unquoted CreateProcess command-line concatenation in wpopenv() lets a srcip containing spaces add further arguments, while disable-account.c can be abused to lock arbitrary system accounts. This issue is fixed in version 4.14.7.",
+    "vendor": "wazuh",
+    "product": "wazuh",
+    "date": "2026-08-28",
     "references": [
-      "https://github.com/rapid7/metasploit-framework/pull/21768",
-      "https://www.rapid7.com/blog/post/pt-metasploit-wrap-up-lot-of-summer-shells-and-fit-http-profiles/"
+      "https://github.com/wazuh/wazuh/commit/b7f3a5e59000e4cdef75f397f1107ae3e1c186a9",
+      "https://github.com/wazuh/wazuh/security/advisories/GHSA-mvh4-g699-984j"
     ]
   },
   {
     "id": 19,
-    "cve_id": "CVE-2026-81491",
-    "score": 7.5,
+    "cve_id": "CVE-2026-54330",
+    "score": 8.1,
     "severity": "high",
-    "title": "CVE-2026-81491",
-    "description": "A flaw has been found in boxpositron with-context-mcp up to 3.0.7. This affects the function ingest_notes/teleport_notes/sync_notes/project_folder of the file src/index.ts. Executing a manipulation can lead to path traversal. It is possible to launch the attack remotely. The exploit has been published and may be used. The project was informed of the problem early through an issue report but has not responded yet.",
-    "vendor": "boxpositron",
-    "product": "with-context-mcp",
-    "date": "2026-08-27",
+    "title": "CVE-2026-54330",
+    "description": "Ceph is an open-source distributed storage platform providing object, block, and file storage. In versions prior to 20.2.4 and 19.2.6, the Ceph Object Gateway (RGW) SigV4 handler does not reject requests that carry x-amz-* headers absent from the signed header set, allowing anyone holding a presigned URL to attach arbitrary unsigned x-amz-* headers that RGW will honor. AWS S3 requires every x-amz-* header on a SigV4 request to be signed and rejects requests bearing additional unsigned headers, but RGW validates only the headers listed in X-Amz-SignedHeaders and ignores any extra ones, so they take effect without being covered by the signature. By adding such headers to a presigned PUT URL, an attacker can grant themselves more capabilities than the URL's signer intended and escalate their privileges. This issue is fixed in versions 20.2.4 and 19.2.6.",
+    "vendor": "ceph",
+    "product": "ceph",
+    "date": "2026-08-28",
     "references": [
-      "http://github.com/boxpositron/with-context-mcp/issues/2",
-      "https://vuldb.com/cve/CVE-2026-81491",
-      "https://vuldb.com/submit/887138",
-      "https://vuldb.com/vuln/395981",
-      "https://vuldb.com/vuln/395981/cti"
+      "https://github.com/ceph/ceph/commit/5837aa8e60471128dbb672b0ff6f1b1feebe08a7",
+      "https://github.com/ceph/ceph/commit/5978c866d4a0812fbb024745c4f1e79aaecd6c6a",
+      "https://github.com/ceph/ceph/security/advisories/GHSA-rmjq-ffrm-j6vj"
     ]
   },
   {
     "id": 20,
-    "cve_id": "CVE-2023-22289",
-    "score": 0,
-    "severity": "low",
-    "title": "CVE-2023-22289",
-    "description": "Rejected reason: This CVE ID has been rejected or withdrawn by its CVE Numbering Authority because it is Unused",
-    "vendor": "Inconnu",
-    "product": "Inconnu",
-    "date": "2026-08-27",
-    "references": []
+    "cve_id": "CVE-2026-5706",
+    "score": 8.9,
+    "severity": "high",
+    "title": "CVE-2026-5706",
+    "description": "In Bluetooth Mesh SDK 6.1.4 and earlier, malformed extended advertisements can trigger out-of-bounds writes leading to stack corruption and remote code execution. These messages must come from a device that has already joined the network. Only provisioners supporting extended advertisements may be impacted.",
+    "vendor": "Silicon Labs",
+    "product": "BT Mesh SDK",
+    "date": "2026-08-28",
+    "references": [
+      "https://github.com/SiliconLabs/gecko_sdk/releases",
+      "https://siliconlabs.lightning.force.com/sfc/servlet.shepherd/document/download/a45Vm000000Et6HIAS?operationContext=S1"
+    ]
   },
   {
     "id": 21,
-    "cve_id": "CVE-2023-22328",
-    "score": 0,
-    "severity": "low",
-    "title": "CVE-2023-22328",
-    "description": "Rejected reason: This CVE ID has been rejected or withdrawn by its CVE Numbering Authority because it is Unused",
-    "vendor": "Inconnu",
-    "product": "Inconnu",
-    "date": "2026-08-27",
-    "references": []
+    "cve_id": "CVE-2026-61783",
+    "score": 7,
+    "severity": "high",
+    "title": "CVE-2026-61783",
+    "description": "Wazuh is an open-source security platform providing unified XDR and SIEM protection for endpoints and cloud workloads. In versions 4.14.0 through 4.14.6, an authenticated low-privilege user can read the cluster secret from the manager configuration because the logic that masks sensitive values is disabled by any update-config RBAC rule, including an explicit deny. The mask_sensitive_config() decorator applies masking only when _has_update_permissions() returns false, but that gate treats a user as able to update the config whenever a  manager:update_config  or  cluster:update_config  rule exists, without ever checking whether the rule's effect is allow or deny. Because a deny rule is stored as a real entry, a read-only account that is hardened by explicitly denying config edits is counted as having update permission, which turns masking off. A single authenticated GET request to the configuration endpoint with  raw=true  then returns the verbatim ossec.conf XML with  cluster.key  in clear, whereas an otherwise identical account without the deny rule sees the value masked. This issue is fixed in version 4.14.7.",
+    "vendor": "wazuh",
+    "product": "wazuh",
+    "date": "2026-08-28",
+    "references": [
+      "https://github.com/wazuh/wazuh/commit/939f2e52afff8fbeb7b0894f3f1417eb6c395db3",
+      "https://github.com/wazuh/wazuh/security/advisories/GHSA-vjcq-cf36-f5gx",
+      "https://github.com/wazuh/wazuh/security/advisories/GHSA-vjcq-cf36-f5gx"
+    ]
   },
   {
     "id": 22,
-    "cve_id": "CVE-2023-22343",
-    "score": 0,
-    "severity": "low",
-    "title": "CVE-2023-22343",
-    "description": "Rejected reason: This CVE ID has been rejected or withdrawn by its CVE Numbering Authority because it is Unused",
-    "vendor": "Inconnu",
-    "product": "Inconnu",
-    "date": "2026-08-27",
-    "references": []
+    "cve_id": "CVE-2026-67560",
+    "score": 7.7,
+    "severity": "high",
+    "title": "CVE-2026-67560",
+    "description": "Bendix EC80 Brake ECU\n is vulnerable to a stack-based buffer overflow, which may allow an \nattacker to crash the ECU. A crafted payload can then be used to \nremotely execute arbitrary code or inject arbitrary CAN bus traffic. \nThis could cause the loss of the ABS function, steering assist, \nspeedometer, and shifting.",
+    "vendor": "Bendix",
+    "product": "EC80ESP+ J1708",
+    "date": "2026-08-28",
+    "references": [
+      "https://github.com/cisagov/CSAF/blob/develop/csaf_files/OT/white/2026/icsa-26-237-05.json",
+      "https://www.cisa.gov/news-events/ics-advisories/icsa-26-237-05"
+    ]
   },
   {
     "id": 23,
-    "cve_id": "CVE-2023-22352",
-    "score": 0,
-    "severity": "low",
-    "title": "CVE-2023-22352",
-    "description": "Rejected reason: This CVE ID has been rejected or withdrawn by its CVE Numbering Authority because it is Unused",
-    "vendor": "Inconnu",
-    "product": "Inconnu",
-    "date": "2026-08-27",
-    "references": []
+    "cve_id": "CVE-2026-68929",
+    "score": 9.3,
+    "severity": "critical",
+    "title": "CVE-2026-68929",
+    "description": "FastGPT is an open-source LLM platform for building AI applications on a knowledge base. In versions prior to 4.15.2, the WeChat (iLink) share-channel endpoints authorize requests using only the public shareId, with no authenticated identity or team-ownership check. As a result, an unauthenticated attacker who knows a victim team's shareId can take that team's WeChat bot offline or hijack the channel to their own bot: the logout endpoint is gated only by an existence check yet wipes the outLink's stored WeChat token, and the QR-code status endpoint performs no authorization at all and writes attacker-supplied bot credentials into the outLink identified by shareId. By generating a QR for a victim shareId, scanning it with their own WeChat, and calling the status endpoint, an attacker binds the victim team's app to the attacker's bot, exposing the app's private responses, displacing the legitimate binding, and consuming the victim's resources. The shareId is exposed in every shared chat URL, iframe, and embed, so it is not a secret. This issue is fixed in version 4.15.2.",
+    "vendor": "labring",
+    "product": "FastGPT",
+    "date": "2026-08-28",
+    "references": [
+      "https://github.com/labring/FastGPT/commit/81d391995b1f9989455267448872ff88bb1f42c9",
+      "https://github.com/labring/FastGPT/security/advisories/GHSA-q4pr-3qpg-9q5v",
+      "https://github.com/labring/FastGPT/security/advisories/GHSA-q4pr-3qpg-9q5v"
+    ]
   },
   {
     "id": 24,
-    "cve_id": "CVE-2023-22364",
-    "score": 0,
-    "severity": "low",
-    "title": "CVE-2023-22364",
-    "description": "Rejected reason: This CVE ID has been rejected or withdrawn by its CVE Numbering Authority because it is Unused",
-    "vendor": "Inconnu",
-    "product": "Inconnu",
-    "date": "2026-08-27",
-    "references": []
+    "cve_id": "CVE-2026-68967",
+    "score": 7.1,
+    "severity": "high",
+    "title": "CVE-2026-68967",
+    "description": "Bendix EC80 Brake ECU is vulnerable to an out-of-bounds write, which could allow an attacker \nto deliver a payload that could establish an arbitrary write primitive, \nwhich could crash the ECU.",
+    "vendor": "Bendix",
+    "product": "EC80ESP+ J1708",
+    "date": "2026-08-28",
+    "references": [
+      "https://github.com/cisagov/CSAF/blob/develop/csaf_files/OT/white/2026/icsa-26-237-05.json",
+      "https://www.cisa.gov/news-events/ics-advisories/icsa-26-237-05"
+    ]
   },
   {
     "id": 25,
-    "cve_id": "CVE-2023-22420",
-    "score": 0,
-    "severity": "low",
-    "title": "CVE-2023-22420",
-    "description": "Rejected reason: This CVE ID has been rejected or withdrawn by its CVE Numbering Authority because it is Unused",
-    "vendor": "Inconnu",
-    "product": "Inconnu",
-    "date": "2026-08-27",
-    "references": []
+    "cve_id": "CVE-2026-69658",
+    "score": 9.8,
+    "severity": "critical",
+    "title": "CVE-2026-69658",
+    "description": "MQTT credentials and control traffic are transmitted in cleartext, \nexposing sensitive information to network-level attackers. This may \nenable unauthorized device impersonation and disruption of messaging \nfunctions.",
+    "vendor": "Ebyte",
+    "product": "Ebyte NA111-M Firmware",
+    "date": "2026-08-28",
+    "references": [
+      "https://github.com/cisagov/CSAF/blob/develop/csaf_files/OT/white/2026/icsa-26-237-06.json",
+      "https://www.cisa.gov/news-events/ics-advisories/icsa-26-237-06"
+    ]
   },
   {
     "id": 26,
-    "cve_id": "CVE-2023-22423",
-    "score": 0,
-    "severity": "low",
-    "title": "CVE-2023-22423",
-    "description": "Rejected reason: This CVE ID has been rejected or withdrawn by its CVE Numbering Authority because it is Unused",
-    "vendor": "Inconnu",
-    "product": "Inconnu",
-    "date": "2026-08-27",
-    "references": []
+    "cve_id": "CVE-2026-71187",
+    "score": 9.8,
+    "severity": "critical",
+    "title": "CVE-2026-71187",
+    "description": "The Ebyte device relies on client side authentication logic that can be \nreproduced by unauthenticated users. An attacker may generate valid \nauthentication requests and bypass authentication to obtain \nadministrative access to the device.",
+    "vendor": "Ebyte",
+    "product": "Ebyte NA111-M Firmware",
+    "date": "2026-08-28",
+    "references": [
+      "https://github.com/cisagov/CSAF/blob/develop/csaf_files/OT/white/2026/icsa-26-237-06.json",
+      "https://www.cisa.gov/news-events/ics-advisories/icsa-26-237-06"
+    ]
   },
   {
     "id": 27,
-    "cve_id": "CVE-2023-22426",
-    "score": 0,
-    "severity": "low",
-    "title": "CVE-2023-22426",
-    "description": "Rejected reason: This CVE ID has been rejected or withdrawn by its CVE Numbering Authority because it is Unused",
-    "vendor": "Inconnu",
-    "product": "Inconnu",
-    "date": "2026-08-27",
-    "references": []
+    "cve_id": "CVE-2026-71396",
+    "score": 5.4,
+    "severity": "medium",
+    "title": "CVE-2026-71396",
+    "description": "Bendix EC80 Brake ECU uses hard-coded credentials, which could allow an attacker to disable automatic traction control.",
+    "vendor": "Bendix",
+    "product": "EC80ESP+ J1708",
+    "date": "2026-08-28",
+    "references": [
+      "https://github.com/cisagov/CSAF/blob/develop/csaf_files/OT/white/2026/icsa-26-237-05.json",
+      "https://www.cisa.gov/news-events/ics-advisories/icsa-26-237-05"
+    ]
   },
   {
     "id": 28,
-    "cve_id": "CVE-2023-22430",
-    "score": 0,
-    "severity": "low",
-    "title": "CVE-2023-22430",
-    "description": "Rejected reason: This CVE ID has been rejected or withdrawn by its CVE Numbering Authority because it is Unused",
-    "vendor": "Inconnu",
-    "product": "Inconnu",
-    "date": "2026-08-27",
-    "references": []
+    "cve_id": "CVE-2026-73125",
+    "score": 9.8,
+    "severity": "critical",
+    "title": "CVE-2026-73125",
+    "description": "Ebyte device web management interface does not consistently enforce \nauthentication before granting access to administrative functionality. \nAn unauthenticated remote attacker could access sensitive configuration \ninformation, modify device settings, or disrupt availability.",
+    "vendor": "Ebyte",
+    "product": "Ebyte NA111-M Firmware",
+    "date": "2026-08-28",
+    "references": [
+      "https://github.com/cisagov/CSAF/blob/develop/csaf_files/OT/white/2026/icsa-26-237-06.json",
+      "https://www.cisa.gov/news-events/ics-advisories/icsa-26-237-06"
+    ]
   },
   {
     "id": 29,
-    "cve_id": "CVE-2023-22433",
-    "score": 0,
-    "severity": "low",
-    "title": "CVE-2023-22433",
-    "description": "Rejected reason: This CVE ID has been rejected or withdrawn by its CVE Numbering Authority because it is Unused",
-    "vendor": "Inconnu",
-    "product": "Inconnu",
-    "date": "2026-08-27",
-    "references": []
+    "cve_id": "CVE-2026-73809",
+    "score": 8.7,
+    "severity": "high",
+    "title": "CVE-2026-73809",
+    "description": "A cleartext transmission of sensitive information vulnerability exists \nin certain Ebyte gateway products. The web management interface does not\n adequately protect sensitive communications using transport-layer \nencryption. An attacker with access to network traffic could intercept \nauthentication or session-related information transmitted between a user\n and the affected device. Successful exploitation could result in \ndisclosure of sensitive information and unauthorized access to device \nmanagement functionality.",
+    "vendor": "Ebyte",
+    "product": "Ebyte NA111-M Firmware",
+    "date": "2026-08-28",
+    "references": [
+      "https://github.com/cisagov/CSAF/blob/develop/csaf_files/OT/white/2026/icsa-26-237-06.json",
+      "https://www.cisa.gov/news-events/ics-advisories/icsa-26-237-06"
+    ]
   },
   {
     "id": 30,
-    "cve_id": "CVE-2023-22434",
-    "score": 0,
-    "severity": "low",
-    "title": "CVE-2023-22434",
-    "description": "Rejected reason: This CVE ID has been rejected or withdrawn by its CVE Numbering Authority because it is Unused",
-    "vendor": "Inconnu",
-    "product": "Inconnu",
-    "date": "2026-08-27",
-    "references": []
+    "cve_id": "CVE-2026-73839",
+    "score": 5.1,
+    "severity": "medium",
+    "title": "CVE-2026-73839",
+    "description": "Administrative credentials may be exposed in plaintext within the Ebyte \ndevice's management interface, increasing the risk of credential \ncompromise through visual or remote observation. This undermines the \nconfidentiality of device access.",
+    "vendor": "Ebyte",
+    "product": "Ebyte NE2-D11 Firmware",
+    "date": "2026-08-28",
+    "references": [
+      "https://github.com/cisagov/CSAF/blob/develop/csaf_files/OT/white/2026/icsa-26-237-06.json",
+      "https://www.cisa.gov/news-events/ics-advisories/icsa-26-237-06"
+    ]
   },
   {
     "id": 31,
-    "cve_id": "CVE-2023-22437",
-    "score": 0,
-    "severity": "low",
-    "title": "CVE-2023-22437",
-    "description": "Rejected reason: This CVE ID has been rejected or withdrawn by its CVE Numbering Authority because it is Unused",
-    "vendor": "Inconnu",
-    "product": "Inconnu",
-    "date": "2026-08-27",
-    "references": []
+    "cve_id": "CVE-2026-75337",
+    "score": 9.8,
+    "severity": "critical",
+    "title": "CVE-2026-75337",
+    "description": "The static resource interface /api/static/{deployKey}/ of Yu AI Code Mother v4.3 is vulnerable to path traversal. The user-controlled path is concatenated to the preview root directory without any normalization, allowing anonymous attackers to read files outside the preview root.",
+    "vendor": "n/a",
+    "product": "n/a",
+    "date": "2026-08-28",
+    "references": [
+      "https://github.com/fangtang7/CVE/blob/main/yu-ai/YU_AI_4.3_TRAVERSAL_POC.md",
+      "https://github.com/fangtang7/CVE/blob/main/yu-ai/YU_AI_4.3_TRAVERSAL_POC.md"
+    ]
   },
   {
     "id": 32,
-    "cve_id": "CVE-2023-22445",
-    "score": 0,
-    "severity": "low",
-    "title": "CVE-2023-22445",
-    "description": "Rejected reason: This CVE ID has been rejected or withdrawn by its CVE Numbering Authority because it is Unused",
-    "vendor": "Inconnu",
-    "product": "Inconnu",
-    "date": "2026-08-27",
-    "references": []
+    "cve_id": "CVE-2026-75339",
+    "score": 8.8,
+    "severity": "high",
+    "title": "CVE-2026-75339",
+    "description": "The storage endpoint /storage/upload of cjbi admin3 v3.0.0 are missing permission checks. /Any logged-in user can upload arbitrary files, and any anonymous attacker can download them.",
+    "vendor": "n/a",
+    "product": "n/a",
+    "date": "2026-08-28",
+    "references": [
+      "https://github.com/fangtang7/CVE/blob/main/admin3/file.md",
+      "https://github.com/fangtang7/CVE/blob/main/admin3/file.md"
+    ]
   },
   {
     "id": 33,
-    "cve_id": "CVE-2023-22446",
-    "score": 0,
-    "severity": "low",
-    "title": "CVE-2023-22446",
-    "description": "Rejected reason: This CVE ID has been rejected or withdrawn by its CVE Numbering Authority because it is Unused",
-    "vendor": "Inconnu",
-    "product": "Inconnu",
-    "date": "2026-08-27",
-    "references": []
+    "cve_id": "CVE-2026-75417",
+    "score": 7.2,
+    "severity": "high",
+    "title": "CVE-2026-75417",
+    "description": "A SQL injection vulnerability was found in YzmCMS 7.5. The issue occurs in the get_arrchildid() function within application/admin/controller/category.class.php, where the user-controlled parentid parameter is concatenated directly into a FIND_IN_SET() SQL clause without proper sanitization. This allows an authenticated administrator to execute arbitrary SQL queries via boolean-based blind injection, potentially leading to full database compromise.",
+    "vendor": "n/a",
+    "product": "n/a",
+    "date": "2026-08-28",
+    "references": [
+      "https://github.com/TKar0/TKar0-CvePoc/tree/main/2026-CVE-POC/CVE-2026-75417",
+      "https://github.com/yzmcms/yzmcms",
+      "https://github.com/TKar0/TKar0-CvePoc/blob/main/2026-CVE-POC/CVE-2026-75417/CVE-2026-75417.md"
+    ]
   },
   {
     "id": 34,
-    "cve_id": "CVE-2023-23544",
-    "score": 0,
-    "severity": "low",
-    "title": "CVE-2023-23544",
-    "description": "Rejected reason: This CVE ID has been rejected or withdrawn by its CVE Numbering Authority because it is Unused",
-    "vendor": "Inconnu",
-    "product": "Inconnu",
-    "date": "2026-08-27",
-    "references": []
+    "cve_id": "CVE-2026-75418",
+    "score": 7.5,
+    "severity": "high",
+    "title": "CVE-2026-75418",
+    "description": "A path traversal vulnerability exists in the built-in preview/development web server of Lektor <3.3.14 on Windows. An attacker with network access to the server can send a crafted HTTP request containing path traversal sequences to read arbitrary files accessible to the process, disclosing sensitive information such as system files and deployment configuration files containing credentials.",
+    "vendor": "n/a",
+    "product": "n/a",
+    "date": "2026-08-28",
+    "references": [
+      "https://github.com/TKar0/TKar0-CvePoc/tree/main/2026-CVE-POC/CVE-2026-75418",
+      "https://github.com/lektor/lektor",
+      "https://github.com/TKar0/TKar0-CvePoc/tree/main/2026-CVE-POC/CVE-2026-75418"
+    ]
   },
   {
     "id": 35,
-    "cve_id": "CVE-2023-27503",
-    "score": 0,
-    "severity": "low",
-    "title": "CVE-2023-27503",
-    "description": "Rejected reason: This CVE ID has been rejected or withdrawn by its CVE Numbering Authority because it is Unused",
-    "vendor": "Inconnu",
-    "product": "Inconnu",
-    "date": "2026-08-27",
-    "references": []
+    "cve_id": "CVE-2026-75419",
+    "score": 8.8,
+    "severity": "high",
+    "title": "CVE-2026-75419",
+    "description": "go-wind-cms (GoWind) before 1.0.0 has a missing authorization vulnerability. The NewAuthorizer() function in app/admin/service/internal/data/data.go and app/app/service/internal/data/data.go returns a no-op authorization engine (noop.State{}), so the authz middleware always allows requests. Any authenticated user (regardless of role or tenant) can invoke administrative APIs such as deleting users, resetting passwords, and creating tenants.",
+    "vendor": "n/a",
+    "product": "n/a",
+    "date": "2026-08-28",
+    "references": [
+      "https://github.com/TKar0/TKar0-CvePoc/tree/main/2026-CVE-POC/CVE-2026-75419",
+      "https://github.com/tx7do/go-wind-cms/issues/23",
+      "https://github.com/TKar0/TKar0-CvePoc/tree/main/2026-CVE-POC/CVE-2026-75419"
+    ]
   },
   {
     "id": 36,
-    "cve_id": "CVE-2023-27508",
-    "score": 0,
-    "severity": "low",
-    "title": "CVE-2023-27508",
-    "description": "Rejected reason: This CVE ID has been rejected or withdrawn by its CVE Numbering Authority because it is Unused",
-    "vendor": "Inconnu",
-    "product": "Inconnu",
-    "date": "2026-08-27",
-    "references": []
+    "cve_id": "CVE-2026-75548",
+    "score": 5.4,
+    "severity": "medium",
+    "title": "CVE-2026-75548",
+    "description": "The affected Ebyte device web management interface does not restrict the\n interface from being rendered within an external frame. An \nunauthenticated remote attacker could use a crafted webpage to mislead \nan authenticated administrator into initiating unintended configuration \nchanges or disruptive actions.",
+    "vendor": "Ebyte",
+    "product": "Ebyte NA111-M Firmware",
+    "date": "2026-08-28",
+    "references": [
+      "https://github.com/cisagov/CSAF/blob/develop/csaf_files/OT/white/2026/icsa-26-237-06.json",
+      "https://www.cisa.gov/news-events/ics-advisories/icsa-26-237-06"
+    ]
   },
   {
     "id": 37,
-    "cve_id": "CVE-2026-13414",
-    "score": 4.8,
-    "severity": "medium",
-    "title": "CVE-2026-13414",
-    "description": "The CMP  WordPress plugin before 4.1.18 does not perform authorization checks on one of its AJAX actions and relies on a nonce that is skipped for certain  (and exposed to anonymous visitors on others), allowing unauthenticated attackers to disable the site's maintenance/coming-soon mode under a non-default countdown configuration.",
-    "vendor": "Unknown",
-    "product": "CMP",
-    "date": "2026-08-27",
+    "cve_id": "CVE-2026-75813",
+    "score": 8.7,
+    "severity": "high",
+    "title": "CVE-2026-75813",
+    "description": "Certain configuration endpoints may lack proper server-side \nauthorization checks, allowing unauthorized users to access or modify \nsensitive device settings. This could result in full compromise of \ndevice functionality.",
+    "vendor": "Ebyte",
+    "product": "Ebyte NE2-D11 Firmware",
+    "date": "2026-08-28",
     "references": [
-      "https://wpscan.com/vulnerability/096f11ce-060a-403a-8af0-ae2ee7676318/"
+      "https://github.com/cisagov/CSAF/blob/develop/csaf_files/OT/white/2026/icsa-26-237-06.json",
+      "https://www.cisa.gov/news-events/ics-advisories/icsa-26-237-06"
     ]
   },
   {
     "id": 38,
-    "cve_id": "CVE-2026-13415",
-    "score": 7.2,
+    "cve_id": "CVE-2026-75814",
+    "score": 8.8,
     "severity": "high",
-    "title": "CVE-2026-13415",
-    "description": "The CMP  WordPress plugin before 4.1.18 does not enforce an option-name allow-list when importing settings via one of its AJAX actions, allowing users with the Editor role (when the administrator has granted the Editor role access to the CMP  WordPress plugin before 4.1.18's admin-bar controls) to update arbitrary WordPress options, including options that lead to privilege escalation to Administrator.",
-    "vendor": "Unknown",
-    "product": "CMP",
-    "date": "2026-08-27",
+    "title": "CVE-2026-75814",
+    "description": "The Ebyte device does not adequately verify the origin or authenticity of \nrequests submitted to the web management interface. An unauthenticated \nremote attacker could persuade an authenticated administrator to visit a\n crafted page, causing unauthorized configuration changes or a \ndisruption of device availability.",
+    "vendor": "Ebyte",
+    "product": "Ebyte NA111-M Firmware",
+    "date": "2026-08-28",
     "references": [
-      "https://wpscan.com/vulnerability/f0380d89-6e49-462a-b158-9d2cc3f049ca/"
+      "https://github.com/cisagov/CSAF/blob/develop/csaf_files/OT/white/2026/icsa-26-237-06.json",
+      "https://www.cisa.gov/news-events/ics-advisories/icsa-26-237-06"
     ]
   },
   {
     "id": 39,
-    "cve_id": "CVE-2026-13416",
-    "score": 3.5,
-    "severity": "low",
-    "title": "CVE-2026-13416",
-    "description": "The CMP  WordPress plugin before 4.1.18 does not sanitise and escape a settings value before outputting it on the coming-soon page, allowing users with the Editor role (when the administrator has granted the Editor role access to the CMP  WordPress plugin before 4.1.18's admin-bar controls) to inject arbitrary web scripts that execute when a visitor views the page.",
-    "vendor": "Unknown",
-    "product": "CMP",
-    "date": "2026-08-27",
+    "cve_id": "CVE-2026-76060",
+    "score": 8.8,
+    "severity": "high",
+    "title": "CVE-2026-76060",
+    "description": "An authenticated OS command injection vulnerability exists in ZoneMinder's event export functionality. The exportFile HTTP request parameter is passed unsanitized into a shell command executed via PHP's exec(), allowing any authenticated user with View Events permission to execute arbitrary operating system commands on the server.",
+    "vendor": "Zoneminder",
+    "product": "Zoneminder",
+    "date": "2026-08-28",
     "references": [
-      "https://wpscan.com/vulnerability/2331d3fa-9868-4365-a7a6-52386be7f1e1/"
+      "https://github.com/ZoneMinder/zoneminder",
+      "https://github.com/ZoneMinder/zoneminder/security/advisories/GHSA-88m4-hrgp-m9v3",
+      "https://github.com/cisagov/CSAF/blob/develop/csaf_files/OT/white/2026/icsa-26-237-02.json",
+      "https://www.cisa.gov/news-events/ics-advisories/icsa-26-237-02",
+      "https://zoneminder.com/downloads"
     ]
   },
   {
     "id": 40,
-    "cve_id": "CVE-2026-16567",
-    "score": 5.3,
-    "severity": "medium",
-    "title": "CVE-2026-16567",
-    "description": "The Document Embedder  WordPress plugin before 2.3.1 does not check a document's status before issuing a download token and streaming the file, allowing unauthenticated attackers to download arbitrary Document Embedder  WordPress plugin before 2.3.1 documents, including private and draft ones, by enumerating IDs.",
-    "vendor": "Unknown",
-    "product": "Document Embedder",
-    "date": "2026-08-27",
+    "cve_id": "CVE-2026-76179",
+    "score": 9.8,
+    "severity": "critical",
+    "title": "CVE-2026-76179",
+    "description": "An improper protection of authentication tokens vulnerability exists in \ncertain Ebyte gateway products. Authentication tokens used by the web \nmanagement interface are insufficiently protected during client-side \nsession handling, which may allow an attacker with access to exposed \nsession information to obtain and reuse a valid token. Successful \nexploitation could allow an attacker to impersonate an authenticated \nuser and gain unauthorized access to device management functionality.",
+    "vendor": "Ebyte",
+    "product": "Ebyte NA111-M Firmware",
+    "date": "2026-08-28",
     "references": [
-      "https://wpscan.com/vulnerability/abf97927-cee2-44f4-a495-c7571d43be95/"
+      "https://github.com/cisagov/CSAF/blob/develop/csaf_files/OT/white/2026/icsa-26-237-06.json",
+      "https://www.cisa.gov/news-events/ics-advisories/icsa-26-237-06"
     ]
   },
   {
     "id": 41,
-    "cve_id": "CVE-2026-16568",
-    "score": 4.3,
-    "severity": "medium",
-    "title": "CVE-2026-16568",
-    "description": "The Mobile App for WooCommerce: ShopApper Mobile App Builder Service for WooCommerce WordPress plugin through 0.4.62 does not verify that the requesting user owns the customer profile being queried through one of its REST endpoints, allowing any authenticated user (e.g. a customer/subscriber) to retrieve other users' personal data, including their email address, name, and roles.",
-    "vendor": "Unknown",
-    "product": "Mobile App for WooCommerce: ShopApper Mobile App Builder Service for WooCommerce",
-    "date": "2026-08-27",
+    "cve_id": "CVE-2026-76940",
+    "score": 8.7,
+    "severity": "high",
+    "title": "CVE-2026-76940",
+    "description": "The affected Ebyte device does not restrict repeated authentication \nattempts through rate limiting or account lockout mechanisms. This could\n allow an attacker to perform automated authentication attacks against \ndeployments that rely on password based authentication.",
+    "vendor": "Ebyte",
+    "product": "Ebyte NA111-M Firmware",
+    "date": "2026-08-28",
     "references": [
-      "https://wpscan.com/vulnerability/489be79d-df68-4384-83ab-c3fa5400eadc/"
+      "https://github.com/cisagov/CSAF/blob/develop/csaf_files/OT/white/2026/icsa-26-237-06.json",
+      "https://www.cisa.gov/news-events/ics-advisories/icsa-26-237-06"
     ]
   },
   {
     "id": 42,
-    "cve_id": "CVE-2026-16569",
-    "score": 4.3,
-    "severity": "medium",
-    "title": "CVE-2026-16569",
-    "description": "The Mobile App for WooCommerce: ShopApper Mobile App Builder Service for WooCommerce WordPress plugin through 0.4.62 does not check the user's capabilities before allowing a stock-update operation through one of its REST endpoints, allowing any authenticated user, such as a customer or subscriber, to change the stock quantity of arbitrary products.",
-    "vendor": "Unknown",
-    "product": "Mobile App for WooCommerce: ShopApper Mobile App Builder Service for WooCommerce",
-    "date": "2026-08-27",
+    "cve_id": "CVE-2026-76943",
+    "score": 9.8,
+    "severity": "critical",
+    "title": "CVE-2026-76943",
+    "description": "Xiiaozet LK100Wt contains an authentication weakness within an \nadministrative service that may allow an attacker to bypass intended \naccess controls and obtain command execution capabilities. Successful \nexploitation could allow unauthorized interaction with privileged \nfunctionality and may lead to complete device compromise.",
+    "vendor": "Xiiaozet",
+    "product": "Xiiaozet LK100W",
+    "date": "2026-08-28",
     "references": [
-      "https://wpscan.com/vulnerability/0d96cc80-0bba-45e4-8e07-220dc8b82c7d/"
+      "https://github.com/cisagov/CSAF/blob/develop/csaf_files/OT/white/2026/icsa-26-239-01.json",
+      "https://www.cisa.gov/news-events/ics-advisories/icsa-26-239-01"
     ]
   },
   {
     "id": 43,
-    "cve_id": "CVE-2026-19223",
-    "score": 7.2,
+    "cve_id": "CVE-2026-76945",
+    "score": 8.7,
     "severity": "high",
-    "title": "CVE-2026-19223",
-    "description": "The Smush  WordPress plugin before 4.3.2 does not restrict a network-wide setting to network administrators, allowing an administrator of any single site on a multisite network to execute arbitrary code across the entire network.",
-    "vendor": "Unknown",
-    "product": "Smush",
-    "date": "2026-08-27",
+    "title": "CVE-2026-76945",
+    "description": "The affected Ebyte device relies on client-managed authentication tokens\n without sufficient server-side validation. An attacker may replay or \nmanipulate authentication tokens to gain unauthorized access to \nadministrative functionality.",
+    "vendor": "Ebyte",
+    "product": "Ebyte NE2-D11 Firmware",
+    "date": "2026-08-28",
     "references": [
-      "https://wpscan.com/vulnerability/77187a44-9850-4b7e-a6c2-84de660f46a3/"
+      "https://github.com/cisagov/CSAF/blob/develop/csaf_files/OT/white/2026/icsa-26-237-06.json",
+      "https://www.cisa.gov/news-events/ics-advisories/icsa-26-237-06"
     ]
   },
   {
     "id": 44,
-    "cve_id": "CVE-2026-19225",
-    "score": 6.6,
+    "cve_id": "CVE-2026-77341",
+    "score": 5.3,
     "severity": "medium",
-    "title": "CVE-2026-19225",
-    "description": "The Defender Security  WordPress plugin before 6.2.0 does not restrict a network-wide setting to network administrators, allowing an administrator of any single site on a multisite network to execute arbitrary code across the entire network.",
-    "vendor": "Unknown",
-    "product": "Defender Security",
-    "date": "2026-08-27",
+    "title": "CVE-2026-77341",
+    "description": "cpp-httplib is a C++ header-only HTTP/HTTPS library. In version 0.49.0, the chunked-response trailer output path writes trailer header names and values directly to the socket without validating them, allowing CRLF sequences in a trailer field to inject additional headers or split the HTTP response. Unlike every other header-writing path in the library, the trailer-writing code applies none of the field-name and field-value checks that reject carriage return and line feed, so an application that places attacker-influenced data into a chunked response trailer emits attacker-controlled CRLF onto the wire. This enables HTTP response splitting, letting an attacker forge response headers or inject a second response. This issue is fixed in version 0.50.0.",
+    "vendor": "yhirose",
+    "product": "cpp-httplib",
+    "date": "2026-08-28",
     "references": [
-      "https://wpscan.com/vulnerability/5adace73-b1e5-4f1b-9676-6e9619dc54c4/"
+      "https://github.com/yhirose/cpp-httplib/commit/568d434e72fc51729d0ad33abffb181e5f7a453d",
+      "https://github.com/yhirose/cpp-httplib/security/advisories/GHSA-2r2h-jc8w-w66c",
+      "https://github.com/yhirose/cpp-httplib/security/advisories/GHSA-2r2h-jc8w-w66c"
     ]
   },
   {
     "id": 45,
-    "cve_id": "CVE-2026-19454",
-    "score": 4.4,
-    "severity": "medium",
-    "title": "CVE-2026-19454",
-    "description": "The JetBackup  WordPress plugin before 3.1.23.5 does not perform its multisite authorisation check before serving backup archives and job logs, allowing an administrator of the network's main site who is not a Super Admin to download a full backup of the entire network, including every site's data and the shared webroot.",
-    "vendor": "Unknown",
-    "product": "JetBackup",
-    "date": "2026-08-27",
+    "cve_id": "CVE-2026-77358",
+    "score": 8.2,
+    "severity": "high",
+    "title": "CVE-2026-77358",
+    "description": "cpp-httplib is a C++ header-only HTTP/HTTPS library. In versions 0.33.0 through 0.50.0, the TLS-enabled WebSocket client frees the TLS session before closing the WebSocket that still uses it, producing a use-after-free. In WebSocketClient::shutdown_and_close the SSL object is freed and the pointer cleared, but the subsequent WebSocket close still sends a close frame through the SSL socket stream, which holds a raw copy of the now-dangling session pointer and reads from and writes to the freed memory. The same freed-then-used ordering is reachable through the client's destructor and its connect path, so ordinary teardown of a secure WebSocket connection triggers the defect. This issue is fixed in version 0.50.1.",
+    "vendor": "yhirose",
+    "product": "cpp-httplib",
+    "date": "2026-08-28",
     "references": [
-      "https://wpscan.com/vulnerability/1f5480c1-260a-40ce-9938-112746f9e8e8/"
+      "https://github.com/yhirose/cpp-httplib/commit/2f986fd5e56e7c5f686d965174516360930f371d",
+      "https://github.com/yhirose/cpp-httplib/security/advisories/GHSA-w7p7-f35j-mw7q",
+      "https://github.com/yhirose/cpp-httplib/security/advisories/GHSA-w7p7-f35j-mw7q"
     ]
   },
   {
     "id": 46,
-    "cve_id": "CVE-2026-19715",
-    "score": 7.5,
+    "cve_id": "CVE-2026-77977",
+    "score": 8.1,
     "severity": "high",
-    "title": "CVE-2026-19715",
-    "description": "The WP OAuth Server ( Login with WordPress ) WordPress plugin before 6.3.1 does not restrict access to the debug log it writes, which is stored at a fixed and publicly reachable location, allowing unauthenticated users to read the OAuth tokens and authorisation codes it has issued as well as user records including password hashes when debug logging is enabled.",
-    "vendor": "Unknown",
-    "product": "WP OAuth Server ( Login with WordPress )",
-    "date": "2026-08-27",
+    "title": "CVE-2026-77977",
+    "description": "Ebyte gateway product's vendor configuration utility does not require authentication before \nallowing certain disruptive administrative actions when default \ncredentials remain configured. An unauthenticated attacker on the \nadjacent network could reboot the device or restore factory settings, \nresulting in a loss of configuration and service availability.",
+    "vendor": "Ebyte",
+    "product": "Ebyte NA111-M Firmware",
+    "date": "2026-08-28",
     "references": [
-      "https://wpscan.com/vulnerability/94987bd9-7ac2-44fd-93df-52892c2a4622/"
+      "https://github.com/cisagov/CSAF/blob/develop/csaf_files/OT/white/2026/icsa-26-237-06.json",
+      "https://www.cisa.gov/news-events/ics-advisories/icsa-26-237-06"
     ]
   },
   {
     "id": 47,
-    "cve_id": "CVE-2026-47849",
-    "score": 7.1,
+    "cve_id": "CVE-2026-78037",
+    "score": 8.8,
     "severity": "high",
-    "title": "CVE-2026-47849",
-    "description": "Spring Data REST does not guard identifier (@Id) and version (@Version) properties against mutation via RFC 6902 JSON Patch (application/json-patch+json) requests.\nSpring Data REST 5.1.0\nSpring Data REST 5.0.0 - 5.0.6\nSpring Data REST 4.5.0 - 4.5.12\nSpring Data REST 4.0.0 - 4.4.15\nSpring Data REST 3.7.20 and earlier",
-    "vendor": "Spring",
-    "product": "Spring Data REST",
-    "date": "2026-08-27",
+    "title": "CVE-2026-78037",
+    "description": "Xiiaozet LK100W is vulnerable to OS command injection through its \nweb-based management interface. An authenticated attacker may be able to\n execute arbitrary operating system commands with elevated privileges, \npotentially resulting in unauthorized access to sensitive information or\n complete device compromise.",
+    "vendor": "Xiiaozet",
+    "product": "Xiiaozet LK100W",
+    "date": "2026-08-28",
     "references": [
-      "https://spring.io/security/cve-2026-47849"
+      "https://github.com/cisagov/CSAF/blob/develop/csaf_files/OT/white/2026/icsa-26-239-01.json",
+      "https://www.cisa.gov/news-events/ics-advisories/icsa-26-239-01"
     ]
   },
   {
     "id": 48,
-    "cve_id": "CVE-2026-47864",
+    "cve_id": "CVE-2026-78239",
     "score": 9.8,
     "severity": "critical",
-    "title": "CVE-2026-47864",
-    "description": "SerializingHttpMessageConverter deserializes the body of incoming HTTP requests with a raw java.io.ObjectInputStream and no class filtering. Any request with Content-Type application/x-java-serialized-object whose body resolves to a Serializable type is read directly via readObject(). If an application using this converter on an inbound HTTP endpoint has any known Java deserialization \"gadget\" on its classpath, a remote, unauthenticated attacker can achieve arbitrary code execution.\nSpring Integration 7.1.0\nSpring Integration 7.0.0 - 7.0.5\nSpring Integration 6.5.0 - 6.5.10\nSpring Integration 6.4.0 - 6.4.12\nSpring Integration 5.5.21 and earlier",
-    "vendor": "Spring",
-    "product": "Spring Integration",
-    "date": "2026-08-27",
+    "title": "CVE-2026-78239",
+    "description": "Xiiaozet LK100W exposes a critical management function that can be \ninvoked without authentication, allowing a remote attacker to enable \nadministrative services that should be restricted. Successful \nexploitation may permit unauthorized access to the device.",
+    "vendor": "Xiiaozet",
+    "product": "Xiiaozet LK100W",
+    "date": "2026-08-28",
     "references": [
-      "https://spring.io/security/cve-2026-47864"
+      "https://github.com/cisagov/CSAF/blob/develop/csaf_files/OT/white/2026/icsa-26-239-01.json",
+      "https://www.cisa.gov/news-events/ics-advisories/icsa-26-239-01"
     ]
   },
   {
     "id": 49,
-    "cve_id": "CVE-2026-47875",
-    "score": 9.8,
-    "severity": "critical",
-    "title": "CVE-2026-47875",
-    "description": "Applications that deserialize execution contexts with Jackson2ExecutionContextStringSerializer are vulnerable to a deserialization attack if they use an untrusted data source for the job repository. The JobParameterDeserializer does not properly enforce the trusted-types allowlist, allowing an attacker to craft malicious input that can lead to arbitrary code execution, including known Jackson RCE gadgets.\nSpring Batch 6.0.0 - 6.0.4\nSpring Batch 5.2.0 - 5.2.6",
-    "vendor": "Spring",
-    "product": "Spring Batch",
-    "date": "2026-08-27",
+    "cve_id": "CVE-2026-80179",
+    "score": 5.9,
+    "severity": "medium",
+    "title": "CVE-2026-80179",
+    "description": "A flaw was found in jwcrypto. A remote attacker can send a specially crafted JSON Web Encryption (JWE) token containing numerous period delimiters. This malformed token can force the JWE.deserialize() function to allocate excessive memory, leading to a MemoryError. This issue results in a denial of service (DoS) for services that process untrusted JWE values.",
+    "vendor": "Red Hat",
+    "product": "Red Hat Ansible Automation Platform 2",
+    "date": "2026-08-28",
     "references": [
-      "https://spring.io/security/cve-2026-47875"
+      "https://access.redhat.com/security/cve/CVE-2026-80179",
+      "https://bugzilla.redhat.com/show_bug.cgi?id=2524147",
+      "https://github.com/latchset/jwcrypto/security/advisories/GHSA-96rv-c4vc-h4f4",
+      "https://github.com/latchset/jwcrypto/security/advisories/GHSA-96rv-c4vc-h4f4"
     ]
   },
   {
     "id": 50,
-    "cve_id": "CVE-2026-47877",
-    "score": 8.2,
-    "severity": "high",
-    "title": "CVE-2026-47877",
-    "description": "Spring Security Authorization Server's default consent page renders user-controlled values without HTML entity encoding.\nSpring Security 7.1.0\nSpring Security 7.0.0 - 7.0.6",
-    "vendor": "Spring",
-    "product": "Spring Security",
-    "date": "2026-08-27",
+    "cve_id": "CVE-2026-81835",
+    "score": 6.5,
+    "severity": "medium",
+    "title": "CVE-2026-81835",
+    "description": "A security vulnerability has been detected in RooCodeInc Roo-Code up to 3.51.1. This affects the function fetch_instructions of the file malicious_mcp_server.py of the component MCP Integration Trust Model. The manipulation leads to code injection. The attack is possible to be carried out remotely. The exploit has been disclosed publicly and may be used. Multiple isses were reported to the vendor beforehand. They explain, that \"they all apply to Roo Code, a project we no longer support - the repository was archived a while ago, and we don't encourage anyone to use it.\" This vulnerability only affects products that are no longer supported by the maintainer.",
+    "vendor": "RooCodeInc",
+    "product": "Roo-Code",
+    "date": "2026-08-28",
     "references": [
-      "https://spring.io/security/cve-2026-47877"
+      "https://gist.github.com/tchen200311/05b5960272c290b7843d6bbdbfe9f7c1",
+      "https://vuldb.com/cve/CVE-2026-81835",
+      "https://vuldb.com/submit/864286",
+      "https://vuldb.com/vuln/396168",
+      "https://vuldb.com/vuln/396168/cti"
     ]
   }
 ]
