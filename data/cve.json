@@ -1,766 +1,772 @@
 [
   {
     "id": 1,
-    "cve_id": "CVE-2025-30156",
-    "score": 8.9,
+    "cve_id": "CVE-2026-41012",
+    "score": 7.7,
     "severity": "high",
-    "title": "CVE-2025-30156",
-    "description": "Ceph is an open-source distributed storage platform providing object, block, and file storage. In versions prior to 20.2.4 and 19.2.6, the CephX authentication protocol encrypts tickets with AES-128-CBC in an unauthenticated mode that uses a hard-coded initialization vector and no message authentication, allowing an attacker to forge credentials and gain cluster-wide access. Because the ciphertext is malleable and the monitor will encrypt attacker-chosen entity names, an attacker holding one low-privilege key and able to observe CephX traffic can use the monitor as an encryption oracle and splice ciphertext blocks into valid tickets for privileged entities such as Manager, MDS, and OSD. The same lack of authentication also lets an attacker with CephX permissions escalate privileges by flipping a single bit in a service ticket to set its allow_all field to true. This issue is fixed in versions 20.2.4 and 19.2.6.",
-    "vendor": "ceph",
-    "product": "ceph",
-    "date": "2026-08-28",
+    "title": "CVE-2026-41012",
+    "description": "Traffic interception vulnerability in BOSH Director vCenter CPI allows attackers positioned between BOSH Director and vCenter to impersonate vCenter REST API and capture administrator credentials via HTTP Basic auth, leading to complete virtualization infrastructure takeover.\n\n\n\nAn attacker who can intercept traffic between the BOSH Director and vCenter can establish a malicious server impersonating the vCenter REST API. When the BOSH Director makes CPI calls to perform routine cloud infrastructure operations, the attacker captures the vCenter administrator username and password transmitted via HTTP Basic authentication.\n\n\n\nThe vulnerability stems from insufficient authentication security in the communication protocol between BOSH Director and vCenter. While HTTPS may be used, the lack of proper certificate validation and pinning allows attackers to successfully impersonate vCenter endpoints. Because vCenter credentials typically grant full administrative control over the entire virtualization estate, successful credential capture yields complete takeover of every VM, datastore, and network the CPI manages.\n\n\n\nThis exposure exists on every CPI call (including routine deployment operations, not just when tags are configured) and cannot be mitigated by supplying a CA certificate alone. The attack impacts all infrastructure managed by the compromised vCenter instance, potentially affecting hundreds or thousands of VMs across multiple deployments and environments.",
+    "vendor": "Cloud Foundry",
+    "product": "bosh-vsphere-cpi-release",
+    "date": "2026-08-29",
     "references": [
-      "https://github.com/ceph/ceph/commit/2ba086255de09c8b95177717cc7e9dd4377e2f0f",
-      "https://github.com/ceph/ceph/commit/3078188a7bdd89e2975280f2a906c71c2f6effd6",
-      "https://github.com/ceph/ceph/security/advisories/GHSA-7q3q-3975-qw3q"
+      "https://www.cloudfoundry.org/blog/cve-2026-41012-bosh-vsphere-cpi-improper-cert-validation/"
     ]
   },
   {
     "id": 2,
-    "cve_id": "CVE-2026-17610",
-    "score": 6,
-    "severity": "medium",
-    "title": "CVE-2026-17610",
-    "description": "In SiSDK v2026.6.0 and earlier, high network traffic loads can cause a dropped ACK leading to a denial of service. This is only present for EFR32MG24 and EFR32MG26 devices running concurrent multiprotocol Zigbee and Thread.",
-    "vendor": "Silicon Labs",
-    "product": "SiSDK",
-    "date": "2026-08-28",
+    "cve_id": "CVE-2026-10522",
+    "score": 9.8,
+    "severity": "critical",
+    "title": "CVE-2026-10522",
+    "description": "The MemberHero  WordPress plugin through 6.9 does not restrict which account fields can be supplied during its frontend registration process, allowing unauthenticated attackers to register a new user with an arbitrary role, including Administrator, leading to a full site takeover.\n\nVersion 6.9 is advertised as resolving this issue, but the fix is incomplete and the current version remains exploitable by unauthenticated attackers to obtain administrator access and to take over existing accounts. No version that fully addresses the issue is available at the time of this advisory.\n\nMitigation: deactivate and remove the MemberHero  WordPress plugin through 6.9 until a version that fully resolves this issue is released. If the MemberHero  WordPress plugin through 6.9 must stay active, disable public registration, restrict access to the registration functionality, and monitor the site for unexpected administrator accounts.",
+    "vendor": "Unknown",
+    "product": "MemberHero",
+    "date": "2026-08-29",
     "references": [
-      "https://github.com/SiliconLabsSoftware/sisdk-release/tree/sisdk-2026.6",
-      "https://siliconlabs.lightning.force.com/sfc/servlet.shepherd/document/download/a45Vm000000F7VpIAK?operationContext=S1"
+      "https://wpscan.com/vulnerability/8d531f22-1e8b-4e35-adec-c9304f4f7a07/"
     ]
   },
   {
     "id": 3,
-    "cve_id": "CVE-2026-18717",
-    "score": 9.1,
-    "severity": "critical",
-    "title": "CVE-2026-18717",
-    "description": "ASE2000 2.35 through 2.37 is vulnerable to an improper certificate validation vulnerability, which may allow an attacker to impersonate the trusted peer, complete the TLS handshake, and read or modify protected communications.",
-    "vendor": "Applied Systems Engineering",
-    "product": "ASE2000 V2",
-    "date": "2026-08-28",
+    "cve_id": "CVE-2026-16061",
+    "score": 8.6,
+    "severity": "high",
+    "title": "CVE-2026-16061",
+    "description": "The Rest Routes  WordPress plugin through 5.5.5 does not sanitize and validate a value taken from the URL of one of its public REST routes before using it in a SQL query, allowing unauthenticated attackers to perform SQL injection attacks.",
+    "vendor": "Unknown",
+    "product": "Rest Routes",
+    "date": "2026-08-29",
     "references": [
-      "http://www.ase-systems.com",
-      "https://github.com/cisagov/CSAF/blob/develop/csaf_files/OT/white/2026/icsa-26-239-04.json",
-      "https://www.cisa.gov/news-events/ics-advisories/icsa-26-239-04"
+      "https://wpscan.com/vulnerability/a5114034-797c-44cd-ba9b-6ab3655fd3e8/"
     ]
   },
   {
     "id": 4,
-    "cve_id": "CVE-2026-18965",
-    "score": 8.8,
-    "severity": "high",
-    "title": "CVE-2026-18965",
-    "description": "PayRange API is missing proper authorization on management endpoints, which allows verbose details of every device on the PayRange network to be publicly accessible, with or without an account.",
-    "vendor": "PayRange",
-    "product": "PayRange API",
-    "date": "2026-08-28",
+    "cve_id": "CVE-2026-16259",
+    "score": 9.8,
+    "severity": "critical",
+    "title": "CVE-2026-16259",
+    "description": "The Uix UserCenter WordPress plugin through 1.0.3 does not verify that the account being modified through an unauthenticated profile-update action belongs to the requester, and it authenticates that action with a token whose signing key is hardcoded and identical across every install, allowing unauthenticated attackers to forge a token for any user, overwrite an administrator's email and password, and take over the account.",
+    "vendor": "Unknown",
+    "product": "Uix UserCenter",
+    "date": "2026-08-29",
     "references": [
-      "https://github.com/cisagov/CSAF/blob/develop/csaf_files/OT/white/2026/icsa-26-237-04.json",
-      "https://www.cisa.gov/news-events/ics-advisories/icsa-26-237-04"
+      "https://wpscan.com/vulnerability/e551128c-c9b1-4e6a-a2aa-92830b7a4887/"
     ]
   },
   {
     "id": 5,
-    "cve_id": "CVE-2026-38343",
-    "score": 6.5,
-    "severity": "medium",
-    "title": "CVE-2026-38343",
-    "description": "An integer overflow in the libavfilter/vf_scale.c component of FFmpeg N-122528-gdd2976b9e1 allows attackers to cause a Denial of Service (DoS) via supplying a crafted video file.",
-    "vendor": "n/a",
-    "product": "n/a",
-    "date": "2026-08-28",
+    "cve_id": "CVE-2026-16600",
+    "score": 7.7,
+    "severity": "high",
+    "title": "CVE-2026-16600",
+    "description": "The SmartAIPress WordPress plugin through 1.2.0 does not perform a capability check on one of its AJAX actions and does not validate a user-supplied URL before fetching it server-side, allowing users with subscriber-level access and above to make the site retrieve arbitrary internal or external URLs and read the response, resulting in a full-read Server-Side Request Forgery.",
+    "vendor": "Unknown",
+    "product": "SmartAIPress",
+    "date": "2026-08-29",
     "references": [
-      "https://code.ffmpeg.org/FFmpeg/FFmpeg/issues/21587"
+      "https://wpscan.com/vulnerability/66d2dc2d-fe77-4d34-bfca-d47b086a9c96/"
     ]
   },
   {
     "id": 6,
-    "cve_id": "CVE-2026-38344",
-    "score": 7.5,
-    "severity": "high",
-    "title": "CVE-2026-38344",
-    "description": "A NULL pointer dereference in the get_min_buffer_size function (/libswscale/slice.c) of FFmpeg N-122528-gdd2976b9e1 allows attackers to cause a Denial of Service (DoS) via supplying a crafted video file.",
-    "vendor": "n/a",
-    "product": "n/a",
-    "date": "2026-08-28",
+    "cve_id": "CVE-2026-16947",
+    "score": 9.1,
+    "severity": "critical",
+    "title": "CVE-2026-16947",
+    "description": "The Total processing card payments for WooCommerce WordPress plugin through 7.3 does not validate a user-supplied path before using it to build a server-side verification request, and does not verify the authenticity of the response, allowing unauthenticated attackers to redirect that request to an arbitrary host (disclosing the merchant's payment-gateway credentials) and to forge a success response that marks arbitrary WooCommerce orders as paid.",
+    "vendor": "Unknown",
+    "product": "Total processing card payments for WooCommerce",
+    "date": "2026-08-29",
     "references": [
-      "https://code.ffmpeg.org/FFmpeg/FFmpeg/issues/21583"
+      "https://wpscan.com/vulnerability/53fe46b3-e8c4-448e-aa80-b7fb02fffa51/"
     ]
   },
   {
     "id": 7,
-    "cve_id": "CVE-2026-38345",
-    "score": 6.5,
+    "cve_id": "CVE-2026-17520",
+    "score": 4.8,
     "severity": "medium",
-    "title": "CVE-2026-38345",
-    "description": "A Division-by-Zero vulnerability in the ff_sws_init_single_context function (/libswscale/utils.c) of FFmpeg N-122528-gdd2976b9e1 allows attackers to cause a Denial of Service (DoS) via a crafted input.",
-    "vendor": "n/a",
-    "product": "n/a",
-    "date": "2026-08-28",
+    "title": "CVE-2026-17520",
+    "description": "The Newsletters WordPress plugin before 4.17 does not generate its API key using a sufficiently random source, deriving it from a publicly known value, allowing unauthenticated attackers to compute the key and perform privileged actions such as adding and deleting subscribers and sending emails, when the optional API has been enabled.",
+    "vendor": "Unknown",
+    "product": "Newsletters",
+    "date": "2026-08-29",
     "references": [
-      "https://code.ffmpeg.org/FFmpeg/FFmpeg/issues/21585",
-      "https://code.ffmpeg.org/FFmpeg/FFmpeg/issues/21585"
+      "https://wpscan.com/vulnerability/5a719e6b-22e1-4950-bf17-cd92e2ea6685/"
     ]
   },
   {
     "id": 8,
-    "cve_id": "CVE-2026-38346",
-    "score": 7.5,
-    "severity": "high",
-    "title": "CVE-2026-38346",
-    "description": "An integer overflow in the yuv2planeX_8_c() function (libswscale/output.c) of FFmpeg N-122528-gdd2976b9e1 allows attackers to cause a Denial of Service (DoS) via supplying a crafted video file.",
-    "vendor": "n/a",
-    "product": "n/a",
-    "date": "2026-08-28",
+    "cve_id": "CVE-2026-17522",
+    "score": 5.4,
+    "severity": "medium",
+    "title": "CVE-2026-17522",
+    "description": "The Newsletters WordPress plugin before 4.17 does not perform any nonce or capability check when saving one of its settings screens, and writes every submitted parameter into its own options, allowing attackers to make a logged in administrator overwrite arbitrary Newsletters WordPress plugin before 4.17 settings, including the credential protecting its API, via a Cross-Site Request Forgery attack.",
+    "vendor": "Unknown",
+    "product": "Newsletters",
+    "date": "2026-08-29",
     "references": [
-      "https://code.ffmpeg.org/FFmpeg/FFmpeg/issues/21584"
+      "https://wpscan.com/vulnerability/ebb8d4b7-14b5-49ed-b727-129123d6ce45/"
     ]
   },
   {
     "id": 9,
-    "cve_id": "CVE-2026-38347",
-    "score": 7.5,
-    "severity": "high",
-    "title": "CVE-2026-38347",
-    "description": "A heap overflow in the ff_sws_alphablendaway function (libswscale/alphablend.c) of FFmpeg git-master commit 722a217 allows attackers to cause a Denial of Service (DoS) via a crafted input.",
-    "vendor": "n/a",
-    "product": "n/a",
-    "date": "2026-08-28",
+    "cve_id": "CVE-2026-18233",
+    "score": 6.5,
+    "severity": "medium",
+    "title": "CVE-2026-18233",
+    "description": "The MStore API  WordPress plugin before 4.21.1 does not verify that the order targeted by one of its delivery endpoints belongs to the requester, allowing any authenticated user, including Subscribers, to mark arbitrary orders as completed and paid without any payment being made.",
+    "vendor": "Unknown",
+    "product": "MStore API",
+    "date": "2026-08-29",
     "references": [
-      "https://trac.ffmpeg.org/ticket/11692"
+      "https://wpscan.com/vulnerability/241c0394-8dfa-475c-a91b-e2b5e47add53/"
     ]
   },
   {
     "id": 10,
-    "cve_id": "CVE-2026-38348",
-    "score": 7.5,
-    "severity": "high",
-    "title": "CVE-2026-38348",
-    "description": "An integer overflow in the libswscale/utils.c component of FFmpeg N-122528-gdd2976b9e1 allows attackers to cause a Denial of Service (DoS) via supplying a crafted image file.",
-    "vendor": "n/a",
-    "product": "n/a",
-    "date": "2026-08-28",
+    "cve_id": "CVE-2026-18234",
+    "score": 6.5,
+    "severity": "medium",
+    "title": "CVE-2026-18234",
+    "description": "The MStore API  WordPress plugin before 4.21.1 does not verify that the order targeted by its wallet payment handling belongs to the requester, and does not deduct the wallet balance for most payment methods, allowing any authenticated user, including Subscribers, to mark arbitrary orders as paid without any payment being taken.",
+    "vendor": "Unknown",
+    "product": "MStore API",
+    "date": "2026-08-29",
     "references": [
-      "https://code.ffmpeg.org/FFmpeg/FFmpeg/issues/21588"
+      "https://wpscan.com/vulnerability/1dc31c4e-9687-4056-a93e-9509c5a88828/"
     ]
   },
   {
     "id": 11,
-    "cve_id": "CVE-2026-38349",
-    "score": 7.5,
-    "severity": "high",
-    "title": "CVE-2026-38349",
-    "description": "An integer overflow in the hScale16To19_c() function (libswscale/output.c) of FFmpeg N-122528-gdd2976b9e1 allows attackers to cause a Denial of Service (DoS) via supplying a crafted image file.",
-    "vendor": "n/a",
-    "product": "n/a",
-    "date": "2026-08-28",
+    "cve_id": "CVE-2026-19430",
+    "score": 5.3,
+    "severity": "medium",
+    "title": "CVE-2026-19430",
+    "description": "The Catfolders Document Gallery Pro WordPress plugin before 2.0.7 does not authorise some of its REST API routes, and the token identifying the requested content is forgeable client side, allowing unauthenticated users to list and download the contents of folders that were never published on the site.",
+    "vendor": "Unknown",
+    "product": "Catfolders Document Gallery Pro",
+    "date": "2026-08-29",
     "references": [
-      "https://code.ffmpeg.org/FFmpeg/FFmpeg/issues/21592"
+      "https://wpscan.com/vulnerability/ebf45bc7-a782-48b6-99ca-25bc78697e20/"
     ]
   },
   {
     "id": 12,
-    "cve_id": "CVE-2026-38350",
-    "score": 7.5,
-    "severity": "high",
-    "title": "CVE-2026-38350",
-    "description": "An integer overflow in the target_sws_fuzzer() function (libswscale/output.c) of FFmpeg N-122528-gdd2976b9e1 allows attackers to cause a Denial of Service (DoS) via supplying a crafted input.",
-    "vendor": "n/a",
-    "product": "n/a",
-    "date": "2026-08-28",
+    "cve_id": "CVE-2026-76546",
+    "score": 6.8,
+    "severity": "medium",
+    "title": "CVE-2026-76546",
+    "description": "The User Profile Builder  WordPress plugin before 4.0.1 does not escape the output of one of its optional shortcodes, allowing users with a role as low as contributor to perform Stored Cross-Site Scripting attacks against any user viewing the affected content, including administrators. The shortcode is not enabled by default.",
+    "vendor": "Unknown",
+    "product": "User Profile Builder",
+    "date": "2026-08-29",
     "references": [
-      "https://trac.ffmpeg.org/ticket/11686"
+      "https://wpscan.com/vulnerability/2c67d682-3e11-4fcd-9aae-ab7895d5da67/"
     ]
   },
   {
     "id": 13,
-    "cve_id": "CVE-2026-39944",
-    "score": 8.8,
-    "severity": "high",
-    "title": "CVE-2026-39944",
-    "description": "Ceph is an open-source distributed storage platform providing object, block, and file storage. In versions prior to 20.2.4 and 19.2.6, the RADOS Gateway (RGW) protects STS session tokens with an AES-128-CBC handler that provides no message authentication, allowing an attacker who holds any valid STS token to tamper with it undetected and escalate to full RGW administrative access. Because the ciphertext is unauthenticated, the attacker can perform a CBC bit-flip on the acct_type, perm_type, and is_admin fields of their own token, and a forged is_admin value triggers a global administrative override that bypasses all capability checks. The attack is reachable remotely over the RGW S3 endpoint and is a self-contained modification of a token the attacker already possesses, requiring no encryption oracle and no network observation. It requires only a single valid STS token, which need not carry any elevated privileges, with STS enabled. This issue is fixed in versions 20.2.4 and 19.2.6.",
-    "vendor": "ceph",
-    "product": "ceph",
-    "date": "2026-08-28",
+    "cve_id": "CVE-2026-76547",
+    "score": 6.6,
+    "severity": "medium",
+    "title": "CVE-2026-76547",
+    "description": "The User Profile Builder  WordPress plugin before 4.0.1 does not validate the type of data being deserialized when importing a configuration file, allowing high privilege users such as administrators to conduct PHP Object Injection. The affected feature is a free add-on which is disabled by default, and no POP chain is present in the User Profile Builder  WordPress plugin before 4.0.1 itself, so further impact requires a suitable gadget from another installed User Profile Builder  WordPress plugin before 4.0.1 or .",
+    "vendor": "Unknown",
+    "product": "User Profile Builder",
+    "date": "2026-08-29",
     "references": [
-      "https://github.com/ceph/ceph/releases/tag/v19.2.6",
-      "https://github.com/ceph/ceph/releases/tag/v20.2.4",
-      "https://github.com/ceph/ceph/security/advisories/GHSA-j73r-qrgx-jvq2"
+      "https://wpscan.com/vulnerability/b80151f4-e910-4263-9ecc-470fb39d7583/"
     ]
   },
   {
     "id": 14,
-    "cve_id": "CVE-2026-44629",
-    "score": 7.9,
+    "cve_id": "CVE-2026-76548",
+    "score": 8.2,
     "severity": "high",
-    "title": "CVE-2026-44629",
-    "description": "Improper access control to the Synergis Softwire installation folder. This vulnerability affects Streamvault all-in-one appliances (SV-100E and SV-300E series) and Synergis Softwire installed on Windows servers.",
-    "vendor": "Genetec Inc.",
-    "product": "Synergis Softwire",
-    "date": "2026-08-28",
+    "title": "CVE-2026-76548",
+    "description": "The User Profile Builder  WordPress plugin before 4.0.1 does not properly restrict its front-end file upload feature, granting unauthenticated visitors capabilities reserved to privileged roles. This allows them to list the site's media library and to modify unpublished posts, pages and media items belonging to other users.",
+    "vendor": "Unknown",
+    "product": "User Profile Builder",
+    "date": "2026-08-29",
     "references": [
-      "https://techdocs.genetec.com/r/en-US/Security-Updates-for-SynergisTM-Softwire-12.0/Resolved-vulnerabilities-in-Synergis-Softwire-12.0.2",
-      "https://techdocs.genetec.com/r/en-US/Security-Updates-for-SynergisTM-Softwire-12.2/Resolved-vulnerabilities-in-Synergis-Softwire-12.2.0"
+      "https://wpscan.com/vulnerability/75e0611d-e11d-44f8-8fc1-7c40bb113f64/"
     ]
   },
   {
     "id": 15,
-    "cve_id": "CVE-2026-50152",
-    "score": 9.1,
-    "severity": "critical",
-    "title": "CVE-2026-50152",
-    "description": "Ceph is an open-source distributed storage platform providing object, block, and file storage. In versions prior to 20.2.4 and 19.2.6, the Monitor subscription handler fails to properly authorize access to the configuration-key store, allowing any CephX user with only  `mon allow r` capabilities to read the entire store by sending a single crafted MMonSubscribe message. The config-key store holds sensitive secrets including OSD LUKS disk-encryption passphrases and, on cephadm-managed clusters, the SSH private key that cephadm uses to reach every host in the cluster. Because that key grants root on every node under the default cephadm configuration, a low-privileged read-only account can escalate to full cluster and host compromise. This issue is fixed in versions 20.2.4 and 19.2.6",
-    "vendor": "ceph",
-    "product": "ceph",
-    "date": "2026-08-28",
+    "cve_id": "CVE-2026-76586",
+    "score": 7.5,
+    "severity": "high",
+    "title": "CVE-2026-76586",
+    "description": "The Appointment Booking Calendar Plugin and Scheduling Plugin  WordPress plugin before 1.6.3 does not verify the amount actually paid against the server-side price staged for a booking when confirming an online payment, allowing unauthenticated users to have a paid appointment approved for a fraction of its price.",
+    "vendor": "Unknown",
+    "product": "Appointment Booking Calendar Plugin and Scheduling Plugin",
+    "date": "2026-08-29",
     "references": [
-      "https://github.com/ceph/ceph/commit/d971bb2b6199f70b1708a20a63fa944ee7a94727",
-      "https://github.com/ceph/ceph/commit/f2840d2fd338ab5de2865f0f78684bbf7b888c84",
-      "https://github.com/ceph/ceph/security/advisories/GHSA-rg9p-5xcp-wm8h"
+      "https://wpscan.com/vulnerability/bc74bc9b-92ce-434e-a21d-34d7525c8600/"
     ]
   },
   {
     "id": 16,
-    "cve_id": "CVE-2026-54083",
-    "score": 8.1,
+    "cve_id": "CVE-2026-77007",
+    "score": 7.5,
     "severity": "high",
-    "title": "CVE-2026-54083",
-    "description": "Wazuh is an open-source security platform providing unified XDR and SIEM protection for endpoints and cloud workloads. The  ip-customblock  active response script contains a path traversal vulnerability that lets an attacker create or delete arbitrary files on the filesystem as root. The script builds a file path by concatenating the  srcip  field taken from alert JSON directly onto the fixed  /ipblock/  base directory, without validating that the value is a well-formed IP address. Because the extraction routine returns the raw string unchecked, an attacker who can trigger alert-matching log events with a crafted  srcip  containing  ../  sequences can escape the base directory. The block action opens the resulting path in append mode, creating an empty file at an arbitrary location, while the unblock action passes it to remove(), deleting an arbitrary file; since the active response daemon runs as root, this includes sensitive files such as system credentials and Wazuh configuration. Unlike the sibling scripts host-deny.c, default-firewall-drop.c, and firewalld-drop.c, which reject non-IP input via get_ip_version(), ip-customblock.c omits this validation. This issue is fixed in version 4.14.7.",
-    "vendor": "wazuh",
-    "product": "wazuh",
-    "date": "2026-08-28",
+    "title": "CVE-2026-77007",
+    "description": "The HEL Online Classroom: AI-powered Online Classrooms WordPress plugin through 1.0.3 does not perform any authorisation check on one of its REST API routes, allowing unauthenticated users to retrieve its stored settings, including the shared secret used to sign API requests to the connected BigBlueButton server.",
+    "vendor": "Unknown",
+    "product": "HEL Online Classroom: AI-powered Online Classrooms",
+    "date": "2026-08-29",
     "references": [
-      "https://github.com/wazuh/wazuh/commit/e6ef99025b2ca4ba8003efb591c51545006bc2d4",
-      "https://github.com/wazuh/wazuh/security/advisories/GHSA-m4mf-qmhf-8vj6"
+      "https://wpscan.com/vulnerability/24f1da87-4217-4876-a0f3-5e125f694651/"
     ]
   },
   {
     "id": 17,
-    "cve_id": "CVE-2026-54084",
-    "score": 5.3,
+    "cve_id": "CVE-2026-77008",
+    "score": 6.5,
     "severity": "medium",
-    "title": "CVE-2026-54084",
-    "description": "Wazuh is an open-source security platform providing unified XDR and SIEM protection for endpoints and cloud workloads. In versions 4.0.0 through 4.14.6, a malicious or man-in-the-middle enrollment manager can crash a Wazuh agent during enrollment by returning a malformed key response with fewer than four fields, causing a NULL pointer dereference. The  w_enrollment_process_agent_key()  routine splits the manager-provided key into four space-separated fields but does not verify that all fields are present before passing them to validators. Because OS_StrBreak() leaves missing trailing entries as NULL and OS_IsValidName() calls strlen() on its argument without a NULL check, a response such as  OSSEC K:'1'  reaches OS_IsValidName(NULL) and terminates the agent process. Since Wazuh permits enrollment against an unverified manager when no CA certificate is configured, an attacker operating a rogue manager or intercepting the enrollment flow can deterministically crash agents, resulting in denial of service. This issue is fixed in version 4.14.7.",
-    "vendor": "wazuh",
-    "product": "wazuh",
-    "date": "2026-08-28",
+    "title": "CVE-2026-77008",
+    "description": "The HEL Online Classroom: AI-powered Online Classrooms WordPress plugin through 1.0.3 does not have any authorisation or authentication check when saving its settings, allowing unauthenticated users to overwrite them and repoint every online classroom, along with the shared secret those sessions are signed with, at infrastructure of their choosing.",
+    "vendor": "Unknown",
+    "product": "HEL Online Classroom: AI-powered Online Classrooms",
+    "date": "2026-08-29",
     "references": [
-      "https://github.com/wazuh/wazuh/commit/7dfbb4a292bc6ae8e3bb4c1982f687f35216a748",
-      "https://github.com/wazuh/wazuh/security/advisories/GHSA-ppc7-hj9v-vx39",
-      "https://github.com/wazuh/wazuh/security/advisories/GHSA-ppc7-hj9v-vx39"
+      "https://wpscan.com/vulnerability/529663a1-87ed-4cff-92f5-85641e9718b3/"
     ]
   },
   {
     "id": 18,
-    "cve_id": "CVE-2026-54085",
-    "score": 7.1,
-    "severity": "high",
-    "title": "CVE-2026-54085",
-    "description": "Wazuh is an open-source security platform providing unified XDR and SIEM protection for endpoints and cloud workloads. In versions 4.2.0 through 4.14.6, multiple active response scripts pass attacker-influenced alert fields to privileged system commands without validating their format, allowing argument injection into tools that run as root. Five of the eight scripts that handle the srcip field, route-null.c, netsh.c, pf.c, npf.c, and ipfw.c, omit the get_ip_version() check that rejects non-IP input, and disable-account.c passes the dstuser field to passwd/chuser with only a comparison against \"root\". An attacker who can inject crafted log events, for example via syslog, can supply srcip or dstuser values that, when an active response rule triggers, are passed unvalidated to firewall and account-management commands such as pfctl, npfctl, ipfw, route, netsh, and passwd. This enables injecting additional command arguments, and on Windows the unquoted CreateProcess command-line concatenation in wpopenv() lets a srcip containing spaces add further arguments, while disable-account.c can be abused to lock arbitrary system accounts. This issue is fixed in version 4.14.7.",
-    "vendor": "wazuh",
-    "product": "wazuh",
-    "date": "2026-08-28",
+    "cve_id": "CVE-2026-77010",
+    "score": 6.5,
+    "severity": "medium",
+    "title": "CVE-2026-77010",
+    "description": "The HEL Online Classroom: AI-powered Online Classrooms WordPress plugin through 1.0.3 does not perform authorisation checks on its REST API routes and does not consistently enforce the per-class access code, allowing unauthenticated users to obtain a signed meeting join link for any classroom, including one protected by an access code, and to join it with moderator privileges.",
+    "vendor": "Unknown",
+    "product": "HEL Online Classroom: AI-powered Online Classrooms",
+    "date": "2026-08-29",
     "references": [
-      "https://github.com/wazuh/wazuh/commit/b7f3a5e59000e4cdef75f397f1107ae3e1c186a9",
-      "https://github.com/wazuh/wazuh/security/advisories/GHSA-mvh4-g699-984j"
+      "https://wpscan.com/vulnerability/c50e6d2c-fe67-44d4-af10-a261d0afc6d7/"
     ]
   },
   {
     "id": 19,
-    "cve_id": "CVE-2026-54330",
-    "score": 8.1,
-    "severity": "high",
-    "title": "CVE-2026-54330",
-    "description": "Ceph is an open-source distributed storage platform providing object, block, and file storage. In versions prior to 20.2.4 and 19.2.6, the Ceph Object Gateway (RGW) SigV4 handler does not reject requests that carry x-amz-* headers absent from the signed header set, allowing anyone holding a presigned URL to attach arbitrary unsigned x-amz-* headers that RGW will honor. AWS S3 requires every x-amz-* header on a SigV4 request to be signed and rejects requests bearing additional unsigned headers, but RGW validates only the headers listed in X-Amz-SignedHeaders and ignores any extra ones, so they take effect without being covered by the signature. By adding such headers to a presigned PUT URL, an attacker can grant themselves more capabilities than the URL's signer intended and escalate their privileges. This issue is fixed in versions 20.2.4 and 19.2.6.",
-    "vendor": "ceph",
-    "product": "ceph",
-    "date": "2026-08-28",
+    "cve_id": "CVE-2026-77012",
+    "score": 9.3,
+    "severity": "critical",
+    "title": "CVE-2026-77012",
+    "description": "The 爱采集数据采集和发布插件 WordPress plugin through 1.0.0 does not require a per-install secret for one of its unauthenticated endpoints, relying on a hardcoded default, and does not validate the URLs or destination paths it is given, allowing unauthenticated attackers to read arbitrary files from the server, force it to issue arbitrary requests and retrieve the responses, and write attacker-supplied content outside the uploads directory.",
+    "vendor": "Unknown",
+    "product": "爱采集数据采集和发布插件",
+    "date": "2026-08-29",
     "references": [
-      "https://github.com/ceph/ceph/commit/5837aa8e60471128dbb672b0ff6f1b1feebe08a7",
-      "https://github.com/ceph/ceph/commit/5978c866d4a0812fbb024745c4f1e79aaecd6c6a",
-      "https://github.com/ceph/ceph/security/advisories/GHSA-rmjq-ffrm-j6vj"
+      "https://wpscan.com/vulnerability/025664f8-2af7-4692-a9a0-1d28916a1565/"
     ]
   },
   {
     "id": 20,
-    "cve_id": "CVE-2026-5706",
-    "score": 8.9,
-    "severity": "high",
-    "title": "CVE-2026-5706",
-    "description": "In Bluetooth Mesh SDK 6.1.4 and earlier, malformed extended advertisements can trigger out-of-bounds writes leading to stack corruption and remote code execution. These messages must come from a device that has already joined the network. Only provisioners supporting extended advertisements may be impacted.",
-    "vendor": "Silicon Labs",
-    "product": "BT Mesh SDK",
-    "date": "2026-08-28",
+    "cve_id": "CVE-2026-77704",
+    "score": 2.7,
+    "severity": "low",
+    "title": "CVE-2026-77704",
+    "description": "The Booking for Appointments and Events Calendar  WordPress plugin before 2.4.9 does not check that a user holds the required capability before letting them change an appointment's status, allowing customers to set arbitrary statuses on appointments they are booked on, including approving their own bookings that were left awaiting approval and overwriting another customer's booking status on a shared appointment.",
+    "vendor": "Unknown",
+    "product": "Booking for Appointments and Events Calendar",
+    "date": "2026-08-29",
     "references": [
-      "https://github.com/SiliconLabs/gecko_sdk/releases",
-      "https://siliconlabs.lightning.force.com/sfc/servlet.shepherd/document/download/a45Vm000000Et6HIAS?operationContext=S1"
+      "https://wpscan.com/vulnerability/7b444920-28c4-4e4c-b5fd-38fdc31aef0c/"
     ]
   },
   {
     "id": 21,
-    "cve_id": "CVE-2026-61783",
-    "score": 7,
-    "severity": "high",
-    "title": "CVE-2026-61783",
-    "description": "Wazuh is an open-source security platform providing unified XDR and SIEM protection for endpoints and cloud workloads. In versions 4.14.0 through 4.14.6, an authenticated low-privilege user can read the cluster secret from the manager configuration because the logic that masks sensitive values is disabled by any update-config RBAC rule, including an explicit deny. The mask_sensitive_config() decorator applies masking only when _has_update_permissions() returns false, but that gate treats a user as able to update the config whenever a  manager:update_config  or  cluster:update_config  rule exists, without ever checking whether the rule's effect is allow or deny. Because a deny rule is stored as a real entry, a read-only account that is hardened by explicitly denying config edits is counted as having update permission, which turns masking off. A single authenticated GET request to the configuration endpoint with  raw=true  then returns the verbatim ossec.conf XML with  cluster.key  in clear, whereas an otherwise identical account without the deny rule sees the value masked. This issue is fixed in version 4.14.7.",
-    "vendor": "wazuh",
-    "product": "wazuh",
-    "date": "2026-08-28",
+    "cve_id": "CVE-2026-77786",
+    "score": 4.9,
+    "severity": "medium",
+    "title": "CVE-2026-77786",
+    "description": "The Rank Math SEO  WordPress plugin before 1.0.277 does not check that the user requesting an automated SEO fix holds the capability WordPress itself requires for the settings being changed, allowing users with the Editor role to modify site-wide core WordPress settings that are reserved to administrators.",
+    "vendor": "Unknown",
+    "product": "Rank Math SEO",
+    "date": "2026-08-29",
     "references": [
-      "https://github.com/wazuh/wazuh/commit/939f2e52afff8fbeb7b0894f3f1417eb6c395db3",
-      "https://github.com/wazuh/wazuh/security/advisories/GHSA-vjcq-cf36-f5gx",
-      "https://github.com/wazuh/wazuh/security/advisories/GHSA-vjcq-cf36-f5gx"
+      "https://wpscan.com/vulnerability/b0f3dfdb-9f0a-418c-9ce5-6a2b2b1f1b49/"
     ]
   },
   {
     "id": 22,
-    "cve_id": "CVE-2026-67560",
-    "score": 7.7,
-    "severity": "high",
-    "title": "CVE-2026-67560",
-    "description": "Bendix EC80 Brake ECU\n is vulnerable to a stack-based buffer overflow, which may allow an \nattacker to crash the ECU. A crafted payload can then be used to \nremotely execute arbitrary code or inject arbitrary CAN bus traffic. \nThis could cause the loss of the ABS function, steering assist, \nspeedometer, and shifting.",
-    "vendor": "Bendix",
-    "product": "EC80ESP+ J1708",
-    "date": "2026-08-28",
+    "cve_id": "CVE-2026-80311",
+    "score": 4.3,
+    "severity": "medium",
+    "title": "CVE-2026-80311",
+    "description": "The Stripe Payment Forms by WP Full Pay  WordPress plugin before 8.5.5 does not verify that a subscription belongs to the customer bound to the requesting customer-portal session before cancelling it, allowing a user with a confirmed portal session to cancel subscriptions belonging to other customers.\n\nExploitation requires the attacker to know the target subscription's identifier, which is high-entropy and not enumerable through the Stripe Payment Forms by WP Full Pay  WordPress plugin before 8.5.5.",
+    "vendor": "Unknown",
+    "product": "Stripe Payment Forms by WP Full Pay",
+    "date": "2026-08-29",
     "references": [
-      "https://github.com/cisagov/CSAF/blob/develop/csaf_files/OT/white/2026/icsa-26-237-05.json",
-      "https://www.cisa.gov/news-events/ics-advisories/icsa-26-237-05"
+      "https://wpscan.com/vulnerability/e1b0e815-e803-4a14-ab2a-ed860e82c782/"
     ]
   },
   {
     "id": 23,
-    "cve_id": "CVE-2026-68929",
-    "score": 9.3,
-    "severity": "critical",
-    "title": "CVE-2026-68929",
-    "description": "FastGPT is an open-source LLM platform for building AI applications on a knowledge base. In versions prior to 4.15.2, the WeChat (iLink) share-channel endpoints authorize requests using only the public shareId, with no authenticated identity or team-ownership check. As a result, an unauthenticated attacker who knows a victim team's shareId can take that team's WeChat bot offline or hijack the channel to their own bot: the logout endpoint is gated only by an existence check yet wipes the outLink's stored WeChat token, and the QR-code status endpoint performs no authorization at all and writes attacker-supplied bot credentials into the outLink identified by shareId. By generating a QR for a victim shareId, scanning it with their own WeChat, and calling the status endpoint, an attacker binds the victim team's app to the attacker's bot, exposing the app's private responses, displacing the legitimate binding, and consuming the victim's resources. The shareId is exposed in every shared chat URL, iframe, and embed, so it is not a secret. This issue is fixed in version 4.15.2.",
-    "vendor": "labring",
-    "product": "FastGPT",
-    "date": "2026-08-28",
+    "cve_id": "CVE-2026-80488",
+    "score": 4.1,
+    "severity": "medium",
+    "title": "CVE-2026-80488",
+    "description": "The WP Ultimate CSV Importer  WordPress plugin before 9.0 does not properly sanitise and escape imported field values before using them in a SQL statement, which could allow high privilege users such as admin to perform SQL injection attacks.",
+    "vendor": "Unknown",
+    "product": "WP Ultimate CSV Importer",
+    "date": "2026-08-29",
     "references": [
-      "https://github.com/labring/FastGPT/commit/81d391995b1f9989455267448872ff88bb1f42c9",
-      "https://github.com/labring/FastGPT/security/advisories/GHSA-q4pr-3qpg-9q5v",
-      "https://github.com/labring/FastGPT/security/advisories/GHSA-q4pr-3qpg-9q5v"
+      "https://wpscan.com/vulnerability/94ed94c8-88e9-4fe8-ad83-cacd4f39dd20/"
     ]
   },
   {
     "id": 24,
-    "cve_id": "CVE-2026-68967",
-    "score": 7.1,
-    "severity": "high",
-    "title": "CVE-2026-68967",
-    "description": "Bendix EC80 Brake ECU is vulnerable to an out-of-bounds write, which could allow an attacker \nto deliver a payload that could establish an arbitrary write primitive, \nwhich could crash the ECU.",
-    "vendor": "Bendix",
-    "product": "EC80ESP+ J1708",
-    "date": "2026-08-28",
+    "cve_id": "CVE-2026-81026",
+    "score": 4.8,
+    "severity": "medium",
+    "title": "CVE-2026-81026",
+    "description": "The MasterStudy LMS WordPress Plugin  WordPress plugin before 3.7.40 does not verify the amount, receiver, currency or status of a payment notification before marking the corresponding order completed, allowing unauthenticated users to complete full-price orders and gain access to paid content by paying only a token amount.",
+    "vendor": "Unknown",
+    "product": "MasterStudy LMS WordPress Plugin",
+    "date": "2026-08-29",
     "references": [
-      "https://github.com/cisagov/CSAF/blob/develop/csaf_files/OT/white/2026/icsa-26-237-05.json",
-      "https://www.cisa.gov/news-events/ics-advisories/icsa-26-237-05"
+      "https://wpscan.com/vulnerability/6677b55c-5d51-4849-ac67-849a500aefe2/"
     ]
   },
   {
     "id": 25,
-    "cve_id": "CVE-2026-69658",
-    "score": 9.8,
-    "severity": "critical",
-    "title": "CVE-2026-69658",
-    "description": "MQTT credentials and control traffic are transmitted in cleartext, \nexposing sensitive information to network-level attackers. This may \nenable unauthorized device impersonation and disruption of messaging \nfunctions.",
-    "vendor": "Ebyte",
-    "product": "Ebyte NA111-M Firmware",
-    "date": "2026-08-28",
+    "cve_id": "CVE-2026-81200",
+    "score": 2.7,
+    "severity": "low",
+    "title": "CVE-2026-81200",
+    "description": "The MasterStudy LMS WordPress Plugin  WordPress plugin before 3.7.42 does not correctly restrict access to order information, allowing any user with the instructor role to read other users' order billing details, including name, email address, phone number and postal address, by enumerating order IDs.",
+    "vendor": "Unknown",
+    "product": "MasterStudy LMS WordPress Plugin",
+    "date": "2026-08-29",
     "references": [
-      "https://github.com/cisagov/CSAF/blob/develop/csaf_files/OT/white/2026/icsa-26-237-06.json",
-      "https://www.cisa.gov/news-events/ics-advisories/icsa-26-237-06"
+      "https://wpscan.com/vulnerability/1a4db76f-7043-4f9e-a584-17151d008ab1/"
     ]
   },
   {
     "id": 26,
-    "cve_id": "CVE-2026-71187",
-    "score": 9.8,
-    "severity": "critical",
-    "title": "CVE-2026-71187",
-    "description": "The Ebyte device relies on client side authentication logic that can be \nreproduced by unauthenticated users. An attacker may generate valid \nauthentication requests and bypass authentication to obtain \nadministrative access to the device.",
-    "vendor": "Ebyte",
-    "product": "Ebyte NA111-M Firmware",
-    "date": "2026-08-28",
+    "cve_id": "CVE-2026-81342",
+    "score": 4.7,
+    "severity": "medium",
+    "title": "CVE-2026-81342",
+    "description": "The MasterStudy LMS WordPress Plugin  WordPress plugin before 3.7.43 does not validate a redirect parameter supplied during user registration before using it, allowing unauthenticated attackers to redirect users to arbitrary external URLs.",
+    "vendor": "Unknown",
+    "product": "MasterStudy LMS WordPress Plugin",
+    "date": "2026-08-29",
     "references": [
-      "https://github.com/cisagov/CSAF/blob/develop/csaf_files/OT/white/2026/icsa-26-237-06.json",
-      "https://www.cisa.gov/news-events/ics-advisories/icsa-26-237-06"
+      "https://wpscan.com/vulnerability/f6f89b50-3087-4fb6-ba12-93fdc1bcc9ed/"
     ]
   },
   {
     "id": 27,
-    "cve_id": "CVE-2026-71396",
-    "score": 5.4,
+    "cve_id": "CVE-2026-81346",
+    "score": 4.3,
     "severity": "medium",
-    "title": "CVE-2026-71396",
-    "description": "Bendix EC80 Brake ECU uses hard-coded credentials, which could allow an attacker to disable automatic traction control.",
-    "vendor": "Bendix",
-    "product": "EC80ESP+ J1708",
-    "date": "2026-08-28",
+    "title": "CVE-2026-81346",
+    "description": "The Frontend Admin by DynamiApps WordPress plugin before 3.29.11 does not perform a capability check on one of its AJAX actions, allowing any authenticated user, such as a subscriber, to delete arbitrary membership plans.",
+    "vendor": "Unknown",
+    "product": "Frontend Admin by DynamiApps",
+    "date": "2026-08-29",
     "references": [
-      "https://github.com/cisagov/CSAF/blob/develop/csaf_files/OT/white/2026/icsa-26-237-05.json",
-      "https://www.cisa.gov/news-events/ics-advisories/icsa-26-237-05"
+      "https://wpscan.com/vulnerability/0fee8405-24c3-470e-b16d-7c839cba6038/"
     ]
   },
   {
     "id": 28,
-    "cve_id": "CVE-2026-73125",
+    "cve_id": "CVE-2026-80725",
     "score": 9.8,
     "severity": "critical",
-    "title": "CVE-2026-73125",
-    "description": "Ebyte device web management interface does not consistently enforce \nauthentication before granting access to administrative functionality. \nAn unauthenticated remote attacker could access sensitive configuration \ninformation, modify device settings, or disrupt availability.",
-    "vendor": "Ebyte",
-    "product": "Ebyte NA111-M Firmware",
-    "date": "2026-08-28",
+    "title": "CVE-2026-80725",
+    "description": "In the Linux kernel, the following vulnerability has been resolved:\n\nnet: gro: properly validate BIG TCP aggregation criteria\n\nWhen GRO attempts to aggregate packets beyond GRO_LEGACY_MAX_SIZE (64KB),\nBIG TCP should only be permitted for plain IPv4 TCP and plain IPv6 TCP\n(with sufficient MAC header room to insert the temporary HBH jumbo header).\n\nHowever, commit b1a78b9b9886 (\"net: add support for ipv4 big tcp\")\nloosened the check in skb_gro_receive(), leading to several issues:\n\n1. skb_gro_receive() checked skb_headroom(p) instead of the actual space\n   before the MAC header (p->mac_header). Because skb_headroom(p) includes\n   mac_len, crafted frames (e.g. injected via AF_PACKET) can pass the check\n   with p->mac_header < 8 bytes. When ipv6_gro_complete() inserts the\n   temporary HBH jumbo header, the memmove() starts before skb->head,\n   causing an out-of-bounds write and wrapping skb->mac_header.\n2. It allowed non-IP protocols such as software VLAN (ETH_P_8021Q /\n   ETH_P_8021AD) to aggregate beyond 64KB because\n   p->protocol != ETH_P_IPV6 was true.\n3. It checked p->encapsulation instead of NAPI_GRO_CB(skb)->encap_mark,\n   allowing encapsulated flows (e.g. SIT / IPv6-in-IPv4) to aggregate\n   beyond 64KB.\n\nFix skb_gro_receive() to strictly enforce:\n- NAPI_GRO_CB(skb)->proto == IPPROTO_TCP\n- Not encapsulated (!NAPI_GRO_CB(skb)->encap_mark && !p->encapsulation)\n- Protocol must be either ETH_P_IP or ETH_P_IPV6\n- If ETH_P_IPV6, p->mac_header must be at least\n  sizeof(struct hop_jumbo_hdr)\n\nReturning -E2BIG from skb_gro_receive() ensures that packets which cannot\nbecome BIG TCP are cleanly flushed at <= 64KB and delivered intact without\ndropping.\n\nThis issue does not exist in mainline (7.0+) because the subsystem was\nrewritten in commit 81be30c1f5f2 (\"net/ipv6: Drop HBH for BIG TCP on RX\nside\"), making this fix relevant only for older stable branches like\n6.18.y.",
+    "vendor": "Linux",
+    "product": "Linux",
+    "date": "2026-08-29",
     "references": [
-      "https://github.com/cisagov/CSAF/blob/develop/csaf_files/OT/white/2026/icsa-26-237-06.json",
-      "https://www.cisa.gov/news-events/ics-advisories/icsa-26-237-06"
+      "https://git.kernel.org/stable/c/03cb8cc2961f5f781d12e903782cb3815ed84b1c",
+      "https://git.kernel.org/stable/c/37a5dcd6837fc2afc44a7bc3ed8af4e983783d46",
+      "https://git.kernel.org/stable/c/3ce832e2bd431d0c12ba525ed73ad8fbc4191da5",
+      "https://git.kernel.org/stable/c/81be30c1f5f2bffda1f04c0efd0746af10b9643a",
+      "https://git.kernel.org/stable/c/e907bf694ed55bdfe421be99dba35751a655df25"
     ]
   },
   {
     "id": 29,
-    "cve_id": "CVE-2026-73809",
-    "score": 8.7,
-    "severity": "high",
-    "title": "CVE-2026-73809",
-    "description": "A cleartext transmission of sensitive information vulnerability exists \nin certain Ebyte gateway products. The web management interface does not\n adequately protect sensitive communications using transport-layer \nencryption. An attacker with access to network traffic could intercept \nauthentication or session-related information transmitted between a user\n and the affected device. Successful exploitation could result in \ndisclosure of sensitive information and unauthorized access to device \nmanagement functionality.",
-    "vendor": "Ebyte",
-    "product": "Ebyte NA111-M Firmware",
-    "date": "2026-08-28",
+    "cve_id": "CVE-2026-82364",
+    "score": 4.2,
+    "severity": "medium",
+    "title": "CVE-2026-82364",
+    "description": "A security vulnerability has been detected in macrozheng mall up to 1.0.3. This impacts an unknown function of the file /order/submit of the component Order Submission. The manipulation leads to race condition. It is possible to initiate the attack remotely. The attack is considered to have high complexity. The exploitability is said to be difficult. The vendor deleted the GitHub issue for this vulnerability without and explanation.",
+    "vendor": "macrozheng",
+    "product": "mall",
+    "date": "2026-08-29",
     "references": [
-      "https://github.com/cisagov/CSAF/blob/develop/csaf_files/OT/white/2026/icsa-26-237-06.json",
-      "https://www.cisa.gov/news-events/ics-advisories/icsa-26-237-06"
+      "https://github.com/macrozheng/mall/",
+      "https://github.com/macrozheng/mall/issues/983",
+      "https://vuldb.com/cve/CVE-2026-82364",
+      "https://vuldb.com/submit/887361",
+      "https://vuldb.com/vuln/396780",
+      "https://vuldb.com/vuln/396780/cti"
     ]
   },
   {
     "id": 30,
-    "cve_id": "CVE-2026-73839",
-    "score": 5.1,
-    "severity": "medium",
-    "title": "CVE-2026-73839",
-    "description": "Administrative credentials may be exposed in plaintext within the Ebyte \ndevice's management interface, increasing the risk of credential \ncompromise through visual or remote observation. This undermines the \nconfidentiality of device access.",
-    "vendor": "Ebyte",
-    "product": "Ebyte NE2-D11 Firmware",
-    "date": "2026-08-28",
+    "cve_id": "CVE-2026-14494",
+    "score": 9.8,
+    "severity": "critical",
+    "title": "CVE-2026-14494",
+    "description": "The Sigma Forms Pro plugin for WordPress is vulnerable to Remote Code Execution in all versions up to, and including, 1.4.5 via the handle_form_submission function. This is due to the plugin dynamically granting the unfiltered_upload capability to all users during form submissions and bypassing MIME type validation when allowed_file_types is not configured. This makes it possible for unauthenticated attackers to execute code on the server. Several default pre-built templates including Job Application, Support Ticket, and Wholesale Application have file upload fields with no file type restrictions configured by design, making this vulnerability immediately exploitable upon installation.",
+    "vendor": "bdthemes",
+    "product": "SigmaForms Pro – AI Generated Forms",
+    "date": "2026-08-29",
     "references": [
-      "https://github.com/cisagov/CSAF/blob/develop/csaf_files/OT/white/2026/icsa-26-237-06.json",
-      "https://www.cisa.gov/news-events/ics-advisories/icsa-26-237-06"
+      "https://feedback.bdthemes.com/announcements",
+      "https://www.wordfence.com/threat-intel/vulnerabilities/id/44d63454-87f0-49e3-ac04-2fa83882500d?source=cve"
     ]
   },
   {
     "id": 31,
-    "cve_id": "CVE-2026-75337",
-    "score": 9.8,
-    "severity": "critical",
-    "title": "CVE-2026-75337",
-    "description": "The static resource interface /api/static/{deployKey}/ of Yu AI Code Mother v4.3 is vulnerable to path traversal. The user-controlled path is concatenated to the preview root directory without any normalization, allowing anonymous attackers to read files outside the preview root.",
-    "vendor": "n/a",
-    "product": "n/a",
-    "date": "2026-08-28",
+    "cve_id": "CVE-2026-82447",
+    "score": 8.8,
+    "severity": "high",
+    "title": "CVE-2026-82447",
+    "description": "Skyvern before 1.0.45 contains a sandbox escape vulnerability in TextPromptBlock that renders prompts twice, first through a sandboxed Jinja environment and then through an unsandboxed environment. Attackers can inject malicious Jinja template syntax through workflow parameters or upstream block output to execute arbitrary code with server process privileges.",
+    "vendor": "Skyvern-AI",
+    "product": "skyvern",
+    "date": "2026-08-29",
     "references": [
-      "https://github.com/fangtang7/CVE/blob/main/yu-ai/YU_AI_4.3_TRAVERSAL_POC.md",
-      "https://github.com/fangtang7/CVE/blob/main/yu-ai/YU_AI_4.3_TRAVERSAL_POC.md"
+      "https://github.com/Skyvern-AI/skyvern",
+      "https://github.com/Skyvern-AI/skyvern/blob/v1.0.44/skyvern/forge/sdk/prompting.py",
+      "https://github.com/Skyvern-AI/skyvern/blob/v1.0.44/skyvern/forge/sdk/workflow/models/block.py",
+      "https://github.com/Skyvern-AI/skyvern/commit/d723de621d5b3a340f3cc4d5b46bfe40a9a3124e",
+      "https://www.vulncheck.com/advisories/skyvern-before-1.0.45-sandbox-escape-via-textpromptblock"
     ]
   },
   {
     "id": 32,
-    "cve_id": "CVE-2026-75339",
-    "score": 8.8,
-    "severity": "high",
-    "title": "CVE-2026-75339",
-    "description": "The storage endpoint /storage/upload of cjbi admin3 v3.0.0 are missing permission checks. /Any logged-in user can upload arbitrary files, and any anonymous attacker can download them.",
-    "vendor": "n/a",
-    "product": "n/a",
-    "date": "2026-08-28",
+    "cve_id": "CVE-2026-82448",
+    "score": 9.8,
+    "severity": "critical",
+    "title": "CVE-2026-82448",
+    "description": "Shinobi before commit 5a76c74f contains a hardcoded connection key in the child node service that allows unauthenticated attackers to execute arbitrary database queries. Attackers reaching the child node port can present the hardcoded key during WebSocket handshake, then dispatch SQL queries through the onWebSocketDataFromChildNode handler to read and modify user records and camera configuration.",
+    "vendor": "Shinobi Systems",
+    "product": "Shinobi",
+    "date": "2026-08-29",
     "references": [
-      "https://github.com/fangtang7/CVE/blob/main/admin3/file.md",
-      "https://github.com/fangtang7/CVE/blob/main/admin3/file.md"
+      "https://gitlab.com/Shinobi-Systems/Shinobi",
+      "https://gitlab.com/Shinobi-Systems/Shinobi/-/blob/f04e685b8bd4c6190fcd62993131b86a76c2b806/libs/childNode/utils.js",
+      "https://gitlab.com/Shinobi-Systems/Shinobi/-/commit/5a76c74f3977661ff3f9fd55a260db352c0b19c0",
+      "https://gitlab.com/Shinobi-Systems/Shinobi/-/merge_requests/554",
+      "https://www.vulncheck.com/advisories/shinobi-before-commit-5a76c74f-arbitrary-database-query-execution-via-hardcoded-child-node-key"
     ]
   },
   {
     "id": 33,
-    "cve_id": "CVE-2026-75417",
-    "score": 7.2,
-    "severity": "high",
-    "title": "CVE-2026-75417",
-    "description": "A SQL injection vulnerability was found in YzmCMS 7.5. The issue occurs in the get_arrchildid() function within application/admin/controller/category.class.php, where the user-controlled parentid parameter is concatenated directly into a FIND_IN_SET() SQL clause without proper sanitization. This allows an authenticated administrator to execute arbitrary SQL queries via boolean-based blind injection, potentially leading to full database compromise.",
-    "vendor": "n/a",
-    "product": "n/a",
-    "date": "2026-08-28",
+    "cve_id": "CVE-2026-82449",
+    "score": 6.9,
+    "severity": "medium",
+    "title": "CVE-2026-82449",
+    "description": "Cockpit CMS before 2.14.1 contains an account enumeration vulnerability in the auth check endpoint due to timing discrepancies in password verification. Attackers can measure response times across multiple requests to determine which accounts exist by observing that existing accounts trigger bcrypt verification while non-existent accounts return immediately.",
+    "vendor": "cockpit-hq",
+    "product": "cockpit",
+    "date": "2026-08-29",
     "references": [
-      "https://github.com/TKar0/TKar0-CvePoc/tree/main/2026-CVE-POC/CVE-2026-75417",
-      "https://github.com/yzmcms/yzmcms",
-      "https://github.com/TKar0/TKar0-CvePoc/blob/main/2026-CVE-POC/CVE-2026-75417/CVE-2026-75417.md"
+      "https://github.com/Cockpit-HQ/Cockpit",
+      "https://github.com/Cockpit-HQ/Cockpit/blob/2.14.0/modules/App/Controller/Auth.php",
+      "https://github.com/Cockpit-HQ/Cockpit/commit/5d65ae7b63a261a63e8809e5fba857ef3eadb2ac",
+      "https://link.mateocallec.com/MFC-2026-001",
+      "https://www.vulncheck.com/advisories/cockpit-cms-before-2.14.1-account-enumeration-via-auth-timing"
     ]
   },
   {
     "id": 34,
-    "cve_id": "CVE-2026-75418",
-    "score": 7.5,
+    "cve_id": "CVE-2026-82450",
+    "score": 8.8,
     "severity": "high",
-    "title": "CVE-2026-75418",
-    "description": "A path traversal vulnerability exists in the built-in preview/development web server of Lektor <3.3.14 on Windows. An attacker with network access to the server can send a crafted HTTP request containing path traversal sequences to read arbitrary files accessible to the process, disclosing sensitive information such as system files and deployment configuration files containing credentials.",
-    "vendor": "n/a",
-    "product": "n/a",
-    "date": "2026-08-28",
+    "title": "CVE-2026-82450",
+    "description": "BookStack before 26.05.4 contains a remote code execution vulnerability in the portable ZIP import functionality that allows users with Import Content and Create Books permissions to upload a PHP polyglot file as a book cover. Attackers can bypass image extension validation by embedding a PHP file with a .php filename in the ZIP archive, which is stored in the public web root and executed by unauthenticated requests.",
+    "vendor": "bookstackapp",
+    "product": "bookstack",
+    "date": "2026-08-29",
     "references": [
-      "https://github.com/TKar0/TKar0-CvePoc/tree/main/2026-CVE-POC/CVE-2026-75418",
-      "https://github.com/lektor/lektor",
-      "https://github.com/TKar0/TKar0-CvePoc/tree/main/2026-CVE-POC/CVE-2026-75418"
+      "https://github.com/BookStackApp/BookStack",
+      "https://github.com/BookStackApp/BookStack/commit/e210cc32e4cbb1efeae5c5c9d0fef8e3c6a752e6",
+      "https://www.vulncheck.com/advisories/bookstack-before-26.05.4-remote-code-execution-via-book-cover"
     ]
   },
   {
     "id": 35,
-    "cve_id": "CVE-2026-75419",
-    "score": 8.8,
-    "severity": "high",
-    "title": "CVE-2026-75419",
-    "description": "go-wind-cms (GoWind) before 1.0.0 has a missing authorization vulnerability. The NewAuthorizer() function in app/admin/service/internal/data/data.go and app/app/service/internal/data/data.go returns a no-op authorization engine (noop.State{}), so the authz middleware always allows requests. Any authenticated user (regardless of role or tenant) can invoke administrative APIs such as deleting users, resetting passwords, and creating tenants.",
-    "vendor": "n/a",
-    "product": "n/a",
-    "date": "2026-08-28",
+    "cve_id": "CVE-2026-82451",
+    "score": 6.1,
+    "severity": "medium",
+    "title": "CVE-2026-82451",
+    "description": "Formwork before 2.3.11 contains a stored cross-site scripting vulnerability in visit tracking that records the Referer header host unescaped. Unauthenticated attackers can craft malicious Referer headers to inject markup that executes in administrator browsers when viewing the Statistics panel.",
+    "vendor": "getformwork",
+    "product": "Formwork",
+    "date": "2026-08-29",
     "references": [
-      "https://github.com/TKar0/TKar0-CvePoc/tree/main/2026-CVE-POC/CVE-2026-75419",
-      "https://github.com/tx7do/go-wind-cms/issues/23",
-      "https://github.com/TKar0/TKar0-CvePoc/tree/main/2026-CVE-POC/CVE-2026-75419"
+      "https://github.com/getformwork/formwork/releases/tag/2.3.11",
+      "https://github.com/getformwork/formwork/security/advisories/GHSA-hpgc-57cm-66pc",
+      "https://www.vulncheck.com/advisories/formwork-stored-xss-via-referer-header"
     ]
   },
   {
     "id": 36,
-    "cve_id": "CVE-2026-75548",
-    "score": 5.4,
-    "severity": "medium",
-    "title": "CVE-2026-75548",
-    "description": "The affected Ebyte device web management interface does not restrict the\n interface from being rendered within an external frame. An \nunauthenticated remote attacker could use a crafted webpage to mislead \nan authenticated administrator into initiating unintended configuration \nchanges or disruptive actions.",
-    "vendor": "Ebyte",
-    "product": "Ebyte NA111-M Firmware",
-    "date": "2026-08-28",
+    "cve_id": "CVE-2026-82452",
+    "score": 9.8,
+    "severity": "critical",
+    "title": "CVE-2026-82452",
+    "description": "rust-iot-platform through commit 5df942ab contains an authentication bypass vulnerability where most REST API routes lack authentication guards in their handler signatures. Unauthenticated attackers can create, update, list, retrieve, and delete user accounts by directly accessing unprotected endpoints without providing valid credentials.",
+    "vendor": "iot-ecology",
+    "product": "rust-iot-platform",
+    "date": "2026-08-29",
     "references": [
-      "https://github.com/cisagov/CSAF/blob/develop/csaf_files/OT/white/2026/icsa-26-237-06.json",
-      "https://www.cisa.gov/news-events/ics-advisories/icsa-26-237-06"
+      "https://github.com/iot-ecology/rust-iot-platform",
+      "https://github.com/iot-ecology/rust-iot-platform/blob/5df942ab6bc46a3bf83dbee8c7970554f92c972d/api/src/controller/user_router.rs",
+      "https://www.vulncheck.com/advisories/rust-iot-platform-authentication-bypass-via-missing-request-guards"
     ]
   },
   {
     "id": 37,
-    "cve_id": "CVE-2026-75813",
+    "cve_id": "CVE-2026-82453",
     "score": 8.7,
     "severity": "high",
-    "title": "CVE-2026-75813",
-    "description": "Certain configuration endpoints may lack proper server-side \nauthorization checks, allowing unauthorized users to access or modify \nsensitive device settings. This could result in full compromise of \ndevice functionality.",
-    "vendor": "Ebyte",
-    "product": "Ebyte NE2-D11 Firmware",
-    "date": "2026-08-28",
+    "title": "CVE-2026-82453",
+    "description": "rust-iot-platform through commit 5df942ab stores user passwords in cleartext without hashing in the user model. Attackers can read API responses from user retrieval and listing routes to obtain plaintext credentials for all accounts.",
+    "vendor": "iot-ecology",
+    "product": "rust-iot-platform",
+    "date": "2026-08-29",
     "references": [
-      "https://github.com/cisagov/CSAF/blob/develop/csaf_files/OT/white/2026/icsa-26-237-06.json",
-      "https://www.cisa.gov/news-events/ics-advisories/icsa-26-237-06"
+      "https://github.com/iot-ecology/rust-iot-platform",
+      "https://github.com/iot-ecology/rust-iot-platform/blob/5df942ab6bc46a3bf83dbee8c7970554f92c972d/api/src/biz/user_biz.rs",
+      "https://www.vulncheck.com/advisories/rust-iot-platform-cleartext-password-storage-via-user-model"
     ]
   },
   {
     "id": 38,
-    "cve_id": "CVE-2026-75814",
-    "score": 8.8,
-    "severity": "high",
-    "title": "CVE-2026-75814",
-    "description": "The Ebyte device does not adequately verify the origin or authenticity of \nrequests submitted to the web management interface. An unauthenticated \nremote attacker could persuade an authenticated administrator to visit a\n crafted page, causing unauthorized configuration changes or a \ndisruption of device availability.",
-    "vendor": "Ebyte",
-    "product": "Ebyte NA111-M Firmware",
-    "date": "2026-08-28",
+    "cve_id": "CVE-2026-82454",
+    "score": 9.3,
+    "severity": "critical",
+    "title": "CVE-2026-82454",
+    "description": "The Omnivore API (packages/api) before the fix in commit abf53d6 contains an authentication bypass in Apple sign-in token verification. The decodeAppleToken function extracted the 'alg' field from the attacker-supplied JWT header and passed it as the sole allowed algorithm to jwt.verify(). Using jsonwebtoken v8 (which does not validate key/algorithm compatibility), an attacker can set alg=HS256 and sign a forged token using Apple's publicly available RSA public key as the HMAC secret, bypassing signature verification and impersonating any Apple-linked account.",
+    "vendor": "omnivore-app",
+    "product": "omnivore",
+    "date": "2026-08-29",
     "references": [
-      "https://github.com/cisagov/CSAF/blob/develop/csaf_files/OT/white/2026/icsa-26-237-06.json",
-      "https://www.cisa.gov/news-events/ics-advisories/icsa-26-237-06"
+      "https://github.com/omnivore-app/omnivore",
+      "https://github.com/omnivore-app/omnivore/commit/abf53d6508755d3d22a994e28e370a9193ea977a",
+      "https://github.com/omnivore-app/omnivore/pull/4652",
+      "https://www.vulncheck.com/advisories/omnivore-before-android-0.227.0-authentication-bypass-via-apple-sign-in"
     ]
   },
   {
     "id": 39,
-    "cve_id": "CVE-2026-76060",
-    "score": 8.8,
-    "severity": "high",
-    "title": "CVE-2026-76060",
-    "description": "An authenticated OS command injection vulnerability exists in ZoneMinder's event export functionality. The exportFile HTTP request parameter is passed unsanitized into a shell command executed via PHP's exec(), allowing any authenticated user with View Events permission to execute arbitrary operating system commands on the server.",
-    "vendor": "Zoneminder",
-    "product": "Zoneminder",
-    "date": "2026-08-28",
-    "references": [
-      "https://github.com/ZoneMinder/zoneminder",
-      "https://github.com/ZoneMinder/zoneminder/security/advisories/GHSA-88m4-hrgp-m9v3",
-      "https://github.com/cisagov/CSAF/blob/develop/csaf_files/OT/white/2026/icsa-26-237-02.json",
-      "https://www.cisa.gov/news-events/ics-advisories/icsa-26-237-02",
-      "https://zoneminder.com/downloads"
-    ]
+    "cve_id": "CVE-2026-82455",
+    "score": 0,
+    "severity": "low",
+    "title": "CVE-2026-82455",
+    "description": "Rejected reason: The RubyGems maintainers determined that the reported symlink-following behavior during gem extraction is not a security vulnerability, so no vulnerability exists for this record to describe.",
+    "vendor": "Inconnu",
+    "product": "Inconnu",
+    "date": "2026-08-29",
+    "references": []
   },
   {
     "id": 40,
-    "cve_id": "CVE-2026-76179",
-    "score": 9.8,
+    "cve_id": "CVE-2026-82456",
+    "score": 10,
     "severity": "critical",
-    "title": "CVE-2026-76179",
-    "description": "An improper protection of authentication tokens vulnerability exists in \ncertain Ebyte gateway products. Authentication tokens used by the web \nmanagement interface are insufficiently protected during client-side \nsession handling, which may allow an attacker with access to exposed \nsession information to obtain and reuse a valid token. Successful \nexploitation could allow an attacker to impersonate an authenticated \nuser and gain unauthorized access to device management functionality.",
-    "vendor": "Ebyte",
-    "product": "Ebyte NA111-M Firmware",
-    "date": "2026-08-28",
+    "title": "CVE-2026-82456",
+    "description": "argocd-mcp 0.8.0 binds its HTTP transport to every network interface and accepts MCP sessions without requiring caller credentials when ARGOCD_API_TOKEN is configured. Attackers who can reach the listener can invoke the full tool surface using the operator's stored token to create applications, request syncs, and modify Argo CD resources.",
+    "vendor": "argoproj-labs",
+    "product": "argocd-mcp",
+    "date": "2026-08-29",
     "references": [
-      "https://github.com/cisagov/CSAF/blob/develop/csaf_files/OT/white/2026/icsa-26-237-06.json",
-      "https://www.cisa.gov/news-events/ics-advisories/icsa-26-237-06"
+      "https://github.com/argoproj-labs/mcp-for-argocd",
+      "https://github.com/argoproj-labs/mcp-for-argocd/security/advisories/GHSA-rp45-5x3v-48mr",
+      "https://www.vulncheck.com/advisories/argocd-mcp-0.8.0-authentication-bypass-via-unauthenticated-http",
+      "https://github.com/argoproj-labs/mcp-for-argocd/security/advisories/GHSA-rp45-5x3v-48mr"
     ]
   },
   {
     "id": 41,
-    "cve_id": "CVE-2026-76940",
-    "score": 8.7,
+    "cve_id": "CVE-2026-82457",
+    "score": 8.5,
     "severity": "high",
-    "title": "CVE-2026-76940",
-    "description": "The affected Ebyte device does not restrict repeated authentication \nattempts through rate limiting or account lockout mechanisms. This could\n allow an attacker to perform automated authentication attacks against \ndeployments that rely on password based authentication.",
-    "vendor": "Ebyte",
-    "product": "Ebyte NA111-M Firmware",
-    "date": "2026-08-28",
+    "title": "CVE-2026-82457",
+    "description": "su-exec through 0.3 fails to validate numeric user and group identifiers parsed with strtol before assigning to uid_t and gid_t, allowing truncation of out-of-range values to zero. Attackers can supply large numeric identifiers that truncate to root's identifier, causing su-exec to execute target programs with root privileges instead of intended unprivileged accounts.",
+    "vendor": "ncopa",
+    "product": "su-exec",
+    "date": "2026-08-29",
     "references": [
-      "https://github.com/cisagov/CSAF/blob/develop/csaf_files/OT/white/2026/icsa-26-237-06.json",
-      "https://www.cisa.gov/news-events/ics-advisories/icsa-26-237-06"
+      "https://gist.github.com/thesmartshadow/ed96e2a88643c34a247c9b7cf9e311be",
+      "https://github.com/ncopa/su-exec",
+      "https://github.com/ncopa/su-exec/blob/89c016e6e08749d583efdeda04b9f73e1218e253/su-exec.c",
+      "https://www.vulncheck.com/advisories/su-exec-through-0.3-privilege-escalation-via-numeric-user-id",
+      "https://gist.github.com/thesmartshadow/ed96e2a88643c34a247c9b7cf9e311be"
     ]
   },
   {
     "id": 42,
-    "cve_id": "CVE-2026-76943",
-    "score": 9.8,
-    "severity": "critical",
-    "title": "CVE-2026-76943",
-    "description": "Xiiaozet LK100Wt contains an authentication weakness within an \nadministrative service that may allow an attacker to bypass intended \naccess controls and obtain command execution capabilities. Successful \nexploitation could allow unauthorized interaction with privileged \nfunctionality and may lead to complete device compromise.",
-    "vendor": "Xiiaozet",
-    "product": "Xiiaozet LK100W",
-    "date": "2026-08-28",
+    "cve_id": "CVE-2026-82477",
+    "score": 5.8,
+    "severity": "medium",
+    "title": "CVE-2026-82477",
+    "description": "In MITRE SAF Heimdall 2.11.6 through 2.13.x before 2.14.0, an SSRF issue allows remote attackers to access internal network resources via the Tenable proxy endpoint. This occurs in apps/backend/src/tenable/tenable.controller.ts.",
+    "vendor": "MITRE",
+    "product": "Heimdall",
+    "date": "2026-08-29",
     "references": [
-      "https://github.com/cisagov/CSAF/blob/develop/csaf_files/OT/white/2026/icsa-26-239-01.json",
-      "https://www.cisa.gov/news-events/ics-advisories/icsa-26-239-01"
+      "https://github.com/mitre/heimdall2/commit/b6a9cdb4fc01f96aaa1a77cc27d1d449b485937b",
+      "https://github.com/mitre/heimdall2/releases/tag/v2.14.0",
+      "https://github.com/mitre/heimdall2/security/advisories/GHSA-g9vx-2rpf-gpch",
+      "https://github.com/mitre/heimdall2/security/advisories/GHSA-g9vx-2rpf-gpch"
     ]
   },
   {
     "id": 43,
-    "cve_id": "CVE-2026-76945",
+    "cve_id": "CVE-2026-82481",
     "score": 8.7,
     "severity": "high",
-    "title": "CVE-2026-76945",
-    "description": "The affected Ebyte device relies on client-managed authentication tokens\n without sufficient server-side validation. An attacker may replay or \nmanipulate authentication tokens to gain unauthorized access to \nadministrative functionality.",
-    "vendor": "Ebyte",
-    "product": "Ebyte NE2-D11 Firmware",
-    "date": "2026-08-28",
+    "title": "CVE-2026-82481",
+    "description": "The cohttp package before 6.3.0 for OCaml allows directory traversal.",
+    "vendor": "mirage",
+    "product": "cohttp",
+    "date": "2026-08-29",
     "references": [
-      "https://github.com/cisagov/CSAF/blob/develop/csaf_files/OT/white/2026/icsa-26-237-06.json",
-      "https://www.cisa.gov/news-events/ics-advisories/icsa-26-237-06"
+      "https://github.com/mirage/ocaml-cohttp/pull/1145"
     ]
   },
   {
     "id": 44,
-    "cve_id": "CVE-2026-77341",
-    "score": 5.3,
-    "severity": "medium",
-    "title": "CVE-2026-77341",
-    "description": "cpp-httplib is a C++ header-only HTTP/HTTPS library. In version 0.49.0, the chunked-response trailer output path writes trailer header names and values directly to the socket without validating them, allowing CRLF sequences in a trailer field to inject additional headers or split the HTTP response. Unlike every other header-writing path in the library, the trailer-writing code applies none of the field-name and field-value checks that reject carriage return and line feed, so an application that places attacker-influenced data into a chunked response trailer emits attacker-controlled CRLF onto the wire. This enables HTTP response splitting, letting an attacker forge response headers or inject a second response. This issue is fixed in version 0.50.0.",
-    "vendor": "yhirose",
-    "product": "cpp-httplib",
-    "date": "2026-08-28",
+    "cve_id": "CVE-2026-82460",
+    "score": 9.8,
+    "severity": "critical",
+    "title": "CVE-2026-82460",
+    "description": "Cloud Commander before 19.20.2 contains a directory traversal vulnerability in REST file-operation and markdown endpoints that fails to properly validate path normalization. Attackers can use path traversal sequences to read, write, move, or copy files outside the configured root directory.",
+    "vendor": "coderaiser",
+    "product": "cloudcmd",
+    "date": "2026-08-29",
     "references": [
-      "https://github.com/yhirose/cpp-httplib/commit/568d434e72fc51729d0ad33abffb181e5f7a453d",
-      "https://github.com/yhirose/cpp-httplib/security/advisories/GHSA-2r2h-jc8w-w66c",
-      "https://github.com/yhirose/cpp-httplib/security/advisories/GHSA-2r2h-jc8w-w66c"
+      "https://github.com/coderaiser/cloudcmd",
+      "https://github.com/coderaiser/cloudcmd/blob/v19.20.1/server/root.js",
+      "https://github.com/coderaiser/cloudcmd/commit/b9bdc9ed528350eeb2f9ef974c18998096fae919",
+      "https://github.com/coderaiser/cloudcmd/issues/474",
+      "https://github.com/coderaiser/cloudcmd/releases/tag/v19.20.2",
+      "https://www.vulncheck.com/advisories/cloud-commander-before-19.20.2-directory-traversal-via-rest-and-markdown",
+      "https://github.com/coderaiser/cloudcmd/issues/474"
     ]
   },
   {
     "id": 45,
-    "cve_id": "CVE-2026-77358",
-    "score": 8.2,
+    "cve_id": "CVE-2026-82461",
+    "score": 8.6,
     "severity": "high",
-    "title": "CVE-2026-77358",
-    "description": "cpp-httplib is a C++ header-only HTTP/HTTPS library. In versions 0.33.0 through 0.50.0, the TLS-enabled WebSocket client frees the TLS session before closing the WebSocket that still uses it, producing a use-after-free. In WebSocketClient::shutdown_and_close the SSL object is freed and the pointer cleared, but the subsequent WebSocket close still sends a close frame through the SSL socket stream, which holds a raw copy of the now-dangling session pointer and reads from and writes to the freed memory. The same freed-then-used ordering is reachable through the client's destructor and its connect path, so ordinary teardown of a secure WebSocket connection triggers the defect. This issue is fixed in version 0.50.1.",
-    "vendor": "yhirose",
-    "product": "cpp-httplib",
-    "date": "2026-08-28",
+    "title": "CVE-2026-82461",
+    "description": "pac4j-oidc before 6.5.6 fails to verify access token signatures, issuers, audiences, or expiry when extracting Keycloak realm and client roles. Attackers can forge access tokens with administrative roles paired with valid ID tokens to bypass authorization checks in applications relying on pac4j role validation.",
+    "vendor": "pac4j",
+    "product": "pac4j",
+    "date": "2026-08-29",
     "references": [
-      "https://github.com/yhirose/cpp-httplib/commit/2f986fd5e56e7c5f686d965174516360930f371d",
-      "https://github.com/yhirose/cpp-httplib/security/advisories/GHSA-w7p7-f35j-mw7q",
-      "https://github.com/yhirose/cpp-httplib/security/advisories/GHSA-w7p7-f35j-mw7q"
+      "https://github.com/pac4j/pac4j",
+      "https://github.com/pac4j/pac4j/blob/pac4j-parent-6.5.5/pac4j-oidc/src/main/java/org/pac4j/oidc/authorization/generator/KeycloakRolesAuthorizationGenerator.java",
+      "https://github.com/pac4j/pac4j/commit/2270c3ff70e93cc43831e75702acd5135531237e",
+      "https://www.pac4j.org/blog/security-advisory-pac4j-core-oidc-saml.html",
+      "https://www.vulncheck.com/advisories/pac4j-oidc-before-6.5.6-privilege-escalation-via-unverified-keycloak-access-token"
     ]
   },
   {
     "id": 46,
-    "cve_id": "CVE-2026-77977",
-    "score": 8.1,
-    "severity": "high",
-    "title": "CVE-2026-77977",
-    "description": "Ebyte gateway product's vendor configuration utility does not require authentication before \nallowing certain disruptive administrative actions when default \ncredentials remain configured. An unauthenticated attacker on the \nadjacent network could reboot the device or restore factory settings, \nresulting in a loss of configuration and service availability.",
-    "vendor": "Ebyte",
-    "product": "Ebyte NA111-M Firmware",
-    "date": "2026-08-28",
+    "cve_id": "CVE-2026-82462",
+    "score": 6.9,
+    "severity": "medium",
+    "title": "CVE-2026-82462",
+    "description": "pac4j-oidc before 6.5.6 accepts OIDC callbacks carrying only an access token without authorization code or ID token validation. Attackers can substitute access tokens minted for other clients to create authenticated sessions without proper issuer, audience, nonce, or subject verification.",
+    "vendor": "pac4j",
+    "product": "pac4j",
+    "date": "2026-08-29",
     "references": [
-      "https://github.com/cisagov/CSAF/blob/develop/csaf_files/OT/white/2026/icsa-26-237-06.json",
-      "https://www.cisa.gov/news-events/ics-advisories/icsa-26-237-06"
+      "https://github.com/pac4j/pac4j",
+      "https://github.com/pac4j/pac4j/blob/pac4j-parent-6.5.5/pac4j-oidc/src/main/java/org/pac4j/oidc/credentials/extractor/OidcCredentialsExtractor.java",
+      "https://github.com/pac4j/pac4j/commit/2270c3ff70e93cc43831e75702acd5135531237e",
+      "https://www.pac4j.org/blog/security-advisory-pac4j-core-oidc-saml.html",
+      "https://www.vulncheck.com/advisories/pac4j-oidc-before-6.5.6-authentication-bypass-via-access-token-substitution"
     ]
   },
   {
     "id": 47,
-    "cve_id": "CVE-2026-78037",
-    "score": 8.8,
+    "cve_id": "CVE-2026-82463",
+    "score": 8.6,
     "severity": "high",
-    "title": "CVE-2026-78037",
-    "description": "Xiiaozet LK100W is vulnerable to OS command injection through its \nweb-based management interface. An authenticated attacker may be able to\n execute arbitrary operating system commands with elevated privileges, \npotentially resulting in unauthorized access to sensitive information or\n complete device compromise.",
-    "vendor": "Xiiaozet",
-    "product": "Xiiaozet LK100W",
-    "date": "2026-08-28",
+    "title": "CVE-2026-82463",
+    "description": "pac4j-core before 6.5.6 contains an authentication bypass vulnerability in CheckProfileTypeAuthorizer that reverses the profile type validation logic. Attackers can authenticate through a weaker client and access resources requiring a stronger profile type by satisfying generic profile checks.",
+    "vendor": "pac4j",
+    "product": "pac4j",
+    "date": "2026-08-29",
     "references": [
-      "https://github.com/cisagov/CSAF/blob/develop/csaf_files/OT/white/2026/icsa-26-239-01.json",
-      "https://www.cisa.gov/news-events/ics-advisories/icsa-26-239-01"
+      "https://github.com/pac4j/pac4j",
+      "https://github.com/pac4j/pac4j/blob/pac4j-parent-6.5.5/pac4j-core/src/main/java/org/pac4j/core/authorization/authorizer/CheckProfileTypeAuthorizer.java",
+      "https://github.com/pac4j/pac4j/commit/2270c3ff70e93cc43831e75702acd5135531237e",
+      "https://www.pac4j.org/blog/security-advisory-pac4j-core-oidc-saml.html",
+      "https://www.vulncheck.com/advisories/pac4j-core-before-6.5.6-authorization-bypass-via-reversed-profile-type-check"
     ]
   },
   {
     "id": 48,
-    "cve_id": "CVE-2026-78239",
-    "score": 9.8,
-    "severity": "critical",
-    "title": "CVE-2026-78239",
-    "description": "Xiiaozet LK100W exposes a critical management function that can be \ninvoked without authentication, allowing a remote attacker to enable \nadministrative services that should be restricted. Successful \nexploitation may permit unauthorized access to the device.",
-    "vendor": "Xiiaozet",
-    "product": "Xiiaozet LK100W",
-    "date": "2026-08-28",
+    "cve_id": "CVE-2026-82464",
+    "score": 6.1,
+    "severity": "medium",
+    "title": "CVE-2026-82464",
+    "description": "pac4j-core before 6.5.6 contains an open redirect vulnerability in DefaultLogoutLogic.perform() that accepts backslash-prefixed logout redirect targets matching logoutUrlPattern. Attackers can craft logout links with backslash-prefixed external hosts that browsers normalize into network-path references, redirecting victims to attacker-controlled sites after logout.",
+    "vendor": "pac4j",
+    "product": "pac4j",
+    "date": "2026-08-29",
     "references": [
-      "https://github.com/cisagov/CSAF/blob/develop/csaf_files/OT/white/2026/icsa-26-239-01.json",
-      "https://www.cisa.gov/news-events/ics-advisories/icsa-26-239-01"
+      "https://github.com/pac4j/pac4j",
+      "https://github.com/pac4j/pac4j/blob/pac4j-parent-6.5.5/pac4j-core/src/main/java/org/pac4j/core/engine/DefaultLogoutLogic.java",
+      "https://github.com/pac4j/pac4j/commit/2270c3ff70e93cc43831e75702acd5135531237e",
+      "https://www.pac4j.org/blog/security-advisory-pac4j-core-oidc-saml.html",
+      "https://www.vulncheck.com/advisories/pac4j-core-before-6.5.6-open-redirect-via-backslash-logout"
     ]
   },
   {
     "id": 49,
-    "cve_id": "CVE-2026-80179",
-    "score": 5.9,
+    "cve_id": "CVE-2026-82465",
+    "score": 6.9,
     "severity": "medium",
-    "title": "CVE-2026-80179",
-    "description": "A flaw was found in jwcrypto. A remote attacker can send a specially crafted JSON Web Encryption (JWE) token containing numerous period delimiters. This malformed token can force the JWE.deserialize() function to allocate excessive memory, leading to a MemoryError. This issue results in a denial of service (DoS) for services that process untrusted JWE values.",
-    "vendor": "Red Hat",
-    "product": "Red Hat Ansible Automation Platform 2",
-    "date": "2026-08-28",
+    "title": "CVE-2026-82465",
+    "description": "pac4j-saml before 6.5.6 does not require signature validation of SAML LogoutRequest messages in SAML2LogoutValidator.validateLogoutRequest(). When an IdP sends no SessionIndex, a session can be destroyed based solely on the NameID, allowing an unauthenticated attacker to submit an unsigned LogoutRequest with a guessed identifier (e.g., an email address used as NameID) to terminate a victim's SAML session.",
+    "vendor": "pac4j",
+    "product": "pac4j",
+    "date": "2026-08-29",
     "references": [
-      "https://access.redhat.com/security/cve/CVE-2026-80179",
-      "https://bugzilla.redhat.com/show_bug.cgi?id=2524147",
-      "https://github.com/latchset/jwcrypto/security/advisories/GHSA-96rv-c4vc-h4f4",
-      "https://github.com/latchset/jwcrypto/security/advisories/GHSA-96rv-c4vc-h4f4"
+      "https://github.com/pac4j/pac4j",
+      "https://github.com/pac4j/pac4j/blob/pac4j-parent-6.5.5/pac4j-saml/src/main/java/org/pac4j/saml/logout/impl/SAML2LogoutValidator.java",
+      "https://github.com/pac4j/pac4j/commit/2270c3ff70e93cc43831e75702acd5135531237e",
+      "https://www.pac4j.org/blog/security-advisory-pac4j-core-oidc-saml.html",
+      "https://www.vulncheck.com/advisories/pac4j-saml-before-6.5.6-session-destruction-via-unsigned-logoutrequest"
     ]
   },
   {
     "id": 50,
-    "cve_id": "CVE-2026-81835",
-    "score": 6.5,
-    "severity": "medium",
-    "title": "CVE-2026-81835",
-    "description": "A security vulnerability has been detected in RooCodeInc Roo-Code up to 3.51.1. This affects the function fetch_instructions of the file malicious_mcp_server.py of the component MCP Integration Trust Model. The manipulation leads to code injection. The attack is possible to be carried out remotely. The exploit has been disclosed publicly and may be used. Multiple isses were reported to the vendor beforehand. They explain, that \"they all apply to Roo Code, a project we no longer support - the repository was archived a while ago, and we don't encourage anyone to use it.\" This vulnerability only affects products that are no longer supported by the maintainer.",
-    "vendor": "RooCodeInc",
-    "product": "Roo-Code",
-    "date": "2026-08-28",
+    "cve_id": "CVE-2026-82466",
+    "score": 9.4,
+    "severity": "critical",
+    "title": "CVE-2026-82466",
+    "description": "Rodauth before 2.46.0 contains an authentication bypass vulnerability in the webauthn_login route that allows logged-in users to authenticate as any other account. Attackers can exploit improper account resolution logic that falls back to session account identifiers instead of validating the credential binding to complete authentication as arbitrary users.",
+    "vendor": "jeremyevans",
+    "product": "rodauth",
+    "date": "2026-08-29",
     "references": [
-      "https://gist.github.com/tchen200311/05b5960272c290b7843d6bbdbfe9f7c1",
-      "https://vuldb.com/cve/CVE-2026-81835",
-      "https://vuldb.com/submit/864286",
-      "https://vuldb.com/vuln/396168",
-      "https://vuldb.com/vuln/396168/cti"
+      "https://github.com/jeremyevans/rodauth",
+      "https://github.com/jeremyevans/rodauth/commit/35d74a9f07b2005a8ea75fc11a6539c04f3c2840",
+      "https://github.com/jeremyevans/rodauth/security/advisories/GHSA-3pvr-v35r-4r75",
+      "https://www.vulncheck.com/advisories/rodauth-before-2.46.0-authentication-bypass-via-webauthn-login"
     ]
   }
 ]
